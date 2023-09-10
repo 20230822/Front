@@ -7,9 +7,12 @@
     flex-direction: column;
     align-items: center;
 }
+.box{
+    height: 100px;
+}
 .login-container{
-  width: 450px;
-  padding : 50px;
+  width: 400px;
+  padding : 60px;
   border: 0px solid rgb(245, 245, 45);
   margin-top: 30px;
   display: flex;
@@ -20,8 +23,11 @@
 
 .login-container > h2{
     font-size: 24px;
-    color: #6A24FE;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.input-group{
+    width: 70%;
 }
 
 .input-group > input{

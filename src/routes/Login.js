@@ -1,9 +1,12 @@
 // npm i styled-reset설치 후 사용
 import { Reset } from "styled-reset";
+import { Link } from "react-router-dom";
 import "../style/Login.css";
 function Login() {
   return (
     <div className="login">
+      <div className="box">
+      </div>
       <div className="login-container">
         <Reset />
         <h2>SIGN IN</h2>
@@ -15,6 +18,8 @@ function Login() {
           <input type="password" id="password" placeholder="PW" />
           <br></br>
           <input type="submit" value="Login"/>
+          <br></br>
+          <Link className="Sign" to={"/"}>Sign up</Link>
         </div>
       </div>
     </div>
