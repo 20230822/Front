@@ -2,17 +2,20 @@
   --aside-basic-color: #515151;
   --aside-hover-color: #000000;
 }
-
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .login-container{
   width: 450px;
   padding : 50px;
   border: 0px solid rgb(245, 245, 45);
-  margin-top: 30;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 15px 15px 10px rgb(209, 208, 208);
-  display: flex;
+  box-shadow: 15px 15px 10px rgb(209, 208, 208); 
 }
 
 .login-container > h2{
