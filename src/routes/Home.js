@@ -1,13 +1,17 @@
-// npm i styled-reset설치 후 사용
-import { Reset } from "styled-reset";
 import "../style/Home.css";
+import Banner from "../components/banner";
+import Article from "../components/article";
 
 function Home() {
   return (
     <div className="home">
-      <Reset />
+      <Banner />
 
-      <h1>home</h1>
+      <section className="home-article">
+        <Article />
+        <Article />
+        <Article />
+      </section>
     </div>
   );
 }

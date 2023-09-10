@@ -1,0 +1,85 @@
+/* ubuntu */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+/* noto sans kr */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+:root {
+  --header-basic-color: #515151;
+  --header-hover-color: #000000;
+  --header-max-width: 1240px;
+}
+
+.header {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  position: sticky;
+}
+
+/* ---------- light-illustration ---------- */
+.light-illustration {
+  position: absolute;
+
+}
+
+/* ---------- menu ---------- */
+.menu {
+  width: var(--header-max-width);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0 auto;
+  margin-top: 36px;
+}
+
+/* ---------- menu-top ---------- */
+.menu-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.menu-title {
+  color: var(--header-basic-color);
+  text-decoration: none;
+  font-size: 2.5rem;
+  font-family: 'Ubuntu', sans-serif;  
+  font-weight: 500;
+}
+.menu-help {
+  display: flex;
+  flex-direction: row;
+}
+.menu-help-item {
+  color: var(--header-basic-color);
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 12px;
+  cursor: pointer;
+}
+.menu-help-item:hover {
+  color: var(--header-hover-color);
+}
+
+/* ---------- menu-bottom ---------- */
+.menu-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+.menu-category-item {
+  color: var(--header-basic-color);
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-right: 24px;
+  cursor: pointer;
+}
+.menu-category-item:hover {
+  color: var(--header-hover-color);
+}
+
+
+
+
+
