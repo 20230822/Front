@@ -1,6 +1,3 @@
-// npm i styled-reset설치 후 사용
-import { Reset } from "styled-reset";
-import { useState } from "react";
 //a태그는 전체 새로고침이기에 link를 사용하여 특정 부분만 불러오기
 import { Link } from "react-router-dom";
 import "../style/Header.css";
@@ -10,8 +7,6 @@ import Search from "../components/search";
 function Header() {
   return (
     <div className="header">
-      <Reset />
-
       <div className="light-illustration">
         <Light />
       </div>
