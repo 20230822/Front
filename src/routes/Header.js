@@ -19,7 +19,7 @@ function Header() {
       <div className="menu-top">
         <h1><Link className="menu-title" to={"/"}>Light Mall</Link></h1>
         <ul>
-          <li>로그인</li> {/* 로그인 시 로그아웃으로 */}
+          <li><Link className="menu-title" to={"/login"}>로그인</Link></li> {/* 로그인 시 로그아웃으로 */}
           <li>마이페이지</li>
           <li>고객센터</li>
         </ul>
