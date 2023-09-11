@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Reset } from "styled-reset";
 import { Link } from "react-router-dom";
 import "../style/Login.css";
 
@@ -30,7 +29,6 @@ function SignUp() {
     <div className="signup">
       <div className="box"></div>
       <div className="login-container">
-        <Reset />
         <h2>SIGN UP</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group">

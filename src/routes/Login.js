@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Reset } from "styled-reset";
 import { Link } from "react-router-dom";
 import "../style/Login.css";
 
@@ -17,7 +16,6 @@ function Login() {
     <div className="login">
       <div className="box"></div>
       <div className="login-container">
-        <Reset />
         <h2>SIGN IN</h2>
         <div className="input-group">
         <label htmlFor="userID">User ID</label>
