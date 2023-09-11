@@ -46,13 +46,16 @@ function Banner() {
     let value = 0;
 
     // id의 값이 숫자가 아니라서 == 두개만 사용
-    if (e.target.id == 0)
+    if (e.target.id === "0")
       value = 1;
-    else if (e.target.id == 1)
+    else if (e.target.id === "1")
       value = 0;
-    else if (e.target.id == 2)
+    else if (e.target.id === "2")
       value = -1;
+    
     setIndex(value);
+    // 화살표클릭과 겹칠 시 오류를 해결하기 위해 class초기화 하기
+    setActive(""); 
   };
 
   // index에 맞게 dot의 값을 바꾸어 전달하여 클래스를 생성할 수 있게하는 함수

@@ -40,7 +40,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
 }
 .menu-title {
   color: var(--header-basic-color);
