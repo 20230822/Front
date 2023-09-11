@@ -1,0 +1,71 @@
+/* noto sans kr */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+:root {
+  --article-basic-color: #515151;
+  /* --article-hover-color: #000000; */
+  --article-max-width: 1240px;
+  --article-arrow-size: 30px;
+}
+
+.article {
+  width: var(--article-max-width);
+  height: 100%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+/* ---------- article-title ---------- */
+.article-title {
+  display: inline;
+  color: var(--article-basic-color);
+  font-size: 1.7rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ---------- article-image ---------- */
+.article-image {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.article-pre {
+  width: var(--article-arrow-size);
+  height: var(--article-arrow-size);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-top: 2px solid var(--article-basic-color);
+  border-left: 2px solid var(--article-basic-color);
+  transform: rotate(-45deg) translateX(15px);
+  cursor: pointer;
+}
+.article-next {
+  width: var(--article-arrow-size);
+  height: var(--article-arrow-size);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  border-top: 2px solid var(--article-basic-color);
+  border-right: 2px solid var(--article-basic-color);
+  transform: rotate(45deg) translateX(-15px);
+  cursor: pointer;
+}
+
+.article-recommend {
+  display: flex;
+  margin-top: 1rem;
+}
+.article-recommend-items {
+  min-width: 240px;
+  height: 300px;
+  background-color: aqua;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+.article-recommend-items:last-child {
+  margin-right: 0;
+}
