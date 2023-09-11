@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "../style/Login.css";
 
 function Login() {
-  const [username, setUsername] = useState(""); // 초기값은 빈 문자열
+  const [userID, setUsername] = useState(""); // 초기값은 빈 문자열
   const handleUsernameChange = (e) => {
     setUsername(e.target.value); // 입력된 값으로 상태(State) 업데이트
   };
@@ -20,11 +20,10 @@ function Login() {
         <Reset />
         <h2>SIGN IN</h2>
         <div className="input-group">
-          {/* 3. 입력 값 업데이트 */}
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" placeholder="ID" 
-          value={username} // 상태(State)에 저장된 값 사용
-          onChange={handleUsernameChange} // 입력 값 변경 이벤트 핸들러 연결
+        <label htmlFor="userID">User ID</label>
+          <input type="text" id="userID" placeholder="ID"
+            value={userID} // 상태(State)에 저장된 값 사용
+            onChange={handleUsernameChange} // 입력 값 변경 이벤트 핸들러 연결
           />
           <br />
           <label htmlFor="password">Password</label>
@@ -40,7 +39,7 @@ function Login() {
         </div>
       </div>
       <div>
-        <p>Username: {username}</p>
+        <p>Username: {userID}</p>
       </div>
       <div>
         <p>password: {password}</p>
