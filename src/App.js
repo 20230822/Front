@@ -11,8 +11,8 @@ import Header from "./routes/Header.js";
 const Home = lazy(() => import("./routes/Home.js"));
 const Login = lazy(() => import("./routes/Login.js"));
 const Help = lazy(() => import("./routes/Help.js"));
-const MyPage = lazy(() => import("./routes/Mypage"));
-const SignUp = lazy(() => import("./routes/Signup"));
+const MyPage = lazy(() => import("./routes/MyPage"));
+const SignUp = lazy(() => import("./routes/SignUp"));
 const Products = lazy(() => import("./routes/Products.js"));
 const Detail = lazy(() => import("./routes/Detail.js"));
 
