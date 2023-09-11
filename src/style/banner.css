@@ -1,11 +1,18 @@
 /* noto sans kr */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
 
+:root {
+  --banner-arrow-color: #d8d8d8;
+  --banner-basic-color: #515151;
+  --banner-arrow-size: 30px;
+  --banner-max-width: 1240px;
+}
+
 .banner {
   width: 100vw;
-  height: 400px;
+  height: 450px;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 50px;
 }
 
 /* ---------- banner-header ---------- */
@@ -14,31 +21,90 @@
   height: 100%;
   position: relative;
   overflow: hidden;
-  background-color: aqua;
 }
 .banner-title {
   width: 1240px;
   position: absolute;
   bottom: 30px;
-  left: 0;
+  left: 50px;
   right: 0;
-  color: white;
-  font-size: 2rem;
+  color: var(--banner-basic-color);
+  font-size: 21px;
   font-family: 'Noto Sans KR', sans-serif;
-  font-size: 400;
+  font-weight: 400;
   margin: 0 auto;
   z-index: 10; /* nav: 999 */
   cursor: default;
+}
+.banner-title-header {
+  font-size: 2em;
+  font-weight: 500;
+  margin-bottom: 10px;
 }
 
 .banner-images {
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: space-around;
+  position: relative;
+  transition: all 0.3s ease-in;
+}
+.move {
+  transition: all 0s;
 }
 .banner-images-index {
-  min-width: 100%;
+  min-width: var(--banner-max-width);
   height: 100%;
+  border-radius: 20px;
+  margin: 0 5px;
+}
+
+.banner-arrow {
+  max-width: var(--banner-max-width);
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.banner-pre {
+  width: var(--banner-arrow-size);
+  height: var(--banner-arrow-size);
+  border-top: 2px solid var(--banner-arrow-color);
+  border-left: 2px solid var(--banner-arrow-color);
+  transform: translateX(20px) rotate(-45deg);
+  cursor: pointer;
+}
+.banner-next {
+  width: var(--banner-arrow-size);
+  height: var(--banner-arrow-size);
+  border-top: 2px solid var(--banner-arrow-color);
+  border-right: 2px solid var(--banner-arrow-color);
+  transform: translateX(-20px) rotate(45deg);
+  cursor: pointer;
 }
 
 /* ---------- banner-dot ---------- */
+.banner-dot {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+.banner-dot-index {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--banner-basic-color);
+  margin-right: 20px;
+  cursor: pointer;
+}
+.banner-dot-index:last-child {
+  margin-right: 0;
+}
+.banner-dot-index.current {
+  background-color: var(--banner-basic-color);
+}

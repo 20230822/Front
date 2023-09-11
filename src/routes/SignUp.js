@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../style/Login.css";
-
 function SignUp() {
   // 상태(State)를 객체로 관리.
   const [formData, setFormData] = useState({

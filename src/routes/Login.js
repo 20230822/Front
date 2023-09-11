@@ -36,12 +36,12 @@ function Login() {
           </Link>
         </div>
       </div>
-      <div>
+      {/* <div>
         <p>Username: {userID}</p>
       </div>
       <div>
         <p>password: {password}</p>
-      </div>
+      </div> */}
     </div>
   );
 }
