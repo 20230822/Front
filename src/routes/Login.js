@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Reset } from "styled-reset";
-import { Link } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import "../style/Login.css";
 
 function Login() {
@@ -8,6 +8,19 @@ function Login() {
     userID: "",
     password: "",
   });
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Sign Up 페이지에서 전달받은 데이터를 확인
+    if (location.state && location.state.signUpData) {
+      const { userID, password } = location.state.signUpData;
+      setFormData({
+        userID,
+        password,
+      });
+    }
+  }, [location.state]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

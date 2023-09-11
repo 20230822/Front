@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Login.css";
 {/*파일명 변경*/ }
 function SignUp() {
@@ -9,6 +9,8 @@ function SignUp() {
     password: "",
     userName: "",
   });
+
+  const navigate = useNavigate();
 
   // 입력 값 변경 이벤트 핸들러
   const handleInputChange = (e) => {
@@ -22,7 +24,7 @@ function SignUp() {
   // 폼 제출 핸들러
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { userID, password, userName } = formData;
+    navigate("/login", { state: { signUpData: formData } });
   };
 
   return (
@@ -62,7 +64,7 @@ function SignUp() {
               onChange={handleInputChange}
             />
             <br />
-            <input type="submit" value="Sign UP" />
+            <input type="submit" value="Sign UP" onClick={handleSubmit} />
           </div>
         </form>
       </div>
