@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Reset } from "styled-reset";
 import { Link, useLocation} from "react-router-dom";
 import "../style/Login.css";
 
@@ -39,7 +38,6 @@ function Login() {
     <div className="login">
       <div className="box"></div>
       <div className="login-container">
-        <Reset />
         <h2>SIGN IN</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
@@ -76,7 +74,7 @@ function Login() {
       </div>
       <div>
         <p>password: {formData.password}</p>
-  </div>*/}
+      </div>*/}
     </div>
   );
 }

@@ -6,13 +6,14 @@
   /* --article-hover-color: #000000; */
   --article-max-width: 1240px;
   --article-arrow-size: 30px;
+  --article-arrow-color: #d8d8d8;
 }
 
 .article {
   width: var(--article-max-width);
   height: 100%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 60px;
 }
 
 /* ---------- article-title ---------- */
@@ -38,9 +39,9 @@
   position: absolute;
   top: 50%;
   left: 0;
-  border-top: 2px solid var(--article-basic-color);
-  border-left: 2px solid var(--article-basic-color);
-  transform: rotate(-45deg) translateX(15px);
+  border-top: 2px solid var(--article-arrow-color);
+  border-left: 2px solid var(--article-arrow-color);
+  transform: translateX(15px) translateY(-50%) rotate(-45deg);
   cursor: pointer;
 }
 .article-next {
@@ -49,9 +50,9 @@
   position: absolute;
   top: 50%;
   right: 0;
-  border-top: 2px solid var(--article-basic-color);
-  border-right: 2px solid var(--article-basic-color);
-  transform: rotate(45deg) translateX(-15px);
+  border-top: 2px solid var(--article-arrow-color);
+  border-right: 2px solid var(--article-arrow-color);
+  transform: translateX(-15px) translateY(-50%) rotate(45deg);
   cursor: pointer;
 }
 
@@ -61,8 +62,8 @@
 }
 .article-recommend-items {
   min-width: 240px;
-  height: 300px;
-  background-color: aqua;
+  height: 320px;
+  background-color: rgb(205, 172, 117);
   border-radius: 20px;
   margin-right: 10px;
 }
