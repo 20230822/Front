@@ -33,12 +33,18 @@
   overflow: hidden;
 }
 
+.article-arrow {
+  min-width: var(--article-max-width);
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+}
+
 .article-pre {
   width: var(--article-arrow-size);
   height: var(--article-arrow-size);
-  position: absolute;
-  top: 50%;
-  left: 0;
   border-top: 2px solid var(--article-arrow-color);
   border-left: 2px solid var(--article-arrow-color);
   transform: translateX(15px) translateY(-50%) rotate(-45deg);
@@ -47,9 +53,6 @@
 .article-next {
   width: var(--article-arrow-size);
   height: var(--article-arrow-size);
-  position: absolute;
-  top: 50%;
-  right: 0;
   border-top: 2px solid var(--article-arrow-color);
   border-right: 2px solid var(--article-arrow-color);
   transform: translateX(-15px) translateY(-50%) rotate(45deg);

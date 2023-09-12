@@ -103,15 +103,9 @@ function Banner() {
   return (
     <div className="banner">
       <div className="banner-header">
-        <div className="banner-title"> {/* class만들어 놓고 map사용하여 index에 맞게 불러오는 형식 사용하기 */}
-          {lights.map((lights, index) => {
-            return (
-              <div className="text" key={index}>
-                <h2 className="banner-title-header">{lights.h2}</h2>
-                <p>{lights.p}</p>
-              </div>
-            );
-          })}
+        <div className="banner-title">
+          <h2 className="banner-title-header">{lights[dotIndex].h2}</h2>
+          <p>{lights[dotIndex].p}</p>
         </div>
 
         <div className={`banner-images ${active === "move" ? active : ""}`} ref={carousel}>
