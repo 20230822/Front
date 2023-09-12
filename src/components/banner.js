@@ -9,6 +9,7 @@ import image3 from "../images/banner3.jpeg";
 function Banner() {
   const [index, setIndex] = useState(0);
   const [dotIndex, setDotIndex] = useState(1);
+  const [toggle, setToggle] =useState(true);
   // document.querySelector과 같은 기능 {변수명.current로 사용해야함}
   const carousel = useRef(null);
   const item = useRef(null);
@@ -85,40 +86,48 @@ function Banner() {
     setDotIndex(value);
   };
 
-   // index값 변경마다 slide 움직이게 하는 화살표함수
-   useEffect(() => {
+  // index값 변경마다 slide 움직이게 하는 화살표함수
+  useEffect(() => {
     const itemWidth = item.current.clientWidth + 10;
 
     dotColor(index);
-    console.log("index= " + index);
-    carousel.current.style.transform =  "translateX(" + (index * itemWidth) + "px)"; 
+    carousel.current.style.transform = "translateX(" + (index * itemWidth) + "px)"; 
   }, [index]);
 
   // 자동 슬라이드 기능을 구현
   useEffect(() => {
     const intervalId = setInterval(() => {
       setIndex((prevIndex) => {
+        // 맨 끝 index에 도달시 move클래스 추가와 위치 변경 조건문
         if (prevIndex === lights.length - 2) {
           setTimeout(() => {
             setActive("move");
             setIndex(-1);
           }, TIME); 
         } 
-        setActive("");
+        setActive(""); 
         return prevIndex + 1;
       });
-      
     }, 3000);
 
+    // mouseEnter시 인터벌 제거
+    if (toggle === false) {
+      clearInterval(intervalId);
+    };
     // 컴포넌트가 언마운트될 때 clearInterval로 인터벌 제거
     return () => {
       clearInterval(intervalId);
     };
-  }, []);
+  }, [toggle]);
+
+  // mouseover시 toggle의 값과 반대로 저장하여 slide 재생 유무전달
+  const onToggle = () => {
+    setToggle((prev) => prev === false ? true : false);
+  };
 
   return (
     <div className="banner">
-      <div className="banner-header">
+      <div className="banner-header" onMouseEnter={onToggle} onMouseLeave={onToggle}> {/* mouseover와는 다르게 자식은 해당안되고 오로지 자기 자신만 해당 */}
         <div className="banner-title">
           <h2 className="banner-title-header">{lights[dotIndex].h2}</h2>
           <p>{lights[dotIndex].p}</p>
