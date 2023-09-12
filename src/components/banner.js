@@ -14,6 +14,20 @@ function Banner() {
   const item = useRef(null);
   const [active, setActive] = useState("");
   const TIME = 300;
+  const lights = [
+    {
+      h2: "lamp1",
+      p: "this is the lamp1",
+    },
+    {
+      h2: "lamp2",
+      p: "this is the lamp2",
+    },
+    {
+      h2: "lamp3",
+      p: "this is the lamp3",
+    },
+  ];
 
   // slide 눈속임을 이용한 함수 젤끝까지 이동하면 몇초뒤 transition을 없애고 처음으로 이동
   const onSlide = (e) => {
@@ -90,8 +104,14 @@ function Banner() {
     <div className="banner">
       <div className="banner-header">
         <div className="banner-title"> {/* class만들어 놓고 map사용하여 index에 맞게 불러오는 형식 사용하기 */}
-          <h2 className="banner-title-header">lamp</h2>
-          <p>this is good lamp</p>
+          {lights.map((lights, index) => {
+            return (
+              <div className="text" key={index}>
+                <h2 className="banner-title-header">{lights.h2}</h2>
+                <p>{lights.p}</p>
+              </div>
+            );
+          })}
         </div>
 
         <div className={`banner-images ${active === "move" ? active : ""}`} ref={carousel}>
