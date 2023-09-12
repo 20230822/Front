@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation} from "react-router-dom";
+import image1 from "../images/banner1.jpeg";
 import "../style/Login.css";
 
 function Login() {
@@ -35,7 +36,8 @@ function Login() {
   };
 
   return (
-    <div className="login">
+    <div className="login" >
+      <img className="image" src={image1}/>
       <div className="box"></div>
       <div className="login-container">
         <div className = "blur"></div>

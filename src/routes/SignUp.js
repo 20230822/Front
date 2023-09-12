@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import image1 from "../images/banner1.jpeg";
 import "../style/Login.css";
 
 function SignUp() {
@@ -29,6 +30,7 @@ function SignUp() {
 
   return (
     <div className="signup">
+      <img className="image" src={image1}/>
       <div className="box"></div>
       <div className="login-container">
         <h2>SIGN UP</h2>
