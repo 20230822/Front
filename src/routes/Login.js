@@ -38,6 +38,7 @@ function Login() {
     <div className="login">
       <div className="box"></div>
       <div className="login-container">
+        <div className = "blur"></div>
         <h2>SIGN IN</h2>
         <form onSubmit={handleSubmit}>
           <div className="input-group">

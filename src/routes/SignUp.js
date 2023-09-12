@@ -32,6 +32,7 @@ function SignUp() {
       <div className="box"></div>
       <div className="login-container">
         <h2>SIGN UP</h2>
+        <div className = "blur"></div>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="userID">UserID</label>

@@ -1,26 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
 .login, .signup{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 .box{
     height: 100px;
 }
+
 .login-container{
   width: 400px;
   padding : 60px;
-  border: 0px solid rgb(245, 245, 45);
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e4e4e4;
-  box-shadow: 15px 15px 10px rgb(209, 208, 208); 
+  color : #515151;
+  position: relative;
+}
+
+.blur{
+    width:500px;
+    height: 500px;
+    position : absolute;
+    top : -20px;
+    background: rgba(214, 5, 5, 0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: -1;
 }
 
 .login-container > h2{
-    font-size: 24px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 2rem;
     margin-bottom: 30px;
+    font-style: 500;
 }
 
 .input{
