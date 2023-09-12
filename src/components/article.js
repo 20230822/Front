@@ -10,7 +10,7 @@ function Article() {
   const onSlide = (e) => {
     // 누른 방향에 따라서 index값 변화
     const direction = e.target.className;
-    setIndex(direction === "banner-pre" ? (index) => index + 1 : (index) => index - 1);
+    setIndex(direction === "article-pre" ? (index) => index + 1 : (index) => index - 1);
   };
 
   // index값 변경마다 slide 움직이게 하는 화살표함수

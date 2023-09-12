@@ -90,15 +90,28 @@ function Banner() {
     const itemWidth = item.current.clientWidth + 10;
 
     dotColor(index);
+    console.log("index= " + index);
     carousel.current.style.transform =  "translateX(" + (index * itemWidth) + "px)"; 
   }, [index]);
 
-  //자동으로 slide하는 함수(방법을 못 찾음)
-  // setTimeout(() => {
-  //   const itemWidth = item.current.clientWidth + 10;
-  //   setIndex((index) => index + 1);
-  //   carousel.current.style.transform =  "translateX(" + (index * itemWidth) + "px)"; 
-  // }, 1000);
+  // 자동으로 slide하는 함수(방법을 못 찾음)
+  useEffect(() => {
+    // 자동 슬라이드 기능을 구현
+    const intervalId = setInterval(() => {
+      setIndex((prevIndex) => {
+        if (prevIndex === lights.length - 2) {
+          return -1; // prevIndex가 2일 때 -1로 바뀝니다.
+        }
+        return prevIndex + 1;
+      });
+      setActive("move");
+    }, 1000);
+
+    // 컴포넌트가 언마운트될 때 clearInterval로 인터벌 제거
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   return (
     <div className="banner">
