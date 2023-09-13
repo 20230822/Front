@@ -8,9 +8,14 @@ function Article() {
 
   //몇번 이동해야하는지 알려주는 함수
   const onSlide = (e) => {
-    // 누른 방향에 따라서 index값 변화
     const direction = e.target.className;
-    setIndex(direction === "article-pre" ? (index) => index + 1 : (index) => index - 1);
+    // 슬라이드의 자식 개수
+    const children = carousel.current.children.length;
+    // 5개만 보여지고 나머지는 클릭 가능횟수와 같으므로 -5
+    const clickTime = children - 5;
+
+    // 누른 방향에 따라서 index값 변화
+    setIndex(direction === "article-pre" ? (index !== 0 ? (index) => index + 1 : 0) : (index !== -clickTime ? (index) => index - 1 : -clickTime));
   };
 
   // index값 변경마다 slide 움직이게 하는 화살표함수

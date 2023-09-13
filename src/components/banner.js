@@ -118,7 +118,7 @@ function Banner() {
     return () => {
       clearInterval(intervalId);
     };
-  }, [toggle]);
+  }, [lights.length, toggle]);
 
   // mouseover시 toggle의 값과 반대로 저장하여 slide 재생 유무전달
   const onToggle = () => {
