@@ -1,0 +1,53 @@
+.search{
+    width: 30px;
+    height: 30px;
+  }
+  
+  .icon{
+    background: url(../images/research.png);
+    display: block;
+    text-indent: -9999em;
+  }
+  
+.none{
+    top : 80%;
+    position: absolute;
+    left : 0;
+    right : 0;
+    padding: 20px 0;
+    text-align: center;
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+    display: none;
+  }
+  .show{
+    top : 80%;
+    position: absolute;
+    left : 0;
+    right : 0;
+    padding: 20px 0;
+    text-align: center;
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+    display: flex;
+  }
+  form input[type="text"]
+  {
+    height : 40px;
+    border : none;
+    border-bottom:1px solid #34404b;
+    width: 540px;
+    margin-right : 10px;
+    outline: none;
+  }
+  form input[type="text"]:focus
+  {
+    border-bottom-color:#88bcec;
+  }
+  form input[type="submit"]
+  {
+    margin-top: 10px;
+    border : none;
+  }
