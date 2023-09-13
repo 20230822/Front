@@ -39,7 +39,7 @@ function App() {
       view: SignUp,
     },
     {
-      pageLink: "/Products",
+      pageLink: "/Products/:ProductId",
       view: Products,
     },
     {

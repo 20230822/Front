@@ -76,6 +76,7 @@
   font-size: 1.3rem;
   font-weight: 400;
   margin-right: 24px;
+  text-decoration: none;
   cursor: pointer;
 }
 .menu-category-item:hover {

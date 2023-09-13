@@ -15,7 +15,7 @@ function Header() {
         <div className="menu-top">
           <h1><Link className="menu-title" to={"/"}>Light Mall</Link></h1>
           <ul className="menu-help">
-          <li><Link className="menu-help-item" to={"/login"}>로그인</Link></li> {/* 로그인 시 로그아웃으로 */}
+            <li><Link className="menu-help-item" to={"/login"}>로그인</Link></li> {/* 로그인 시 로그아웃으로 */}
             <li className="menu-help-item">마이페이지</li>
             <li className="menu-help-item">고객센터</li>
           </ul>
@@ -23,10 +23,10 @@ function Header() {
         
         <div className="menu-bottom">
           <nav>
-            <span className="menu-category-item">펜던트</span>
-            <span className="menu-category-item">플로어 램프</span>
-            <span className="menu-category-item">테이블 램프</span>
-            <span className="menu-category-item">월 램프</span>
+            <span><Link className="menu-category-item" to={"/Products/팬던트"}>펜던트</Link></span>
+            <span><Link className="menu-category-item" to={"/Products/플로어램프"}>플로어 램프</Link></span>
+            <span><Link className="menu-category-item" to={"/Products/테이블램프"}>테이블 램프</Link></span>
+            <span><Link className="menu-category-item" to={"/Products/월램프"}>월 램프</Link></span>
           </nav>
 
           <Search />

@@ -1,0 +1,30 @@
+/* noto sans kr */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+/* :root {
+  --detail-arrow-color: #d8d8d8;
+  --detail-basic-color: #515151;
+  --detail-arrow-size: 30px;
+  --detail-max-width: 1240px;
+} */
+
+.product {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- filter ---------- */
+
+/* ---------- root ---------- */
+
+/* ---------- item-box ---------- */
+.products-items {
+  display: flex;
+}
+
+.item-box {
+  width: 240px;
+  height: 320px;
+  background-color: aquamarine;
+}
