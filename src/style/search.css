@@ -28,6 +28,7 @@
   transition: all 0.3s ease-in;
   cursor: default;
   align-items: flex-end;
+  z-index: -1; /* header에 category보다 낮은 위치에 */
 }
 
 .show {
