@@ -27,6 +27,7 @@
   opacity: 0;
   transition: all 0.3s ease-in;
   cursor: default;
+  align-items: flex-end;
 }
 
 .show {
@@ -43,10 +44,11 @@
   justify-content: center;
   transition: all 0.3s ease-in;
   background-color: white;
+  align-items: flex-end;
 }
 
 .searchbox {
-  height: 40px;
+  height: 30px;
   border: none;
   border-bottom: 1px solid #34404b;
   width: 540px;
