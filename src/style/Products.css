@@ -1,12 +1,9 @@
 /* noto sans kr */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
 
-/* :root {
-  --detail-arrow-color: #d8d8d8;
-  --detail-basic-color: #515151;
-  --detail-arrow-size: 30px;
-  --detail-max-width: 1240px;
-} */
+:root {
+  --products-basic-color: #515151;
+}
 
 .products {
   width: 100vw;
@@ -22,6 +19,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--products-basic-color);
 }
 
 .filter-method {
@@ -29,23 +27,54 @@
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  cursor: default;
 }
 .method {
   display: flex;
+}
+.method-each {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .filter-color {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 30px;
+  cursor: default;
 }
 .color {
   display: flex;
 }
+.color-each {
+  width: 100px;
+  height: 20px;
+  border-radius: 20px;
+  border: 1px solid rgba(81, 81, 81, 0.2);
+  background-color: #E5E5E5;
+  margin-right: 18px;
+  cursor: pointer;
+}
+.color-each:nth-child(2) {
+  background-color: #EDE8D7;
+}
+.color-each:nth-child(3) {
+  background-color: #FFEEC0;
+}
 
 
 /* ---------- root ---------- */
+.products-root {
+  display: flex;
+  margin-top: 20px;
+}
+.root {
+  margin-right: 10px;
+}
 
 /* ---------- item-box ---------- */
 .products-items {

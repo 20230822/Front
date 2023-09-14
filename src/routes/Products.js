@@ -21,37 +21,33 @@ function Products() {
   const test = location.substring(10);
   console.log(test);
   
- 
-
   return (
     <div className="products">
       <div className="products-filter">
         <div className="filter-method">
-          <h3 className="method-title">조명 방식</h3>
           <ul className="method">
-            <li className="method-each">간접</li>
-            <li className="method-each">반 간접</li>
-            <li className="method-each">전반확산</li>
-            <li className="method-each">반 직접</li>
-            <li className="method-each">직접</li>
+            <li className="method-each">간접 조명</li>
+            <li className="method-each">반 간접 조명</li>
+            <li className="method-each">전반확산 조명</li>
+            <li className="method-each">반 직접 조명</li>
+            <li className="method-each">직접 조명</li>
           </ul>
         </div>
         <div className="filter-color">
-          <h3 className="color-title">조명 색</h3>
           <ul className="color">
-            <li className="color-each">주광색</li>
-            <li className="color-each">주백색</li>
-            <li className="color-each">..?</li>
+            <li className="color-each"></li>
+            <li className="color-each"></li>
+            <li className="color-each"></li>
           </ul>
         </div>
       </div>
 
       <div className="products-root">
-        <span className="root-parent">팬던트 조명</span>
-        <span className="root-arrow">arrow</span>
-        <span className="root-child">조명 방식</span>
-        <span className="root-arrow">arrow</span>
-        <span className="root-child">color</span>
+        <span className="root parent">팬던트 조명</span>
+        <span className="root arrow">arrow</span>
+        <span className="root child">조명 방식</span>
+        <span className="root arrow">arrow</span>
+        <span className="root child">color</span>
       </div>
       
       <div className="products-items">
