@@ -8,13 +8,42 @@
   --detail-max-width: 1240px;
 } */
 
-.product {
+.products {
   width: 100vw;
   display: flex;
   flex-direction: column;
+  margin-top: 60px;
 }
 
 /* ---------- filter ---------- */
+.products-filter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-method {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.method {
+  display: flex;
+}
+
+.filter-color {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.color {
+  display: flex;
+}
+
 
 /* ---------- root ---------- */
 

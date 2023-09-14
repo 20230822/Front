@@ -23,7 +23,7 @@ function App() {
       view: Home,
     },
     {
-      pageLink: "/login",
+      pageLink: "/Login",
       view: Login,
     },
     {
