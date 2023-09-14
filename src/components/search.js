@@ -13,10 +13,9 @@ function Search() {
 
   return (
     <div className="search icon" onClick={toggleFormVisibility}>
-      search
       <form action="#" method="get" className={formClass} onClick={(e) => e.stopPropagation()}>
-        <input type="text" onClick={(e) => e.stopPropagation()} />
-        <input type="submit" value={"검색"} className="search icon" onClick={(e) => e.stopPropagation()} />
+        <input type="text" className="searchbox" onClick={(e) => e.stopPropagation()} />
+        <input type="submit" className="search icon " onClick={(e) => e.stopPropagation()} />
       </form>
     </div>
   );
