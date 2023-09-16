@@ -10,6 +10,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  cursor: pointer;
 }
 
 .none {
@@ -28,6 +29,7 @@
   transition: all 0.3s ease-in;
   cursor: default;
   align-items: flex-end;
+  visibility: hidden;
   z-index: -1; /* header에 category보다 낮은 위치에 */
 }
 
@@ -46,6 +48,7 @@
   transition: all 0.3s ease-in;
   background-color: white;
   align-items: flex-end;
+  cursor: default;
 }
 
 .searchbox {

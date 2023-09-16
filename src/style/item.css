@@ -1,0 +1,21 @@
+.products-items {
+  width: 1240px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.item-box {
+  min-width: 240px;
+  height: 320px;
+  background-color: aquamarine;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-top: 50px;
+}
+.item-box:nth-child(-n+5) {
+  margin-top: 18px;
+}
+.item-box:nth-child(5n) {
+  margin-right: 0;
+}
