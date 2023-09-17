@@ -86,14 +86,11 @@ function Products() {
         <span className={`root-color ${lightColor !== "" ? lightColor : ""}`}></span>
       </div>
 
-      <Items />
+      <Items 
+        path={lampName}
+      />
     </div>
   );
 }
-
-// 만약 인자를 받아온다면 사용해야할 검사와같은 기능
-// Products.propTypes = {
-//   path: PropTypes.string.isRequired,
-// };
 
 export default Products;

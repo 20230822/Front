@@ -43,7 +43,7 @@ function App() {
       view: Products,
     },
     {
-      pageLink: "/Detail",
+      pageLink: "/Products/:ProductId/:Detail",
       view: Detail,
     },
   ];
