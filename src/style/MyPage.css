@@ -1,0 +1,64 @@
+/* noto sans kr */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+
+:root {
+  --products-basic-color: #515151;
+  --products-basic-width: 1240px;
+  --products-blue-color: #E5E5E5;
+  --products-white-color: #EDE8D7;
+  --products-orange-color: #FFEEC0;
+}
+
+.Mypage {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 60px 0;
+}
+
+.profileImage{
+  width : 100px;
+  height : 100px;
+  border-radius: 50%;
+  background-color: rgb(146, 146, 146);
+}
+
+.profileContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  cursor: default;
+}
+.category {
+  display: flex;
+}
+.category-each {
+  width: 120px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  border-radius: 20px;
+  border: 1px solid rgba(81, 81, 81, 0.2);
+  padding: 0.25em;
+  margin: 0 10px;
+  text-align: center;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+}
+.category-each:hover {
+  background-color: #c2c1c19c;
+  transition: all 0.3s ease-in;
+}
+.category-each.active {
+  background-color: #c2c1c19c;
+}
