@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 // 가져온 주소의 한글아스키값과 일치하는 램프 이름을 선언한 객체
 const lampAddress = [
   {
-    address: "%ED%8C%AC%EB%8D%98%ED%8A%B8",
+    address: "%ED%8E%9C%EB%8D%98%ED%8A%B8",
     lamp: "펜던트",
   },
   {
@@ -30,7 +30,6 @@ function Products() {
   const [lampName, setLampName] = useState("");
   // 현재 주소의 경로이름만 가져오기
   const location = useLocation().pathname;
-
   // 주소가 바뀔때마다 실행
   useEffect(() => {
     // substr은 삭제된 기능이라고 하므로 substring으로 대체 10자리까지 자르고 저장

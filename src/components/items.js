@@ -34,13 +34,18 @@ const lights = [
   },
 ];
 function Items( {path} ) {
+  let pathName = "";
   // 주소창 공백 제거를 위한 변수
-  const pathName = path.replace(/ /g, "");
+  if(path === "펜던트" || path === "플로어 램프" || path === "테이블 램프" || path === "월 램프")
+  {
+    pathName = path.replace(/ /g, "");
+  }
   
   return (
     <div className="products-items">
       {lights.map((lights, index) => {
         return (
+          
           <Link className="item-box" to={`/Products/${pathName}/${lights.title}`} key={index}>
             <h1>{lights.title}</h1>
             <p>{lights.description}</p>
