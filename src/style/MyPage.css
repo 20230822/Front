@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
 
 :root {
-  --products-basic-color: #515151;
-  --products-basic-width: 1240px;
-  --products-blue-color: #E5E5E5;
-  --products-white-color: #EDE8D7;
-  --products-orange-color: #FFEEC0;
+  --Mypage-basic-color: #515151;
+  --Mypage-basic-width: 1240px;
+  --Mypage-blue-color: #E5E5E5;
+  --Mypage-white-color: #EDE8D7;
+  --Mypage-orange-color: #FFEEC0;
 }
 
 .Mypage {
