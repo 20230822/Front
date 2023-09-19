@@ -1,8 +1,7 @@
-// import PropTypes from "prop-types";
-import "../style/Products.css";
 import { useLocation } from "react-router";
-import Items from "../components/items";
 import { useEffect, useState } from "react";
+import Items from "../components/items";
+import "../style/Products.css";
 
 // 가져온 주소의 한글아스키값과 일치하는 램프 이름을 선언한 객체
 const lampAddress = [
@@ -54,7 +53,7 @@ function Products() {
   const onClickLightC = (e) => {
     setLightColor((pre) => e.target.innerText);
     if (lightColor === e.target.innerText)
-      setLightColor(""); 
+      setLightColor("/login"); 
   };
 
   return (
