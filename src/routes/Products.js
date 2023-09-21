@@ -1,7 +1,6 @@
 import { useLocation } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Items from "../components/items";
-import Light from "../components/light"
 import "../style/Products.css";
 
 // 가져온 주소의 한글아스키값과 일치하는 램프 이름을 선언한 객체
@@ -30,13 +29,15 @@ function Products() {
   const [lampName, setLampName] = useState("");
   // 현재 주소의 경로이름만 가져오기
   const location = useLocation().pathname;
+  const product = useRef();
+
   // 주소가 바뀔때마다 실행
   useEffect(() => {
     // substr은 삭제된 기능이라고 하므로 substring으로 대체 10자리까지 자르고 저장
     const locationName = location.substring(10);
-
     // 주소 이름과 매치되는 램프 이름 설정
     const matchedLamp = lampAddress.find((lamp) => lamp.address === locationName);
+    
     if (matchedLamp) {
       setLampName(matchedLamp.lamp);
     } else {
@@ -46,19 +47,24 @@ function Products() {
   }, [lampName, location]);
 
   const onClickLightM = (e) => {
-    setLightMethod((pre) => e.target.innerText);
+    setLightMethod(() => e.target.innerText);
     if (lightMethod === e.target.innerText)
       setLightMethod(""); 
   };
 
   const onClickLightC = (e) => {
-    setLightColor((pre) => e.target.innerText);
+    setLightColor(() => e.target.innerText);
     if (lightColor === e.target.innerText)
       setLightColor(""); 
   };
 
+  // light 이미지를 바꾸기 위해 className을 바꿔주는 함수
+  useEffect(() => {
+    product.current.parentElement.firstChild.firstChild.firstChild.className = `light ${lampName} ${lightMethod} ${lightColor}`;
+  }, [lightColor, lightMethod, lampName]);
+
   return (
-    <div className="products">
+    <div className="products" ref={product}>
       <div className="products-filter">
         <div className="filter-method">
           <ul className="method">
@@ -88,7 +94,6 @@ function Products() {
       <Items 
         path={lampName}
       />
-      <Light lightMethod={lightMethod} lightColor={lightColor}/>
     </div>
   );
 }
