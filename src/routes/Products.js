@@ -1,6 +1,7 @@
 import { useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import Items from "../components/items";
+import Light from "../components/light"
 import "../style/Products.css";
 
 // 가져온 주소의 한글아스키값과 일치하는 램프 이름을 선언한 객체
@@ -53,7 +54,7 @@ function Products() {
   const onClickLightC = (e) => {
     setLightColor((pre) => e.target.innerText);
     if (lightColor === e.target.innerText)
-      setLightColor("/login"); 
+      setLightColor(""); 
   };
 
   return (
@@ -87,6 +88,7 @@ function Products() {
       <Items 
         path={lampName}
       />
+      <Light lightMethod={lightMethod} lightColor={lightColor}/>
     </div>
   );
 }
