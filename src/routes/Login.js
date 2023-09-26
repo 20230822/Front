@@ -12,6 +12,7 @@ function Login() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // 회원가입 내용 로그인으로 그대로 넘기는 함수
   useEffect(() => {
     // Sign Up 페이지에서 전달받은 데이터를 확인
     if (location.state && location.state.signUpData) {
@@ -31,6 +32,7 @@ function Login() {
     });
   };
 
+  // 백엔드로 값을 보내주는 함수
   async function handleSubmit(e) {
     e.preventDefault();
 
