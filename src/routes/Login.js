@@ -38,8 +38,7 @@ function Login() {
   // 백엔드로 값을 보내주는 함수
   async function handleSubmit(e) {
     e.preventDefault();
-
-    console.log(formData);
+    
     // 정보 전달 함수
     try {
       const response = await fetch(gvar.REACT_APP_URL+'/login?', {
