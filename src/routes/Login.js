@@ -43,6 +43,8 @@ function Login() {
     // 정보 전달 함수
     try {
       const response = await fetch(gvar.REACT_APP_URL+'/login?', {
+        
+        credentials: 'include',
         method: "POST",
         headers: {
           "Content-Type" : "application/json",
