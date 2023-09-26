@@ -26,3 +26,8 @@ yarn-error.log*
 
 >>>>>>> main
 node_modules
+
+# variable
+globalVar.js
+
+

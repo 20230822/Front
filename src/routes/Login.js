@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate} from "react-router-dom";
 import image1 from "../images/banner1.jpeg";
 import "../style/Login.css";
+import * as gvar from "../globalVar.js";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -16,7 +17,8 @@ function Login() {
   useEffect(() => {
     // Sign Up 페이지에서 전달받은 데이터를 확인
     if (location.state && location.state.signUpData) {
-      const { id, psword } = location.state.signUpData;
+      const id = location.state.signUpData.userID;
+      const psword = location.state.signUpData.password;
       setFormData({
         id,
         psword,
@@ -39,7 +41,7 @@ function Login() {
     console.log(formData);
     // 정보 전달 함수
     try {
-      const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/login?', {
+      const response = await fetch(gvar.REACT_APP_URL+'/login?', {
         method: "POST",
         headers: {
           "Content-Type" : "application/json",
