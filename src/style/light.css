@@ -4,3 +4,9 @@
   left: 0;
   z-index: 9999;
 }
+
+.펜던트 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+}

@@ -38,8 +38,7 @@ function Login() {
   // then 대신 async 사용
   async function handleSubmit(e) {
     e.preventDefault();
-
-    console.log(formData);
+    
     // 정보 전달 함수
     try {
       const response = await fetch(gvar.REACT_APP_URL+'/login?', {
