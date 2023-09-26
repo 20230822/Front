@@ -1,23 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation} from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import image1 from "../images/banner1.jpeg";
 import "../style/Login.css";
 
 function Login() {
   const [formData, setFormData] = useState({
-    userID: "",
-    password: "",
+    id: "",
+    psword: "",
   });
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Sign Up 페이지에서 전달받은 데이터를 확인
     if (location.state && location.state.signUpData) {
-      const { userID, password } = location.state.signUpData;
+      const { id, psword } = location.state.signUpData;
       setFormData({
-        userID,
-        password,
+        id,
+        psword,
       });
     }
   }, [location.state]);
@@ -30,9 +31,35 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const { userID, password, userName } = formData;
+
+    console.log(formData);
+    // 정보 전달 함수
+    try {
+      const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/login?', {
+        method: "POST",
+        headers: {
+          "Content-Type" : "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const res = await response.json();
+
+        if(res.success) {
+          navigate("/");
+        } else {
+          alert(res.msg);
+        }
+      } else {
+        throw Error("서버 응답 실패");
+      }
+      
+    } catch(err) {
+      console.error(Error('로그인 중 에러 발생'));
+    }
   };
 
   return (
@@ -47,20 +74,20 @@ function Login() {
             <label htmlFor="userID">UserID</label>
             <input
               type="text"
-              id="userID"
-              name="userID"
+              id="id"
+              name="id"
               placeholder="ID"
-              value={formData.userID}
+              value={formData.id}
               onChange={handleInputChange}
             />
             <br />
             <label htmlFor="password">Password</label>
             <input
-              type="password"
-              id="password"
-              name="password"
+              type="text"
+              id="psword"
+              name="psword"
               placeholder="PW"
-              value={formData.password}
+              value={formData.psword}
               onChange={handleInputChange}
             />
             <br />
@@ -72,12 +99,6 @@ function Login() {
           </div>
         </form>
       </div>
-      {/*<div>
-        <p>Username: {formData.userID}</p>
-      </div>
-      <div>
-        <p>password: {formData.password}</p>
-      </div>*/}
     </div>
   );
 }
