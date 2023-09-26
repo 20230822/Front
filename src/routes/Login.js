@@ -19,9 +19,10 @@ function Login() {
     if (location.state && location.state.signUpData) {
       const id = location.state.signUpData.userID;
       const psword = location.state.signUpData.password;
+      
       setFormData({
-        id,
-        psword,
+        id: id,
+        psword: psword,
       });
     }
   }, [location.state]);
