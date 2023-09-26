@@ -19,10 +19,9 @@ function Login() {
     if (location.state && location.state.signUpData) {
       const id = location.state.signUpData.userID;
       const psword = location.state.signUpData.password;
-      
       setFormData({
-        id: id,
-        psword: psword,
+        id,
+        psword,
       });
     }
   }, [location.state]);
@@ -36,6 +35,7 @@ function Login() {
   };
 
   // 백엔드로 값을 보내주는 함수
+  // then 대신 async 사용
   async function handleSubmit(e) {
     e.preventDefault();
 
