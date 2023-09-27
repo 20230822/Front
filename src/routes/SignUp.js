@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import image1 from "../images/banner1.jpeg";
 import "../style/Login.css";
-import * as gvar from "../globalVar.js";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -32,7 +31,7 @@ function SignUp() {
     
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL+'/register', {
+      const response = await fetch('/register', {
         credentials: 'include',
         method: "POST",
         headers: {
