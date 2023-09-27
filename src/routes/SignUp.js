@@ -2,16 +2,20 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import image1 from "../images/banner1.jpeg";
 import "../style/Login.css";
+import * as gvar from "../globalVar.js";
 
 function SignUp() {
+  const navigate = useNavigate();
   // 상태(State)를 객체로 관리.
   const [formData, setFormData] = useState({
-    userID: "",
-    password: "",
-    userName: "",
+    id: "",
+    psword: "",
+    confirm_psword: "",
+    name: "",
+    email: "",
+    phone_num: "",
+    adress: "",
   });
-
-  const navigate = useNavigate();
 
   // 입력 값 변경 이벤트 핸들러
   const handleInputChange = (e) => {
@@ -23,9 +27,35 @@ function SignUp() {
   };
 
   // 폼 제출 핸들러
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    navigate("/login", { state: { signUpData: formData } });
+    
+    // 정보 전달 함수
+    try {
+      const response = await fetch(gvar.REACT_APP_URL+'/register', {
+        credentials: 'include',
+        method: "POST",
+        headers: {
+          "Content-Type" : "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const res = await response.json();
+
+        if(res.success) {
+          navigate("/Login");
+        } else {
+          alert(res.msg);
+        }
+      } else {
+        throw Error("서버 응답 실패");
+      }
+      
+    } catch(err) {
+      console.error(Error('회원가입 중 에러 발생'));
+    }
   };
 
   return (
@@ -37,33 +67,73 @@ function SignUp() {
         <div className = "blur"></div>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
-            <label htmlFor="userID">UserID</label>
+            <label htmlFor="id">id</label>
             <input
               type="text"
-              id="userID"
-              name="userID"
+              id="id"
+              name="id"
               placeholder="ID"
-              value={formData.userID}
+              value={formData.id}
               onChange={handleInputChange}
             />
             <br />
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="PW"
-              value={formData.password}
-              onChange={handleInputChange}
-            />
-            <br />
-            <label htmlFor="userName">UserName</label>
+            <label htmlFor="psword">Password</label>
             <input
               type="text"
-              id="userName"
-              name="userName"
+              id="psword"
+              name="psword"
+              placeholder="PW"
+              value={formData.psword}
+              onChange={handleInputChange}
+            />
+            <br />
+            <label htmlFor="confirm_psword">confirm_psword</label>
+            <input
+              type="text"
+              id="confirm_psword"
+              name="confirm_psword"
+              placeholder="confirm_psword"
+              value={formData.confirm_psword}
+              onChange={handleInputChange}
+            />
+            <br />
+            <label htmlFor="name">UserName</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
               placeholder="Name"
-              value={formData.userName}
+              value={formData.name}
+              onChange={handleInputChange}
+            />
+            <br />
+            <label htmlFor="email">email</label>
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="email"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+            <br />
+            <label htmlFor="phone_num">phone number</label>
+            <input
+              type="text"
+              id="phone_num"
+              name="phone_num"
+              placeholder="phoneNumber"
+              value={formData.phone_num}
+              onChange={handleInputChange}
+            />
+            <br />
+            <label htmlFor="adress">address</label>
+            <input
+              type="text"
+              id="adress"
+              name="adress"
+              placeholder="address"
+              value={formData.adress}
               onChange={handleInputChange}
             />
             <br />
@@ -71,15 +141,6 @@ function SignUp() {
           </div>
         </form>
       </div>
-      {/*<div>
-        <p>UserID: {formData.userID}</p>
-      </div>
-      <div>
-        <p>password: {formData.password}</p>
-      </div>
-      <div>
-        <p>Username: {formData.userName}</p>
-  </div>*/}
     </div>
   );
 }

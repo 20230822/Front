@@ -1,30 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate} from "react-router-dom";
 import image1 from "../images/banner1.jpeg";
 import "../style/Login.css";
 import * as gvar from "../globalVar.js";
 
 function Login() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     id: "",
     psword: "",
   });
-
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  // 회원가입 내용 로그인으로 그대로 넘기는 함수
-  useEffect(() => {
-    // Sign Up 페이지에서 전달받은 데이터를 확인
-    if (location.state && location.state.signUpData) {
-      const id = location.state.signUpData.userID;
-      const psword = location.state.signUpData.password;
-      setFormData({
-        id,
-        psword,
-      });
-    }
-  }, [location.state]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,8 +26,7 @@ function Login() {
     
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL+'/login?', {
-        
+      const response = await fetch(gvar.REACT_APP_URL+'/login', {
         credentials: 'include',
         method: "POST",
         headers: {
@@ -55,6 +39,7 @@ function Login() {
         const res = await response.json();
 
         if(res.success) {
+          console.log("hi");
           navigate("/");
         } else {
           alert(res.msg);
@@ -70,7 +55,7 @@ function Login() {
 
   return (
     <div className="login" >
-      <img className="image" src={image1}/>
+      <img className="image" src={image1} alt="로그인 사진"/>
       <div className="box"></div>
       <div className="login-container">
         <div className = "blur"></div>
@@ -89,7 +74,7 @@ function Login() {
             <br />
             <label htmlFor="password">Password</label>
             <input
-              type="text"
+              type="password"
               id="psword"
               name="psword"
               placeholder="PW"
