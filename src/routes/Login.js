@@ -39,7 +39,6 @@ function Login() {
         const res = await response.json();
 
         if(res.success) {
-          console.log("hi");
           navigate("/");
         } else {
           alert(res.msg);
