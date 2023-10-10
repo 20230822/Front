@@ -14,7 +14,6 @@ const Home = lazy(() => import("./routes/Home.js"));
 const Login = lazy(() => import("./routes/Login.js"));
 const Help = lazy(() => import("./routes/Help.js"));
 const MyPage = lazy(() => import("./routes/MyPage"));
-const SignUp = lazy(() => import("./routes/SignUp"));
 const Products = lazy(() => import("./routes/Products.js"));
 const Detail = lazy(() => import("./routes/Detail.js"));
 
@@ -35,10 +34,6 @@ function App() {
     {
       pageLink: "/MyPage",
       view: MyPage,
-    },
-    {
-      pageLink: "/SignUp",
-      view: SignUp,
     },
     {
       pageLink: "/Products/:ProductId",
