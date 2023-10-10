@@ -2,9 +2,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // npm i styled-reset설치 후 사용
 import { Reset } from "styled-reset";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import "./style/App.css";
 import Header from "./routes/Header.js";
+import * as gvar from "./globalVar";
+
 
 //lazy = 처음 렌더링까지 지연 즉, 필요할 때만 호출하겠다는 의미 불필요한 로드 방지
 //이 경우 아직 load되지 않았을 때 보여주는 창이 필요 {참고 https://react.dev/reference/react/lazy}
@@ -47,6 +49,35 @@ function App() {
       view: Detail,
     },
   ];
+
+  useEffect(() => {
+    async function Islogin(){
+    try {
+      const response = await fetch(gvar.REACT_APP_URL+'/login/success', {
+        method: "GET",
+        headers: {
+          "Content-Type" : "application/json",
+        },
+        withCredentials: true,
+      });
+      if (response.ok) {
+        const res = await response.json();
+        console.log("await 뒤 실패");
+
+        if(res.success) {
+          console.log("true");
+        } else {
+          alert(res.msg);
+        }
+      } else {
+        throw Error("서버 응답 실패");
+      }
+    } catch(err) {
+      console.error(Error('로그인 중 에러 발생'));
+    }
+  }
+  Islogin();
+  }, []);
 
   return (
     <BrowserRouter>

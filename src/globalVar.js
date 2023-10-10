@@ -1,0 +1,1 @@
+export const REACT_APP_URL = "https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app";

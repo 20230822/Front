@@ -126,14 +126,14 @@ function SignUp() {
               onChange={handleInputChange}
             />
             <br />
-            <label htmlFor="adress">address</label>
+            {/* <label htmlFor="adress">address</label>
             <input
               type="text"
               id="adress"
               name="adress"
               placeholder="address"
               value={formData.adress}
-              onChange={handleInputChange}
+              onChange={handleInputChange} */}
             />
             <br />
             <input type="submit" value="Sign UP" onClick={handleSubmit} />
