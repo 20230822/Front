@@ -1,12 +1,47 @@
+:root {
+  --펜던트-size: 50px;
+  --플로어-size: 50px;
+}
+
 .light {
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: 9999;
 }
 
 .펜던트 {
-  width: 100px;
-  height: 100px;
+  top: 0;
+  left: 100px;
+  width: 0;
+  height: 50px;
   border: 1px solid #000;
+}
+.펜던트::before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: calc((var(--펜던트-size) / 2) * -1);
+  width: var(--펜던트-size);
+  height: var(--펜던트-size);
+  border-radius: 50%;
+  background-color: antiquewhite;
+}
+
+.플로어 {
+  top: 50px;
+  left: 100px;
+  width: 50px;
+  height: 100px;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  border-radius: 20% 20% 0 0;
+}
+.플로어::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: calc(var(--플로어-size) / 2);
+  width: var(--플로어-size);
+  height: var(--플로어-size);
+  border-radius: 50%;
+  background-color: antiquewhite;
 }
