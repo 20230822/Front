@@ -16,6 +16,7 @@ const Help = lazy(() => import("./routes/Help.js"));
 const MyPage = lazy(() => import("./routes/MyPage"));
 const Products = lazy(() => import("./routes/Products.js"));
 const Detail = lazy(() => import("./routes/Detail.js"));
+const HelpDetail = lazy(() => import("./routes/HelpDetail.js"));
 
 function App() {
   const pages = [
@@ -42,6 +43,10 @@ function App() {
     {
       pageLink: "/Products/:ProductId/:Detail",
       view: Detail,
+    },
+    {
+      pageLink: "/Help/:id",
+      view: HelpDetail,
     },
   ];
 

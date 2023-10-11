@@ -21,7 +21,7 @@ function Header() {
           <ul className="menu-help">
             <li><Link className="menu-help-item" to={"/Login"}>로그인</Link></li> {/* 로그인 시 로그아웃으로 */}
             <li><Link className="menu-help-item" to={"/MyPage"}>마이페이지</Link></li>
-            <li className="menu-help-item">고객센터</li>
+            <li><Link className="menu-help-item" to={"/Help"}>고객센터</Link></li>
           </ul>
         </div>
         

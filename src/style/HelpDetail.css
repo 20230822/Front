@@ -1,0 +1,31 @@
+:root {
+    --Mypage-basic-color: #515151;
+    --Mypage-basic-width: 1240px;
+    --Mypage-blue-color: #E5E5E5;
+    --Mypage-white-color: #EDE8D7;
+    --Mypage-orange-color: #FFEEC0;
+  }
+
+  .HelpDetail {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 0;
+  }
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
