@@ -119,7 +119,7 @@ function Login() {
 
   return (
     <div className="login">
-      <div className="box" >
+      <div className="box">
         <div className={`left-box ${isFlipped ? "Activie" : ""}`}>
           <form onSubmit={handleSubmitLogin} className="flip-card-front">
             <label htmlFor="userID">UserID</label>

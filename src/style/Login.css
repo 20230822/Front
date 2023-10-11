@@ -36,7 +36,7 @@ label {
   align-items: center;
   width: 60%;
   height: 100%;
-  background-color: rgb(92, 92, 92);
+  background-color: rgba(245, 247, 225, 0.4);
   border-radius: 30px;
   perspective: 1000px; /*원근감을 주어 3d효과를 주기 위해*/
   transition: transform 0.8s;
@@ -113,7 +113,7 @@ label {
   height: 100%;
   border-radius: 30px;
   cursor:pointer;
-  background: url("../images/bg.jpg")
+  background: url("../images/bg.jpg");
 }
 
 .switch {
