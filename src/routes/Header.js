@@ -7,6 +7,7 @@ import Search from "../components/search";
 function Header() {
   const onReset = (e) => {
     e.target.parentElement.parentElement.parentElement.parentElement.firstChild.firstChild.className = "light 펜던트";
+    e.target.parentElement.parentElement.parentElement.parentElement.firstChild.firstChild.firstChild.className = "light";
   };
 
   return (

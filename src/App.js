@@ -62,11 +62,8 @@ function App() {
       });
       if (response.ok) {
         const res = await response.json();
-        console.log("await 뒤 실패");
 
-        if(res.success) {
-          console.log("true");
-        } else {
+        if(!res.success) {
           alert(res.msg);
         }
       } else {
