@@ -3,11 +3,8 @@ import { useParams } from "react-router-dom";
 import "../style/HelpDetail.css";
 
 const HelpDetail = () => {
-  // match.params를 사용하여 선택된 게시물 ID를 가져옵니다.
   const { id } = useParams();
 
-  // 실제 게시물 데이터를 가져오는 로직을 구현해야 합니다.
-  // 여기서는 간단한 예제로 고정된 데이터를 사용합니다.
   const post = {
     id: id,
     uid: 1,

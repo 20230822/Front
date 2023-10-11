@@ -8,6 +8,7 @@ function Help() {
     { id: 2, uid : 2, title: '두 번째 게시물', content: '두 번째 게시물 내용입니다.', date: Date() },
     // ...
   ];
+  //수정필요
 
   return (
     <div className="Help">
