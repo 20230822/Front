@@ -44,7 +44,7 @@ function Login() {
     e.preventDefault();
     if (formDataLogin.id === "" || formDataLogin.psword === "") {
       // 아이디 또는 비밀번호가 비어있는 경우
-      alert("아이디와 비밀번호를 모두 입력해");
+      alert("아이디와 비밀번호를 모두 입력하세요.");
       return; // 함수 종료
     }
 
@@ -85,7 +85,7 @@ function Login() {
       formData.adress === ""
     ) {
       // 어떤 입력란이라도 비어있는 경우
-      alert("모든 필드를 입력해");
+      alert("모든 입력란을 입력하세요.");
       return; // 함수 종료
     }
     console.log(formData);
@@ -124,33 +124,33 @@ function Login() {
           <form onSubmit={handleSubmitLogin} className="flip-card-front">
             <label htmlFor="userID">UserID</label>
             <input className="input-group"
-              type="text" id="id" name="id" placeholder="ID"
+              type="text" name="id" placeholder="ID"
               value={formDataLogin.id} onChange={handleInputChangeLogin} />
             <label htmlFor="password">Password</label>
             <input className="input-group"
-              type="password" id="psword" name="psword" placeholder="PW"
+              type="password" name="psword" placeholder="PW"
               value={formDataLogin.psword} onChange={handleInputChangeLogin} />
             <input className="buttonToLogin" type="submit" value="Login" />
           </form>
           <form onSubmit={handleSubmit} className="flip-card-back">
             <label htmlFor="id">id</label>
             <input className="input-group"
-              type="text" id="id" name="id" placeholder="ID"
+              type="text" name="id" placeholder="ID"
               value={formData.id} onChange={handleInputChange} />
             <br />
             <label htmlFor="psword">Password</label>
             <input className="input-group"
-              type="text" id="psword" name="psword" placeholder="PW"
+              type="text" name="psword" placeholder="PW"
               value={formData.psword} onChange={handleInputChange} />
             <br />
             <label htmlFor="confirm_psword">confirm</label>
             <input className="input-group"
-              type="text" id="confirm_psword" name="confirm_psword" placeholder="confirm_psword"
+              type="text" name="confirm_psword" placeholder="confirm_psword"
               value={formData.confirm_psword} onChange={handleInputChange} />
             <br />
             <label htmlFor="name">UserName</label>
             <input className="input-group"
-              type="text" id="name" name="name" placeholder="Name"
+              type="text" name="name" placeholder="Name"
               value={formData.name} onChange={handleInputChange} />
             <br />
             <input className="buttonToSignUp" type="submit" value="Sign UP" onClick={handleSubmit} />

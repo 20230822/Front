@@ -1,6 +1,8 @@
 :root {
   --펜던트-size: 30px;
-  --플로어-size: 30px;
+  --플로어-size: 25px;
+  --테이블-size: 30px;
+  --월-size: 30px;
   --black: #000;
 }
 
@@ -9,6 +11,7 @@
   z-index: 99999;
 }
 
+/* ---------- 펜던트 ---------- */
 .펜던트 {
   top: 0;
   left: 100px;
@@ -27,12 +30,71 @@
   background-color: var(--black);
 }
 
+.펜던트 > .간접 {
+  top: -5px;
+  left: -25px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 70px solid yellow;
+  opacity: 50%;
+  filter: blur(10px);
+  z-index: -2;
+}
+.펜던트 > .반간접 {
+  top: 20px;
+  left: -23.5px;
+  width: 25px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 70px solid yellow;
+  opacity: 50%;
+  filter: blur(10px);
+  z-index: -2;
+}
+.펜던트 > .전반확산 {
+  top: 15px;
+  left: -45px;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(yellow, transparent 80%);
+  opacity: 70%;
+  z-index: -2;
+}
+.펜던트 > .반직접 {
+  top: 30px;
+  left: -25px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 70px solid yellow;
+  opacity: 50%;
+  filter: blur(10px);
+  z-index: -2;
+}
+.펜던트 > .직접 {
+  top: 60px;
+  left: -25px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 80px solid yellow;
+  opacity: 50%;
+  filter: blur(10px);
+  z-index: -2;
+}
+
+/* ---------- 플로어 ---------- */
 .플로어 {
   top: 50px;
   left: 100px;
   width: 0;
   height: 100px;
-  border: 1px solid  var(--black);
+  border: 1px solid var(--black);
 }
 .플로어::before {
   content: '';
@@ -57,6 +119,235 @@
   transform: rotate(0deg) skew(-20deg);
 }
 
+.플로어 > .간접 {
+  top: -60px;
+  left: -35px;
+  width: 50px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 60px solid yellow;
+  opacity: 50%;
+  transform: rotate(180deg);
+  filter: blur(10px);
+  z-index: -2;
+}
+.플로어 > .반간접 {
+  top: -40px;
+  left: -25px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 80px solid yellow;
+  opacity: 50%;
+  transform: rotate(180deg);
+  filter: blur(10px);
+  z-index: -2;
+}
+.플로어 > .전반확산 {
+  top: -40px;
+  left: -50px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(yellow, transparent 80%);
+  filter: blur(10px);
+  opacity: 70%;
+  z-index: -2;
+}
+.플로어 > .반직접 {
+  top: -20px;
+  left: -25px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 80px solid yellow;
+  filter: blur(10px);
+  opacity: 50%;
+  z-index: -2;
+}
+.플로어 > .직접 {
+  top: 0px;
+  left: -30px;
+  width: 40px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 90px solid yellow;
+  filter: blur(10px);
+  opacity: 50%;
+  z-index: -2;
+}
+
+/* ---------- 테이블 ---------- */
 .테이블 {
-  bottom: 0;
+  top: 100px;
+  left: 100px;
+  width: 0;
+  height: 50px;
+  border: 1px solid var(--black);
+}
+.테이블::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: calc(var(--테이블-size) / 2 * -1 + 10px);
+  width: var(--테이블-size);
+  height: calc(var(--테이블-size) * 1.2);
+  background-color:  var(--black);
+  border-radius: 5px;
+  transform: rotate(0deg) skew(20deg);
+}
+.테이블::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: calc(var(--테이블-size) / 2 * -1 + -10px);
+  width: var(--테이블-size);
+  height: calc(var(--테이블-size) * 1.2);
+  background-color:  var(--black);
+  border-radius: 5px;
+  transform: rotate(0deg) skew(-20deg);
+}
+
+.테이블 > .간접 {
+  top: -60px;
+  left: -35px;
+  width: 50px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 60px solid yellow;
+  opacity: 50%;
+  transform: rotate(180deg);
+  filter: blur(10px);
+  z-index: -2;
+}
+.테이블 > .반간접 {
+  top: -40px;
+  left: -25px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 80px solid yellow;
+  opacity: 50%;
+  transform: rotate(180deg);
+  filter: blur(10px);
+  z-index: -2;
+}
+.테이블 > .전반확산 {
+  top: -40px;
+  left: -50px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(yellow, transparent 80%);
+  filter: blur(10px);
+  opacity: 70%;
+  z-index: -2;
+}
+.테이블 > .반직접 {
+  top: -30px;
+  left: -25px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 80px solid yellow;
+  filter: blur(10px);
+  opacity: 50%;
+  z-index: -2;
+}
+.테이블 > .직접 {
+  top: -5px;
+  left: -25px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 60px solid yellow;
+  filter: blur(10px);
+  opacity: 50%;
+  z-index: -2;
+}
+
+/* ---------- 월 ---------- */
+.월 {
+  top: 50px;
+  left: 0;
+  width: 60px;
+  height: 0;
+  border: 1px solid var(--black);
+}
+.월::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: calc(var(--월-size) + 10px);
+  width: var(--월-size);
+  height: var(--월-size);
+  border-radius: 50%;
+  background-color: var(--black);
+}
+
+.월 > .간접 {
+  top: -60px;
+  left: 30px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 60px solid yellow;
+  opacity: 50%;
+  transform: rotate(180deg);
+  filter: blur(10px);
+  z-index: -2;
+}
+.월 > .반간접 {
+  top:-40px;
+  left: 30px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 80px solid yellow;
+  opacity: 50%;
+  transform: rotate(180deg);
+  filter: blur(10px);
+  z-index: -2;
+}
+.월 > .전반확산 {
+  top: -50px;
+  left: 5px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(yellow, transparent 80%);
+  filter: blur(10px);
+  opacity: 70%;
+  z-index: -2;
+}
+.월 > .반직접 {
+  top: -30px;
+  left: 30px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 80px solid yellow;
+  filter: blur(10px);
+  opacity: 50%;
+  z-index: -2;
+}
+.월 > .직접 {
+  top: -5px;
+  left: 30px;
+  width: 30px;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 80px solid yellow;
+  filter: blur(10px);
+  opacity: 50%;
+  z-index: -2;
 }

@@ -60,8 +60,9 @@ function Products() {
 
   // light 이미지를 바꾸기 위해 className을 바꿔주는 함수
   useEffect(() => {
-    product.current.parentElement.firstChild.firstChild.firstChild.className = `light ${lampName} ${lightMethod} ${lightColor}`;
-  }, [lightColor, lightMethod, lampName]);
+    product.current.parentElement.firstChild.firstChild.firstChild.className = `light ${lampName}`;
+    product.current.parentElement.firstChild.firstChild.firstChild.firstChild.className = `light ${lightMethod}`;
+  }, [lampName, lightMethod]);
 
   return (
     <div className="products" ref={product}>
@@ -69,9 +70,9 @@ function Products() {
         <div className="filter-method">
           <ul className="method">
             <li className={`method-each ${lightMethod === "간접 조명" ? "active" : ""}`} onClick={onClickLightM}>간접 조명</li>
-            <li className={`method-each ${lightMethod === "반 간접 조명" ? "active" : ""}`} onClick={onClickLightM}>반 간접 조명</li>
+            <li className={`method-each ${lightMethod === "반간접 조명" ? "active" : ""}`} onClick={onClickLightM}>반간접 조명</li>
             <li className={`method-each ${lightMethod === "전반확산 조명" ? "active" : ""}`} onClick={onClickLightM}>전반확산 조명</li>
-            <li className={`method-each ${lightMethod === "반 직접 조명" ? "active" : ""}`} onClick={onClickLightM}>반 직접 조명</li>
+            <li className={`method-each ${lightMethod === "반직접 조명" ? "active" : ""}`} onClick={onClickLightM}>반직접 조명</li>
             <li className={`method-each ${lightMethod === "직접 조명" ? "active" : ""}`} onClick={onClickLightM}>직접 조명</li>
           </ul>
         </div>
