@@ -17,19 +17,104 @@
   margin: 0 auto;
 }
 .detail-left {
-  width: 50%;
+  width: 60%;
+  height: 100%;
+  margin: 30px;
+  border-radius: 30px;
   background-color: rgb(248, 141, 1);
 }
 
 .detail-right {
-  width: 50%;
-  background-color: rgb(24, 239, 247);
+  width: 40%;
+  margin: 30px;
+  cursor: default;
+}
+.detail-right-title {
+  font-size: 1.75rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  border-bottom: 2px solid #4444446e;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.detail-right-description {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.detail-type {
+  font-size: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.detail-color {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.detail-color-title {
+  font-size: 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.detail-color-boxes {
+  display: flex;
+}
+.detail-color-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-color: aqua;
+  cursor: pointer;
+}
+.detail-color-box:first-child {
+  background-color: rgb(188, 48, 193);
+}
+.detail-color-box:last-child {
+  background-color: rgb(216, 116, 16);
+}
+
+.detail-price {
+  width: 100%;
+  font-size: 1.25rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  border-bottom: 2px solid #4444446e;
+  padding-bottom: 10px;
+  margin: 15px 0;
 }
 
 /* ---------- detail-content ---------- */
 .detail-content {
-  width: var(--detail-basic-width);
-  margin: 0 auto;
-  margin-top: 60px;
-  background-color: blue;
+  width: calc(var(--detail-basic-width) - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 2px solid #4444446e;
+  margin: 80px auto;
+}
+.detail-content-text {
+  font-size: 1.25rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 400;
+  margin: 50px auto;
+}
+.detail-content-space {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.detail-content-space-picture {
+  width: 500px;
+  height: 500px;
+  background-color: aquamarine;
+  margin-right: 15px;
+}
+.detail-content-space-picture:last-child {
+  margin-right: 0;
 }

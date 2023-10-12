@@ -45,8 +45,7 @@ function Items( {path} ) {
     <div className="products-items">
       {lights.map((lights, index) => {
         return (
-          
-          <Link className="item-box" to={`/Products/${pathName}/${lights.title}`} key={index}>
+          <Link className="item-box" to={`/Products/${pathName}/${lights.title}`} key={index} state={lights.title}>
             <h1>{lights.title}</h1>
             <p>{lights.description}</p>
           </Link>
