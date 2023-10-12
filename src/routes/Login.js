@@ -49,7 +49,7 @@ function Login() {
     }
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL + '/api/login', {
+      const response = await fetch('/api/login', {
         credentials: 'include',
         method: "POST",
         headers: {
@@ -57,7 +57,6 @@ function Login() {
         },
         body: JSON.stringify(formDataLogin),
       });
-      console.log("리스폰스" + response);
 
       if (response.ok) {
         const res = await response.json();
@@ -72,7 +71,6 @@ function Login() {
       }
     } catch (err) {
       console.error(Error('로그인 중 에러 발생'));
-      console.error(err.message);
     }
   };
 
