@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/Login.css";
 import * as gvar from "../globalVar.js"
+import * as addr from "../copy.js"
 /*백엔드에게 넘길떄 위 환경변수 삭제*/
 
 function Login() {
@@ -17,9 +18,8 @@ function Login() {
     psword: "",
     confirm_psword: "",
     name: "",
-    email: "",
-    phone_num: "",
-    adress: "",
+    img_type: "image/jpeg",
+    img_data : addr.Addr,
   });
 
   const handleInputChange = (e) => {
@@ -47,7 +47,6 @@ function Login() {
       alert("아이디와 비밀번호를 모두 입력하세요.");
       return; // 함수 종료
     }
-
     // 정보 전달 함수
     try {
       const response = await fetch(gvar.REACT_APP_URL + '/api/login', {
@@ -58,6 +57,7 @@ function Login() {
         },
         body: JSON.stringify(formDataLogin),
       });
+      console.log("리스폰스" + response);
 
       if (response.ok) {
         const res = await response.json();
@@ -72,6 +72,7 @@ function Login() {
       }
     } catch (err) {
       console.error(Error('로그인 중 에러 발생'));
+      console.error(err.message);
     }
   };
 
@@ -81,8 +82,7 @@ function Login() {
 
     if (
       formData.id === "" || formData.psword === "" || formData.confirm_psword === "" ||
-      formData.name === "" || formData.email === "" || formData.phone_num === "" ||
-      formData.adress === ""
+      formData.name === "" 
     ) {
       // 어떤 입력란이라도 비어있는 경우
       alert("모든 입력란을 입력하세요.");
@@ -91,7 +91,7 @@ function Login() {
     console.log(formData);
     // 정보 전달 함수
     try {
-      const response = await fetch('api/register', {
+      const response = await fetch(gvar.REACT_APP_URL + '/api/register', {
         credentials: 'include',
         method: "POST",
         headers: {
