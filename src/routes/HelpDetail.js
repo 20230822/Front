@@ -16,9 +16,17 @@ const HelpDetail = () => {
   return (
     <div className="HelpDetail">
       <h2>게시물 상세 페이지</h2>
-      <h3>제목: {post.title}</h3>
-      <p>작성일: {post.date}</p>
-      <p>내용: {post.content}</p>
+      <div className="post-details">
+        <div className="post-detail">
+          <h3>제목: {post.title}</h3>
+        </div>
+        <div className="post-detail">
+          <p>작성일: {post.date}</p>
+        </div>
+      </div>
+      <div className="post-content">
+        <p>내용: {post.content}</p>
+      </div>
     </div>
   );
 };

@@ -12,11 +12,11 @@ function Help() {
 
   return (
     <div className="Help">
-      <h2>고객센터</h2>
+      <h2>공지사항</h2>
       <table>
         <thead>
           <tr>
-            <th>글번호</th>
+            <th className="num">글번호</th>
             <th>제목</th>
             <th>날짜</th>
           </tr>
@@ -24,7 +24,7 @@ function Help() {
         <tbody>
           {posts.map((post) => (
             <tr key={post.id}>
-              <td>{post.id}</td>
+              <td className="postID">{post.id}</td>
               <td>
                 <Link to={`/Help/${post.id}`}>{post.title}</Link>
                 </td>

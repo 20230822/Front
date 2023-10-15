@@ -49,7 +49,7 @@ function Login() {
     }
     // 정보 전달 함수
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch(gvar.REACT_APP_URL + '/api/login', {
         credentials: 'include',
         method: "POST",
         headers: {
@@ -102,7 +102,8 @@ function Login() {
         const res = await response.json();
 
         if (res.success) {
-          navigate("/Login");
+          setIsFlipped(!isFlipped)
+          alert("회원가입에 성공하였습니다")
         } else {
           alert(res.msg);
         }

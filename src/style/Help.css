@@ -15,6 +15,12 @@
     margin: 60px 0;
   }
 
+  .Help h2 {
+    margin : 20px;
+    font-size : 20px;
+    margin-bottom: 30px;
+  }
+
   .Help h1 {
     font-size: 2rem;
   }
@@ -25,19 +31,24 @@
   }
   
   .Help th, td {
-    border: 1px solid #ccc;
-    padding: 8px;
+    border: 1px #ccc;
+    padding: 10px;
     text-align: center;
+    border-left-style :dashed;
   }
-  
-  .Help th {
+
+  .Help td{
+    border-bottom-style: double;
+  }
+  .Help .num {
+    border-left-style: none;
+  }
+
+  .Help .postID {
+    border-left-style : none;
+  }
+
+   .Help th {
     background-color: #f2f2f2;
-  }
-  
-  .Help tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .Help tr:nth-child(odd) {
-    background-color: #fff;
+
   }
