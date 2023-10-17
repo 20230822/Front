@@ -2,8 +2,14 @@ import { useEffect, useState } from "react";
 import "../style/Detail.css";
 import { useLocation } from "react-router";
 
+
 function Detail() {
+  const details = ["사이즈", "재질", "무게", "전구타입", "원산지", "해시태그", "설명"];
+  const detailColors = ["전구온도", "상품색"];
+
   const [productName, setProductName] = useState(""); 
+  // 연결할 때 사용할 변수
+  const [productPrice, setProductPrice] = useState(""); 
 
   // link로 이동한거기 때문에 location을 받으면 인자를 받을 수 있다.
   const location = useLocation();
@@ -21,16 +27,24 @@ function Detail() {
         <div className="detail-right">
           <h1 className="detail-right-title">{productName}</h1>
           <div className="detail-right-description">
-            <div className="detail-type">종류 및 회사명</div>
-            <div className="detail-color">
-              <h3 className="detail-color-title">색상</h3>
-              <div className="detail-color-boxes">
-                <span className="detail-color-box"></span>
-                <span className="detail-color-box"></span>
-                <span className="detail-color-box"></span>
-              </div>
-            </div>
-            <div className="detail-price">가격 1,000$</div>
+            {details.map((detail, index) => {
+              return(
+                <div className="detail-type" key={index}>{detail}</div>
+              )
+            })}
+            {detailColors.map((color, index) => {
+              return(
+                <div className="detail-color" key={index}>
+                  <h3 className="detail-color-title">{color}</h3>
+                  <div className="detail-color-boxes">
+                    <span className="detail-color-box"></span>
+                    <span className="detail-color-box"></span>
+                    <span className="detail-color-box"></span>
+                  </div>
+                </div>
+              )
+            })}
+            <div className="detail-price">{productPrice}</div>
           </div>
         </div>
       </div>
