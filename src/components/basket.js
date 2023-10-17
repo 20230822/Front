@@ -24,8 +24,8 @@ function basket() {
 
   return (
     <div className="basket">
-      <form action="#">
-        <div>
+      <form className = "basket_container" action="#">
+        <div className="left">
           <table className="basketTable" border="0">
             <tr>
               <th>
