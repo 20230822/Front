@@ -25,7 +25,6 @@ const lampAddress = [
 
 function Products() {
   const [lightMethod, setLightMethod] = useState("");
-  const [lightColor, setLightColor] = useState("");
   const [lampName, setLampName] = useState("");
   // 현재 주소의 경로이름만 가져오기
   const location = useLocation().pathname;
@@ -52,12 +51,6 @@ function Products() {
       setLightMethod(""); 
   };
 
-  const onClickLightC = (e) => {
-    setLightColor(() => e.target.innerText);
-    if (lightColor === e.target.innerText)
-      setLightColor(""); 
-  };
-
   // light 이미지를 바꾸기 위해 className을 바꿔주는 함수
   useEffect(() => {
     product.current.parentElement.firstChild.firstChild.firstChild.className = `light ${lampName}`;
@@ -76,20 +69,12 @@ function Products() {
             <li className={`method-each ${lightMethod === "직접 조명" ? "active" : ""}`} onClick={onClickLightM}>직접 조명</li>
           </ul>
         </div>
-        <div className="filter-color">
-          <ul className="color">
-            <li className={`color-each ${lightColor === "blue" ? "active" : ""}`} onClick={onClickLightC}>blue</li>
-            <li className={`color-each ${lightColor === "white" ? "active" : ""}`} onClick={onClickLightC}>white</li>
-            <li className={`color-each ${lightColor === "orange" ? "active" : ""}`} onClick={onClickLightC}>orange</li>
-          </ul>
-        </div>
       </div>
 
       <div className="products-root">
         <span className="root parent">{lampName}</span>
         {lightMethod !== "" ? <span className="root arrow"></span>: ""}
         {lightMethod !== "" ? <span className="root">{lightMethod}</span>: ""}
-        <span className={`root-color ${lightColor !== "" ? lightColor : ""}`}></span>
       </div>
 
       <Items 
