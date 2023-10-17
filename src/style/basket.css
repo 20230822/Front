@@ -1,26 +1,15 @@
-* {
-    max-width: 1240px;
-    margin: 0 auto;
-  }
-  
-  .interest {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .basket {
+    margin-top: 20px;
+    width: 800px;
     background: #f7f7f7;
     padding: 20px;
   }
   
-  .nemo {
-    width: 100%;
-    height: 40px;
-    background: #333;
-    margin-bottom: 20px;
-  }
-  
-  form {
+  .basket form {
     width: 100%;
     max-width: 800px;
+    display: flex;
+    flex-direction: row;
     background: #fff;
     border: 1px solid #d3d3d3;
     padding: 20px;
@@ -80,7 +69,7 @@
     margin-top: 4px;
   }
   
-  form input[name="del"] {
+  .basket form input[name="del"] {
     background: #ed2f2f;
     color: #fff;
     font-size: 16px;
