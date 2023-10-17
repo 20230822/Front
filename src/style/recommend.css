@@ -1,0 +1,8 @@
+.recommend {
+    margin-top : 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size : 20px;
+}

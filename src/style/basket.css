@@ -1,0 +1,147 @@
+* {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  
+  .interest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f7f7f7;
+    padding: 20px;
+  }
+  
+  .nemo {
+    width: 100%;
+    height: 40px;
+    background: #333;
+    margin-bottom: 20px;
+  }
+  
+  form {
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    border: 1px solid #d3d3d3;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
+  
+  .basketTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #d3d3d3;
+  }
+  
+  .basketTable th {
+    padding: 12px 0;
+    border-bottom: 2px solid #000;
+    background: #fff;
+    color: #383838;
+    font-size: 1.2em;
+    text-align: center;
+  }
+  
+  .basketTable th:first-child {
+    width: 60px;
+  }
+  
+  .basketTable td {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .basketTable .empty {
+    display: none;
+  }
+  
+  .basketTable td article {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+  }
+  
+  .basketTable td article a img {
+    width: 80px;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  .basketTable td article div h2 {
+    font-size: 1.1em;
+    color: #1e1e1e;
+  }
+  
+  .basketTable td article div p {
+    color: #777;
+    margin-top: 4px;
+  }
+  
+  form input[name="del"] {
+    background: #ed2f2f;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 4px;
+  }
+  
+  .total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 360px;
+    background: #fff;
+    border: 1px solid #d3d3d3;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .total h2 {
+    font-weight: bold;
+    font-size: 1.3em;
+    border-bottom: 2px solid #111;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    color: #1e1e1e;
+  }
+  
+  .total table {
+    width: 100%;
+  }
+  
+  .total table tr:last-child td {
+    font-size: 1.3em;
+    color: #ff006c;
+    font-weight: bold;
+  }
+  
+  .total table td {
+    padding: 10px 0;
+    font-size: 1em;
+    color: #555;
+  }
+  
+  .total table td:last-child {
+    text-align: right;
+  }
+  
+  .total input[type="submit"] {
+    background: #ed2f2f;
+    color: #fff;
+    font-size: 1.3em;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 4px;
+  }
+  

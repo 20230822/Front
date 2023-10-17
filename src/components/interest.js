@@ -1,5 +1,6 @@
 import Items from "../components/items";
 
+
 function Interest() {
   return (
     <div className="interest">
