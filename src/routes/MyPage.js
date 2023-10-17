@@ -19,9 +19,12 @@ function MyPage() {
     <div className="Mypage">
       <div className="profileContent">
         <img className="profileImage" src={image1} alt="프로필 사진" />
-        <br />이름
-        <br />정보
-        <br />기타
+        <div className="my-info">
+          <span className="my-info-text">이름</span>
+          <span className="my-info-text">이메일</span>
+          <span className="my-info-text">전화번호</span>
+          <span className="my-info-text">주소</span>  
+        </div>
       </div>
       <div className="filter-category">
         <ul className="category">
