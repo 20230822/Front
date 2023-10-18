@@ -29,39 +29,38 @@ function basket() {
           <table className="basketTable" border="0">
             <tr>
               <th>
-                <input type="checkbox" name="all" />
+                <input type="checkbox" name="all" className="checkboxAll"/>
               </th>
-              <th>상품명</th>
+              <th className="productDescription">상품명</th>
               <th>총수량</th>
               <th>판매가</th>
               <th>총액</th>
             </tr>
-            {products.map((product, index) => (
-              <tr key={index}>
-                <td>
+            {products.map((product, index) => ( 
+              <tr key={index} className="basketTr">
+                <td className="basketCheckbox">
                   <input type="checkbox" name={index} />
                 </td>
                 <td>
-                  <article>
-                    <img src="https://via.placeholder.com/80x80" alt={index} />
-                    <div>
-                      <h2>
+                  <div className="basketProduct">
+                    <img src="https://via.placeholder.com/80x80" alt={index} className="productImage" />
+                    <div className="basketProductName">
+                      <h2 className="ProductName">
                         {product.name}
                       </h2>
                       <p>상품설명</p>
                     </div>
-                  </article>
+                  </div>
                 </td>
-                <td>{product.quantity}</td>
-                <td>{product.price}</td>
-                <td>{product.subtotal}</td>
+                <td className="basket-quantity">{product.quantity}</td>
+                <td className="basket-price">{product.price}</td>
+                <td className="basket-subtotal">{product.subtotal}</td>
               </tr>
             ))}
           </table>
-          <input type="button" name="del" value="선택삭제" />
         </div>
         <div className="total">
-          <h2>전체합계</h2>
+          <h2>주문 총합</h2>
           <table>
             <tr>
               <td>상품수</td>
