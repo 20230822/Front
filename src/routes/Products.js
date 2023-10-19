@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import Items from "../components/items";
 import "../style/Products.css";
 
-
 // 가져온 주소의 한글아스키값과 일치하는 램프 이름을 선언한 객체
 const lampAddress = [
   {
@@ -24,20 +23,18 @@ const lampAddress = [
   },
 ];
 
-function Products( props ) {
+function Products() {
   const [lightMethod, setLightMethod] = useState("");
   const [lampName, setLampName] = useState("");
   // 현재 주소의 경로이름만 가져오기
   const location = useLocation().pathname;
   const product = useRef();
- 
-
-  // const resData = useLocation().state.data;
+  // header로 부터 data 받아오기
+  const productData = useLocation();
+  const pData = productData.state.data;
 
   // 주소가 바뀔때마다 실행
   useEffect(() => {
-
-    console.log(props);
     // substr은 삭제된 기능이라고 하므로 substring으로 대체 10자리까지 자르고 저장
     const locationName = location.substring(10);
     // 주소 이름과 매치되는 램프 이름 설정
@@ -85,6 +82,7 @@ function Products( props ) {
 
       <Items 
         path={lampName}
+        state={pData}
       />
     </div>
   );
