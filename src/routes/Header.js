@@ -9,9 +9,9 @@ import * as gvar from "../globalVar.js"
 function Header() {
   // 상품정보 저장
   const [Lamps, setLamps] = useState({
-    category : 3,
-    pageListSize : 20,
-    page: 1
+    category : "",
+    pageListSize : "",
+    page: "",
   });
 
   // 조명일러스트 class변환함수
@@ -25,7 +25,7 @@ function Header() {
     console.dir(e);
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL + '/api/product/category', {
+      const response = await fetch('/api/product/category', {
         credentials: 'include',
         method: "POST",
         headers: {

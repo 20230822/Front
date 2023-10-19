@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import image1 from "../images/banner1.jpeg";
 import "../style/MyPage.css";
 import Interest from "../components/interest";
 import History from "../components/history";
 import Recommend from "../components/recommend";
 import Basket from "../components/basket";
+import * as gvar from "../globalVar.js"
 
 function MyPage() {
   const [category, setLightMethod] = useState("");
+  const [formMypage, setFormMypage] = useState({
+    name: "",
+    message: "",
+    expiredAt:"",
+  });
 
   const onClickCategory = (e) => {
     setLightMethod((pre) => e.target.innerText);
@@ -15,14 +21,49 @@ function MyPage() {
       setLightMethod("");
   };
 
+  async function MypageApi() {
+    try {
+      const response = await fetch('/api/mypage', {
+        credentials: 'include',
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formMypage),
+      });
+
+      if (response.ok) {
+        const res = await response.json();
+
+        if (res.success) {
+          setFormMypage({
+            name: res.name,
+            message: res.message,
+            expiredAt: res.expiredAt,
+          })
+        } else {
+          alert(res.msg);
+        }
+      } else {
+        throw Error("서버 응답 실패");
+      }
+    } catch (err) {
+      console.error(Error('불러오는 중 에러 발생'));
+    }
+  };
+
+  useEffect(()=>{
+    MypageApi();
+  })
+
   return (
     <div className="Mypage">
       <div className="profileContent">
         <img className="profileImage" src={image1} alt="프로필 사진" />
-        <div className="my-info">
-          <span className="my-info-text">이름</span>
-          <span className="my-info-text">이메일</span>
-          <span className="my-info-text">전화번호</span>
+        <div className="my-info" >
+          <span className="my-info-text">이름 {formMypage.name}</span>
+          <span className="my-info-text">이메일 {formMypage.message}</span>
+          <span className="my-info-text">전화번호 {formMypage.expiredAt}</span>
           <span className="my-info-text">주소</span>  
         </div>
       </div>

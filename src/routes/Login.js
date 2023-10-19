@@ -5,7 +5,7 @@ import * as gvar from "../globalVar.js"
 import * as addr from "../copy.js"
 /*백엔드에게 넘길떄 위 환경변수 삭제*/
 
-function Login() {
+function Login(props) {
   const navigate = useNavigate();
   const [isFlipped, setIsFlipped] = useState(false);
   const [formDataLogin, setFormDataLogin] = useState({
@@ -115,7 +115,7 @@ function Login() {
       console.error(Error('회원가입 중 에러 발생'));
     }
   };
-
+  console.dir(props.location);
   return (
     <div className="login">
       <div className="box">
