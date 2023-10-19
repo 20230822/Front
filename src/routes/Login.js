@@ -86,7 +86,6 @@ function Login(props) {
       alert("모든 입력란을 입력하세요.");
       return; // 함수 종료
     }
-    console.log(formData);
     // 정보 전달 함수
     try {
       const response = await fetch(gvar.REACT_APP_URL + '/api/register', {
