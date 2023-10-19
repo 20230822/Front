@@ -30,6 +30,8 @@ function Products() {
   const location = useLocation().pathname;
   const product = useRef();
 
+  
+
   // 주소가 바뀔때마다 실행
   useEffect(() => {
     // substr은 삭제된 기능이라고 하므로 substring으로 대체 10자리까지 자르고 저장
