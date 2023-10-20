@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 
 function Items( {path, state} ) {
   // 불러온 데이터를 배열형태로 저장할 변수
-  const [light, setLight] = useState([]);
-
+  // const [light, setLight] = useState([]);
+  const light = [1, 2, 3];
   //주소창에 현재 램프 종류를 뛰우기 위한 과정들
   let pathName = "";
   if(path === "펜던트" || path === "플로어 램프" || path === "테이블 램프" || path === "월 램프")
@@ -26,20 +26,12 @@ function Items( {path, state} ) {
 
   // 렌더링 속도보다 가져오는 속도가 느리면 빈값이 뜨게 되므로 if조건문을 같이 작성 해줘야 오류가 발생하지 않는다.
   useEffect(() => {
-    if (state !== null && state !== undefined) {
-      setLight(state);
-    }
+      console.log(light);
   }, [state]);
 
-  // 찍히는지 확인용 지우기
-  useEffect(() => {
-    console.log(light);
-  },[light])
-  
   return (
     <div className="products-items">
-      {Array.isArray(light) ? (
-        light.map((light, index) => {
+      {light.map((light, index) => {
         {/* const base64Image = arrayBufferToBase64(light.IMG_DATA.data); */}
         return (
           <Link className="item-box" to={`/Products/${pathName}/ㅗㅑㅗㅑㅁㄴㅇ`} key={index} state={""}>
@@ -48,9 +40,7 @@ function Items( {path, state} ) {
             {/* <img src={`data:image/png;base64,${base64Image}`} alt="" /> */}
           </Link>
         )
-      })) : (
-        <p>hi</p>
-      )}
+      })}
     </div>
   );
 }
@@ -58,7 +48,7 @@ function Items( {path, state} ) {
 // 인자를 받아올 때 사용해야 할 검사와 같은 기능
 Items.propTypes = {
   path: PropTypes.string.isRequired,
-  // state: PropTypes.string.isRequired,
+  state: PropTypes.array,
 };
 
 export default Items;
