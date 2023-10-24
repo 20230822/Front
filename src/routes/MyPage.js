@@ -23,7 +23,7 @@ function MyPage() {
 
   async function MypageApi() {
     try {
-      const response = await fetch('/api/mypage', {
+      const response = await fetch(gvar.REACT_APP_URL + '/api/mypage', {
         credentials: 'include',
         method: "POST",
         headers: {
@@ -31,10 +31,10 @@ function MyPage() {
         },
         body: JSON.stringify(formMypage),
       });
-
+      console.log("에러1" + document.cookie);
       if (response.ok) {
         const res = await response.json();
-
+        
         if (res.success) {
           setFormMypage({
             name: res.name,
@@ -45,15 +45,17 @@ function MyPage() {
           alert(res.msg);
         }
       } else {
+        console.log("Throw");
         throw Error("서버 응답 실패");
       }
     } catch (err) {
+
       console.error(Error('불러오는 중 에러 발생'));
     }
   };
 
   useEffect(()=>{
-    MypageApi();
+
   })
 
   return (

@@ -5,7 +5,7 @@ import * as gvar from "../globalVar.js"
 import * as addr from "../copy.js"
 /*백엔드에게 넘길떄 위 환경변수 삭제*/
 
-function Login(props) {
+function Login() {
   const navigate = useNavigate();
   const [isFlipped, setIsFlipped] = useState(false);
   const [formDataLogin, setFormDataLogin] = useState({
@@ -54,14 +54,14 @@ function Login(props) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization" : "",
         },
         body: JSON.stringify(formDataLogin),
       });
-
       if (response.ok) {
         const res = await response.json();
-
         if (res.success) {
+          console.log('Token:', response.headers);
           navigate("/");
         } else {
           alert(res.msg);
@@ -86,6 +86,7 @@ function Login(props) {
       alert("모든 입력란을 입력하세요.");
       return; // 함수 종료
     }
+    console.log(formData);
     // 정보 전달 함수
     try {
       const response = await fetch(gvar.REACT_APP_URL + '/api/register', {
@@ -114,7 +115,7 @@ function Login(props) {
       console.error(Error('회원가입 중 에러 발생'));
     }
   };
-  console.dir(props.location);
+
   return (
     <div className="login">
       <div className="box">

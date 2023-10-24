@@ -91,7 +91,7 @@
      width: 100%;
    }
 
-   .total table tr:last-child td {
+   .total table tbody:last-child td {
      font-size: 1.3em;
      color: #ff006c;
      font-weight: bold;

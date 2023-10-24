@@ -1,0 +1,61 @@
+.interest {
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    width: 1200px;
+  }
+
+  .interest .left {
+    width: 100%;
+    width: 70%;
+    background: #fff;
+    border: 1px solid #d3d3d3;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+  }
+
+  .interest-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px none #d3d3d3;
+    table-layout: fixed;
+  }
+
+  .interest-table th {
+    padding: 12px 0;
+    border-bottom: 2px solid #000;
+    background: #fff;
+    color: #383838;
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  .productDescription {
+    width: 40%;
+  }
+
+  .interest-table td {
+    padding: 10px 0;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .interestProduct {
+    display: flex;
+    align-items: center;
+    padding: 6px;
+  }
+
+  .productImage {
+    width: 80px;
+    border: 1px solid #d3d3d3;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+
+  .ProductName {
+    font-size: 1.1em;
+    color: #1e1e1e;
+  }
