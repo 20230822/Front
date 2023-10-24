@@ -51,10 +51,10 @@ function MyPage() {
           
           if (res.success) {
             setFormMypage({
-              name: res.name,
-              message: res.message,
-              expiredAt: res.expiredAt,
-            })
+              USER_NM: res.data[0].USER_NM,
+              USER_ID: res.data[0].USER_ID,
+            });
+            decoding(res.data[0].PROFILE_DATA.data);
           } else {
             alert(res.msg);
           }
@@ -63,7 +63,6 @@ function MyPage() {
           throw Error("서버 응답 실패");
         }
       } catch (err) {
-
         console.error(Error('불러오는 중 에러 발생'));
       }
     };
