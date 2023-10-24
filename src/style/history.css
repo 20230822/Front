@@ -1,21 +1,11 @@
-.interest {
+.history {
     margin-top: 20px;
     padding: 20px;
     display: flex;
     width: 1200px;
   }
-
-  .interest .left {
-    width: 100%;
-    width: 70%;
-    background: #fff;
-    border: 1px solid #d3d3d3;
-    padding: 20px;
-    box-sizing: border-box;
-    border-radius: 8px;
-  }
-
-  .interest-table {
+  
+  .history-table {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
@@ -23,7 +13,7 @@
     table-layout: fixed;
   }
 
-  .interest-table th {
+  .history-table th {
     padding: 12px 0;
     border-bottom: 2px solid #000;
     background: #fff;
@@ -36,13 +26,13 @@
     width: 40%;
   }
 
-  .interest-table td {
+  .history-table td {
     padding: 10px 0;
     text-align: center;
     vertical-align: middle;
   }
   
-  .interestProduct {
+  .historyProduct {
     display: flex;
     align-items: center;
     padding: 6px;

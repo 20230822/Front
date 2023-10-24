@@ -1,7 +1,7 @@
 import React from "react";
 import "../style/history.css";
 
-function Interest() {
+function History() {
   const products = [
     {
       name: "상품명 1",
@@ -27,9 +27,9 @@ function Interest() {
   ];
 
   return (
-    <div className="interest">
+    <div className="history">
       <form className="inter" action="#">
-        <table className="interest-table">
+        <table className="history-table">
           <thead>
           <tr>
           <th className="productDescription">상품명</th>
@@ -42,7 +42,7 @@ function Interest() {
           {products.map((product, index) => (
             <tr key={index} className="basketTr">
               <td>
-                <div className="basketProduct">
+                <div className="historyProduct">
                   <img src="https://via.placeholder.com/80x80" alt={index} className="productImage" />
                   <div className="basketProductName">
                     <h2 className="ProductName">
@@ -52,9 +52,9 @@ function Interest() {
                   </div>
                 </div>
               </td>
-              <td className="interest-quantity">{product.quantity}</td>
-              <td className="interest-subtotal">{product.subtotal}</td>
-              <td className="interest-date">{new Date(product.date).toLocaleString()}</td>
+              <td className="history-quantity">{product.quantity}</td>
+              <td className="history-subtotal">{product.subtotal}</td>
+              <td className="history-date">{new Date(product.date).toLocaleString()}</td>
             </tr>
           ))}
           </tbody>
@@ -64,4 +64,4 @@ function Interest() {
   );
 }
 
-export default Interest;
+export default History;

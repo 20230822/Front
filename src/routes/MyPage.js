@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import image1 from "../images/banner1.jpeg";
 import "../style/MyPage.css";
 import Interest from "../components/interest";
 import History from "../components/history";
@@ -8,17 +7,32 @@ import Basket from "../components/basket";
 import * as gvar from "../globalVar.js"
 
 function MyPage() {
+  const [decodedImageData, setDecodedImageData] = useState(null);
   const [category, setLightMethod] = useState("");
   const [formMypage, setFormMypage] = useState({
-    name: "",
-    message: "",
-    expiredAt:"",
+    USER_NM: "",
+    USER_ID: "",
+    PROFILE_DATA: "",
   });
 
   const onClickCategory = (e) => {
     setLightMethod((pre) => e.target.innerText);
     if (category === e.target.innerText)
       setLightMethod("");
+  };
+
+  function decoding(data) {
+    const uint8Array = new Uint8Array(data);
+
+    // Create a Blob from the Uint8Array
+    const blob = new Blob([uint8Array], { type: 'image/jpeg' });
+
+    // Read the Blob as a data URL
+    const reader = new FileReader();
+    reader.onload = () => {
+      setDecodedImageData(reader.result);
+    };
+    reader.readAsDataURL(blob);
   };
 
   async function MypageApi() {
@@ -31,42 +45,39 @@ function MyPage() {
         },
         body: JSON.stringify(formMypage),
       });
-      console.log("에러1" + document.cookie);
       if (response.ok) {
         const res = await response.json();
-        
         if (res.success) {
           setFormMypage({
-            name: res.name,
-            message: res.message,
-            expiredAt: res.expiredAt,
-          })
+            USER_NM: res.data[0].USER_NM,
+            USER_ID: res.data[0].USER_ID,
+          });
+          console.log(res.data[0].PROFILE_DATA.data);
+          decoding(res.data[0].PROFILE_DATA.data);
         } else {
           alert(res.msg);
         }
       } else {
-        console.log("Throw");
         throw Error("서버 응답 실패");
       }
     } catch (err) {
-
       console.error(Error('불러오는 중 에러 발생'));
     }
   };
 
-  useEffect(()=>{
-
-  })
+  useEffect(() => {
+    MypageApi();
+  }, [])
 
   return (
     <div className="Mypage">
       <div className="profileContent">
-        <img className="profileImage" src={image1} alt="프로필 사진" />
+        <img className="profileImage" src={decodedImageData} alt="프사" />
         <div className="my-info" >
-          <span className="my-info-text">이름 {formMypage.name}</span>
-          <span className="my-info-text">이메일 {formMypage.message}</span>
-          <span className="my-info-text">전화번호 {formMypage.expiredAt}</span>
-          <span className="my-info-text">주소</span>  
+          <span className="my-info-text">이름 {formMypage.USER_NM}</span>
+          <span className="my-info-text">이메일 {formMypage.USER_ID}</span>
+          <span className="my-info-text">전화번호 { }</span>
+          <span className="my-info-text">주소</span>
         </div>
       </div>
       <div className="filter-category">
