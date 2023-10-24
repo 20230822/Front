@@ -45,7 +45,6 @@ function MyPage() {
           },
           body: JSON.stringify(formMypage),
         });
-        console.log("에러1" + document.cookie);
         if (response.ok) {
           const res = await response.json();
           
@@ -59,7 +58,6 @@ function MyPage() {
             alert(res.msg);
           }
         } else {
-          console.log("Throw");
           throw Error("서버 응답 실패");
         }
       } catch (err) {
