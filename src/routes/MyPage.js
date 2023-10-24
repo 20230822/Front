@@ -5,7 +5,7 @@ import Interest from "../components/interest";
 import History from "../components/history";
 import Recommend from "../components/recommend";
 import Basket from "../components/basket";
-import * as gvar from "../globalVar.js"
+// import * as gvar from "../globalVar.js"
 
 function MyPage() {
   const [category, setLightMethod] = useState("");
