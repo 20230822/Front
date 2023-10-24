@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "../style/MyPage.css";
 import Interest from "../components/interest";
 import History from "../components/history";
-import Recommend from "../components/recommend";
 import Basket from "../components/basket";
 import * as gvar from "../globalVar.js"
 
@@ -35,39 +34,42 @@ function MyPage() {
     reader.readAsDataURL(blob);
   };
 
-  async function MypageApi() {
-    try {
-      const response = await fetch(gvar.REACT_APP_URL + '/api/mypage', {
-        credentials: 'include',
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formMypage),
-      });
-      if (response.ok) {
-        const res = await response.json();
-        if (res.success) {
-          setFormMypage({
-            USER_NM: res.data[0].USER_NM,
-            USER_ID: res.data[0].USER_ID,
-          });
-          console.log(res.data[0].PROFILE_DATA.data);
-          decoding(res.data[0].PROFILE_DATA.data);
+  useEffect(()=>{
+    async function MypageApi() {
+      try {
+        const response = await fetch(gvar.REACT_APP_URL + '/api/mypage', {
+          credentials: 'include',
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formMypage),
+        });
+        console.log("에러1" + document.cookie);
+        if (response.ok) {
+          const res = await response.json();
+          
+          if (res.success) {
+            setFormMypage({
+              name: res.name,
+              message: res.message,
+              expiredAt: res.expiredAt,
+            })
+          } else {
+            alert(res.msg);
+          }
         } else {
-          alert(res.msg);
+          console.log("Throw");
+          throw Error("서버 응답 실패");
         }
-      } else {
-        throw Error("서버 응답 실패");
-      }
-    } catch (err) {
-      console.error(Error('불러오는 중 에러 발생'));
-    }
-  };
+      } catch (err) {
 
-  useEffect(() => {
+        console.error(Error('불러오는 중 에러 발생'));
+      }
+    };
+      
     MypageApi();
-  }, [])
+  }, [formMypage])
 
   return (
     <div className="Mypage">
@@ -83,14 +85,12 @@ function MyPage() {
       <div className="filter-category">
         <ul className="category">
           <li className={`category-each ${category === "관심 상품" ? "active" : ""}`} onClick={onClickCategory}> 관심 상품</li>
-          <li className={`category-each ${category === "추천상품" ? "active" : ""}`} onClick={onClickCategory}>추천상품</li>
           <li className={`category-each ${category === "장바구니" ? "active" : ""}`} onClick={onClickCategory}>장바구니</li>
           <li className={`category-each ${category === "구매 내역" ? "active" : ""}`} onClick={onClickCategory}>구매 내역</li>
         </ul>
       </div>
       <div className="Mypage_content">
         {category === "관심 상품" && <Interest />}
-        {category === "추천상품" && <Recommend />}
         {category === "장바구니" && <Basket />}
         {category === "구매 내역" && <History />}
       </div>

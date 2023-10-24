@@ -19,3 +19,8 @@
 .item-box:nth-child(5n) {
   margin-right: 0;
 }
+.item-box img {
+  display: block;
+  width: 100px;
+  height: 100px;
+}
