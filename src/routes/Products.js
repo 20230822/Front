@@ -31,9 +31,9 @@ function Products() {
   const product = useRef();
   // api관련 변수들
   const [Lamps, setLamps] = useState({
-    category : "",
-    pageListSize : "",
-    page: "",
+    category :3,
+    pageListSize : 20,
+    page: 1,
   });
   const [data, setData] = useState("");
 
