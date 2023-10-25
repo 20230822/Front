@@ -4,6 +4,8 @@ import Interest from "../components/interest";
 import History from "../components/history";
 import Basket from "../components/basket";
 import * as gvar from "../globalVar.js"
+import { Buffer } from 'buffer/index.js';
+
 
 function MyPage() {
   const [decodedImageData, setDecodedImageData] = useState(null);
@@ -20,18 +22,11 @@ function MyPage() {
       setLightMethod("");
   };
 
-  function decoding(data) {
-    const uint8Array = new Uint8Array(data);
-
-    // Create a Blob from the Uint8Array
-    const blob = new Blob([uint8Array], { type: 'image/jpeg' });
-
-    // Read the Blob as a data URL
-    const reader = new FileReader();
-    reader.onload = () => {
-      setDecodedImageData(reader.result);
-    };
-    reader.readAsDataURL(blob);
+  function decoding() {
+    const base64Data = Buffer.from(formMypage.PROFILE_DATA,'base64');
+    console.log(base64Data);
+    setDecodedImageData(`data:image/jpeg;base64,${base64Data}`);
+    console.log(decodedImageData);
   };
 
   useEffect(()=>{
@@ -52,8 +47,8 @@ function MyPage() {
             setFormMypage({
               USER_NM: res.data[0].USER_NM,
               USER_ID: res.data[0].USER_ID,
+              PROFILE_DATA: res.data[0].PROFILE_DATA.data,
             });
-            decoding(res.data[0].PROFILE_DATA.data);
           } else {
             alert(res.msg);
           }
@@ -66,7 +61,11 @@ function MyPage() {
     };
       
     MypageApi();
-  }, [formMypage])
+  }, []);
+
+  useEffect(()=>{
+    decoding();
+  },[formMypage]);
 
   return (
     <div className="Mypage">
