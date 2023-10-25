@@ -95,36 +95,38 @@ function Products() {
     //   });
   }, [lampName]);
 
-  // 상품 데이터 요청
-  async function onClickLamp() {
-    // 정보 전달 함수
-    try {
-      const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/product/category', {
-        credentials: 'include',
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(Lamps),// Lamps 값을 JSON 문자열로 변환하여 요청 
-      });
-  
-      // 연결 성공 유무 판단
-      if (response.ok) {
-        const res = await response.json();
-        if (res.success) {
-          setData(res.data); //데이터 저장
-        } else {
-          alert(res.msg);
-        }
-      } else {
-        throw Error("서버 응답 실패");
-      }
-    } catch (err) {
-      console.error(Error('불러오는 중 에러 발생'));
-    }
-  };
-
   useEffect(() => {
+    // 상품 데이터 요청
+    async function onClickLamp() {
+      if(Lamps.category !== "") {
+        // 정보 전달 함수(category 값이 ""이 아닐때만 실행)
+        try {
+          const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/product/category', {
+            credentials: 'include',
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(Lamps),// Lamps 값을 JSON 문자열로 변환하여 요청 
+          });
+      
+          // 연결 성공 유무 판단
+          if (response.ok) {
+            const res = await response.json();
+            if (res.success) {
+              setData(res.data); //데이터 저장
+            } else {
+              alert(res.msg);
+            }
+          } else {
+            throw Error("서버 응답 실패");
+          }
+        } catch (err) {
+          console.error(Error('불러오는 중 에러 발생'));
+        }
+      };
+    }
+
     onClickLamp();
   },[Lamps])
 
