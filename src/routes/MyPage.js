@@ -63,9 +63,9 @@ function MyPage() {
     MypageApi();
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     decoding();
-  },[formMypage]);
+  }, [formMypage]);
 
   return (
     <div className="Mypage">
