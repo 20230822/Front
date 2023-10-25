@@ -24,9 +24,7 @@ function MyPage() {
 
   function decoding() {
     const base64Data = Buffer.from(formMypage.PROFILE_DATA,'base64');
-    console.log(base64Data);
     setDecodedImageData(`data:image/jpeg;base64,${base64Data}`);
-    console.log(decodedImageData);
   };
 
   useEffect(()=>{
