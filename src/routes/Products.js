@@ -69,30 +69,29 @@ function Products() {
    useEffect(() => {
     if (lampName === "펜던트") {
       setLamps({
-        category: 3,
+        category: 10,
         pageListSize: 20,
         page: 1,
       });
-    }
-    if (lampName === "플로어 램프") {
+    } else if (lampName === "플로어 램프") {
       setLamps({
-        category: 2,
+        category: 20,
+        pageListSize: 20,
+        page: 1,
+      });
+    } else if (lampName === "테이블 램프") {
+      setLamps({
+        category: 30,
+        pageListSize: 20,
+        page: 1,
+      });
+    } else if (lampName === "월 램프") {
+      setLamps({
+        category: 40,
         pageListSize: 20,
         page: 1,
       });
     }
-    // }if (lampName === "테이블 램프") {
-    //   setLamps({
-    //     category: 3,
-    //     pageListSize: 20,
-    //     page: 1,
-    //   });
-    // }if (lampName === "월 램프") {
-    //   setLamps({
-    //     category: 3,
-    //     pageListSize: 20,
-    //     page: 1,
-    //   });
   }, [lampName]);
 
   useEffect(() => {
@@ -130,9 +129,9 @@ function Products() {
     onClickLamp();
   },[Lamps])
 
-    // useEffect(() => {
-    //   console.log(data);
-    // },[data]) 
+  useEffect(() => {
+    console.log(data);
+  },[data]) 
 
   return (
     <div className="products" ref={product}>

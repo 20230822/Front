@@ -50,6 +50,10 @@ function App() {
     },
   ];
 
+  useEffect(()=> {
+    console.log("ji");
+  }, []);
+
   useEffect(() => {
     async function Islogin(){
     try {
