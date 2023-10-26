@@ -1,8 +1,22 @@
 import "../style/Home.css";
 import Banner from "../components/banner";
 import Article from "../components/article";
+import { useEffect, useState } from "react";
 
-function Home() {
+function Home( props ) {
+  const [islogin,setIslogin] = useState("")
+
+  useEffect(()=>{
+    if(props)
+    {
+      setIslogin(props);
+    }
+  },[props])
+
+  useEffect(()=>{
+    console.dir(islogin);
+  },[islogin])
+  
   return (
     <div className="home">
       <Banner />

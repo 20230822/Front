@@ -5,7 +5,7 @@ import { Reset } from "styled-reset";
 import { lazy, Suspense, useEffect } from "react";
 import "./style/App.css";
 import Header from "./routes/Header.js";
-import * as gvar from "./globalVar";
+
 
 
 //lazy = 처음 렌더링까지 지연 즉, 필요할 때만 호출하겠다는 의미 불필요한 로드 방지
@@ -19,6 +19,7 @@ const Detail = lazy(() => import("./routes/Detail.js"));
 const HelpDetail = lazy(() => import("./routes/HelpDetail.js"));
 
 function App() {
+  const islogin = "ffff";
   const pages = [
     {
       pageLink: "/",
@@ -51,29 +52,7 @@ function App() {
   ];
 
   useEffect(() => {
-    async function Islogin(){
-    try {
-      const response = await fetch(gvar.REACT_APP_URL+'/login/success', {
-        method: "GET",
-        headers: {
-          "Content-Type" : "application/json",
-        },
-        withCredentials: true,
-      });
-      if (response.ok) {
-        const res = await response.json();
-
-        if(!res.success) {
-          alert(res.msg);
-        }
-      } else {
-        throw Error("서버 응답 실패");
-      }
-    } catch(err) {
-      console.error(Error('로그인 중 에러 발생'));
-    }
-  }
-  Islogin();
+    
   }, []);
 
   return (
@@ -86,11 +65,11 @@ function App() {
             <Routes>
               {/* 화살표홤수 다음에 중괄호 존재시 return을 명시적으로 작성해주어야 함. */}
               {/* map 사용 시 하위 요소들은 필수적으로 key값이 필요 */}
-              {pages.map((pages, index) => {
+              {pages.map((page, index) => {
                 return (
                   <Route 
-                    path={pages.pageLink} 
-                    element={<pages.view />} 
+                    path={page.pageLink} 
+                    element={<page.view islogin={islogin}/>} 
                     key={index}
                   />
                 );

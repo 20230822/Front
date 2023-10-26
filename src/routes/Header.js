@@ -1,5 +1,5 @@
 //a태그는 전체 새로고침이기에 link를 사용하여 특정 부분만 불러오기
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../style/Header.css";
 import Light from "../components/light";
 import Search from "../components/search";
@@ -10,6 +10,9 @@ function Header() {
     e.target.parentElement.parentElement.parentElement.parentElement.firstChild.firstChild.className = "light 펜던트";
     e.target.parentElement.parentElement.parentElement.parentElement.firstChild.firstChild.firstChild.className = "light";
   };
+
+  const location = useLocation();
+  const test = location;
 
   return (
     <div className="header">

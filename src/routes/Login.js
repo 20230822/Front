@@ -6,6 +6,7 @@ import * as addr from "../copy.js"
 /*백엔드에게 넘길떄 위 환경변수 삭제*/
 
 function Login() {
+  // const [islogin, setIslogin] = useState(false);
   const navigate = useNavigate();
   const [isFlipped, setIsFlipped] = useState(false);
   const [formDataLogin, setFormDataLogin] = useState({
@@ -61,7 +62,6 @@ function Login() {
       if (response.ok) {
         const res = await response.json();
         if (res.success) {
-          console.log('Token:', response.headers);
           navigate("/");
         } else {
           alert(res.msg);
