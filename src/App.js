@@ -51,6 +51,10 @@ function App() {
     },
   ];
 
+  useEffect(()=> {
+    console.log("ji");
+  }, []);
+
   useEffect(() => {
     
   }, []);
