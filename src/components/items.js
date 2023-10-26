@@ -11,7 +11,7 @@ function Items( props ) {
       IMG_DATA: "",
       PRICE: "",
       PRODUCT_PK: "",
-    }
+    },
   ]);
   // 데이터 사진저장 함수
   const [dataImg, setDataImg] = useState("");
@@ -25,7 +25,8 @@ function Items( props ) {
   };
 
   useEffect(() => {
-    setLight(props.data);
+    setLight(props.data.products);
+    // console.log(props.data.products);
   }, [props]);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ function Items( props ) {
 
   return (
     <div className="products-items">
-      {light !== "" && light.map((light, index) => (
+      {light !== undefined && light.map((light, index) => (
       <Link className="item-box" to={`/Products/ji/ㅗㅑ`} key={index} state={""}>
         <h1>{light.PRODUCT_PK}</h1>
         <p>goo</p>

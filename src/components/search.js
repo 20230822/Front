@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../style/search.css";
 
 function Search() {
@@ -17,6 +17,10 @@ function Search() {
     const value = e.target;
     setSearch({...search, value});
   };
+
+  useEffect(() => {
+    console.log(search);
+  }, [search]);
 
   return (
     <div className="search icon" onClick={toggleFormVisibility}>

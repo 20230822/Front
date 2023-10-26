@@ -129,10 +129,6 @@ function Products() {
     onClickLamp();
   },[Lamps])
 
-  useEffect(() => {
-    console.log(data);
-  },[data]) 
-
   return (
     <div className="products" ref={product}>
       <div className="products-filter">
