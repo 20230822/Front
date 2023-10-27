@@ -12,10 +12,6 @@ function Home( props ) {
       setIslogin(props);
     }
   },[props])
-
-  useEffect(()=>{
-    console.dir(islogin);
-  },[islogin])
   
   return (
     <div className="home">

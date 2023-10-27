@@ -19,7 +19,7 @@ function Search() {
   };
 
   useEffect(() => {
-    console.log(search);
+    // console.log(search);
   }, [search]);
 
   return (

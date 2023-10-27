@@ -1,8 +1,9 @@
-//a태그는 전체 새로고침이기에 link를 사용하여 특정 부분만 불러오기
 import { Link } from "react-router-dom";
 import "../style/item.css";
 import { useEffect, useState } from "react";
+import { Buffer } from 'buffer';
 
+// 웬만하면 기존 불러온 데이터는 따로 두고 업데이트에 필요한 데이터를 새로 만들어서 사용하기(그래야 오류가 적음..)
 function Items( props ) {
   // 불러온 데이터를 배열형태로 저장할 변수
   const [light, setLight] = useState([
@@ -13,38 +14,46 @@ function Items( props ) {
       PRODUCT_PK: "",
     },
   ]);
-  // 데이터 사진저장 함수
-  const [dataImg, setDataImg] = useState("");
-  // 사진불러오기 위한 주소 변수
-  const [decodedImageData, setDecodedImageData] = useState([]);
+  // 새로 업데이트된 상태 변수
+  const [decodedLight, setDecodedLight] = useState([]);
+  // 현재 조명종류 공백제거하고 주소창에 넣기 위한 변수
+  const lightType = props.path.replace(/\s/g, "");
 
-  //decoding 함수
-  function decoding(pData) {
-    const base64Data = new ArrayBuffer(pData.IMG_DATA.data,'base64');
-    setDecodedImageData(`data:image/jpeg;base64,${base64Data}`);
-  };
-
+  // 전달 받은데이터 저장
   useEffect(() => {
     setLight(props.data.products);
-    // console.log(props.data.products);
   }, [props]);
-
+  
+  //이미지 디코딩 함수
   useEffect(() => {
-    // if(light !== "")
-    //   (light.map((light, index) => {return(
-    //     decoding(light)
-    //     )}))
-    console.log(light);
+    // async 비동기 함수로 선언하는데 사용 내부에서 await을 사용하여 비동기 작업 수행 (항상 promise를 반환한다.)
+    const decodeImages = async () => {
+      if (light !== undefined) {
+        // await async 함수 안에서만 동작하며, promise가 처리 될때까지 기다린다. 
+        // 사용자경험을 향상시키기 위해 사용(응답성 향상, 성능개선)
+        // promise는 비동기 작업을 다룰 때 사용되는 객체로 resolve(성공), reject(거절) 두가지 콜백을 받고 all을 사용하여 여러 배열을 병렬로 처리시 사용
+        const decodedLight = await Promise.all(light.map((lightItem) => {
+          if (lightItem.IMG_DATA.data !== undefined) {
+            const base64Data = Buffer.from(lightItem.IMG_DATA.data, 'base64'); // 바이너리 에서 base64로 변환
+            lightItem.IMG_DATA = `data:image/jpg;base64,${base64Data}`; // 주소변환과정
+          }
+          return lightItem;
+        }));
+
+        setDecodedLight(decodedLight); // 이런식으로 다른 곳에 저장을 새로 해줘야 무한루프, 비동기 방식에 의한 오류가 생기지 않는다.=
+      }
+    };
+
+      decodeImages();
   }, [light]);
 
   return (
     <div className="products-items">
-      {light !== undefined && light.map((light, index) => (
-      <Link className="item-box" to={`/Products/ji/ㅗㅑ`} key={index} state={""}>
-        <h1>{light.PRODUCT_PK}</h1>
-        <p>goo</p>
-        <img src="" alt="" />
-      </Link>
+      {decodedLight !== undefined &&
+        decodedLight.map((decodedLights, index) => (
+          <Link className="item-box" to={`/Products/${lightType}/상세페이지`} key={index}>
+            <img className="item-box-img" src={decodedLights.IMG_DATA} alt="조명사진" />
+          </Link>
     ))}
     </div>
   );

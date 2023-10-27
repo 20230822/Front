@@ -11,9 +11,6 @@ function Header() {
     e.target.parentElement.parentElement.parentElement.parentElement.firstChild.firstChild.firstChild.className = "light";
   };
 
-  const location = useLocation();
-  const test = location;
-
   return (
     <div className="header">
       <div className="light-illustration">
@@ -32,8 +29,6 @@ function Header() {
         
         <div className="menu-bottom">
           <nav>
-            {/* onclick이벤트 전에 state를 전달하면 빈값으로 전달되기에 순서지켜주기 */}
-            {/* 또한 과거버전은 to에 state를 썼지만 현재는 따로 써야한다고 한다. */}
             <span><Link className="menu-category-item" to={"/Products/펜던트"}>펜던트</Link></span> 
             <span><Link className="menu-category-item" to={"/Products/플로어램프"}>플로어 램프</Link></span>
             <span><Link className="menu-category-item" to={"/Products/테이블램프"}>테이블 램프</Link></span>

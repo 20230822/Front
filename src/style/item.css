@@ -19,8 +19,9 @@
 .item-box:nth-child(5n) {
   margin-right: 0;
 }
-.item-box img {
+.item-box-img {
+  border-radius: 20px;
   display: block;
-  width: 100px;
-  height: 100px;
+  width: 240px;
+  height: 320px;
 }

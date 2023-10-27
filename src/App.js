@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // npm i styled-reset설치 후 사용
 import { Reset } from "styled-reset";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import "./style/App.css";
 import Header from "./routes/Header.js";
 
@@ -50,14 +50,6 @@ function App() {
       view: HelpDetail,
     },
   ];
-
-  useEffect(()=> {
-    console.log("ji");
-  }, []);
-
-  useEffect(() => {
-    
-  }, []);
 
   return (
     <BrowserRouter>
