@@ -51,7 +51,7 @@ function Items( props ) {
     <div className="products-items">
       {decodedLight !== undefined &&
         decodedLight.map((decodedLights, index) => (
-          <Link className="item-box" to={`/Products/${lightType}/상세페이지`} key={index}>
+          <Link className="item-box" to={`/Products/${lightType}/상세페이지`} key={index} state={ {id: decodedLights.PRODUCT_PK, img: decodedLights.IMG_DATA}}>
             <img className="item-box-img" src={decodedLights.IMG_DATA} alt="조명사진" />
           </Link>
     ))}

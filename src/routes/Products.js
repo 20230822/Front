@@ -52,19 +52,6 @@ function Products() {
     }
   }, [lampName, location]);
 
-  //조명 방식 디스플레이
-  const onClickLightM = (e) => {
-    setLightMethod(() => e.target.innerText);
-    if (lightMethod === e.target.innerText)
-      setLightMethod(""); 
-  };
-
-  // light 이미지를 바꾸기 위해 className을 바꿔주는 함수
-  useEffect(() => {
-    product.current.parentElement.firstChild.firstChild.firstChild.className = `light ${lampName}`;
-    product.current.parentElement.firstChild.firstChild.firstChild.firstChild.className = `light ${lightMethod}`;
-  }, [lampName, lightMethod]);
-
    // 일치하는 카테고리 api전달에 사용하는 함수
    useEffect(() => {
     if (lampName === "펜던트") {
@@ -94,39 +81,96 @@ function Products() {
     }
   }, [lampName]);
 
-  useEffect(() => {
-    // 상품 데이터 요청
-    async function onClickLamp() {
-      if(Lamps.category !== "") {
-        // 정보 전달 함수(category 값이 ""이 아닐때만 실행)
-        try {
-          const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/product/category', {
-            credentials: 'include',
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(Lamps),// Lamps 값을 JSON 문자열로 변환하여 요청 
-          });
-      
-          // 연결 성공 유무 판단
-          if (response.ok) {
-            const res = await response.json();
-            if (res.success) {
-              setData(res.data); //데이터 저장
-            } else {
-              alert(res.msg);
-            }
-          } else {
-            throw Error("서버 응답 실패");
-          }
-        } catch (err) {
-          console.error(Error('불러오는 중 에러 발생'));
-        }
-      };
+  // 간접, 반간접, 전반확산, 반직접, 직접에 대한 클릭 기능
+  const onClickLightM = (e) => {
+    const text = e.target.innerText;
+    // 조명 방식 디스플레이(일러스트 보여주는 곳)
+    setLightMethod(text);
+    if (lightMethod === text)
+      setLightMethod(""); 
+
+    // api요청 기본값 저장을 위한 조건문
+    let Pendant = "";
+    if (lampName === "펜던트") {
+      Pendant = 10;
+    } else if (lampName === "플로어 램프") {
+      Pendant = 20;
+    } else if (lampName === "테이블 램프") {
+      Pendant = 30;
+    } else if (lampName === "월 램프") {
+      Pendant = 40;
     }
 
-    onClickLamp();
+    // 조건에 따른 계산 식
+    if (text === "간접 조명" && Lamps.category !== Pendant + 1) {
+      Lamps.category = Pendant + 1;
+    } else if (Lamps.category === Pendant + 1) {
+      Lamps.category = Pendant;
+    }
+    if (text === "반간접 조명" && Lamps.category !== Pendant + 2) {
+      Lamps.category = Pendant + 2;
+    } else if (Lamps.category === Pendant + 2) {
+      Lamps.category = Pendant;
+    }
+    if (text === "전반확산 조명" && Lamps.category !== Pendant + 3) {
+      Lamps.category = Pendant + 3;
+    } else if (Lamps.category === Pendant + 3) {
+      Lamps.category = Pendant;
+    }
+    if (text === "반직접 조명" && Lamps.category !== Pendant + 4) {
+      Lamps.category = Pendant + 4;
+    } else if (Lamps.category === Pendant + 4) {
+      Lamps.category = Pendant;
+    }
+    if (text === "직접 조명" && Lamps.category !== Pendant + 5) {
+      Lamps.category = Pendant + 5;
+    } else if (Lamps.category === Pendant + 5) {
+      Lamps.category = Pendant;
+    }
+    
+    onClickLamp(); // 비뀐 값으로 다시 요청
+  };
+
+  // light 이미지를 바꾸기 위해 className을 바꿔주는 함수
+  useEffect(() => {
+    product.current.parentElement.firstChild.firstChild.firstChild.className = `light ${lampName}`;
+    product.current.parentElement.firstChild.firstChild.firstChild.firstChild.className = `light ${lightMethod}`;
+  }, [lampName, lightMethod]);
+
+  
+  // 상품 데이터 요청
+  async function onClickLamp() {
+    try {
+      const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/product/category', {
+        credentials: 'include',
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(Lamps),// Lamps 값을 JSON 문자열로 변환하여 요청 
+      });
+  
+      // 연결 성공 유무 판단
+      if (response.ok) {
+        const res = await response.json();
+        if (res.success) {
+          setData(res.data); //데이터 저장
+        } else {
+          alert(res.msg);
+        }
+      } else {
+        throw Error("서버 응답 실패");
+      }
+    } catch (err) {
+      console.error(Error('불러오는 중 에러 발생'));
+    }
+  };
+
+  useEffect(() => {
+    // 요청 범주가 유효할때만 실행
+    if (Lamps.category >= 10) {
+      onClickLamp();
+    }
   },[Lamps])
 
   return (

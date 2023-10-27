@@ -4,34 +4,91 @@ import { useLocation } from "react-router";
 
 
 function Detail() {
-  const details = ["사이즈", "재질", "무게", "전구타입", "원산지", "해시태그", "설명"];
-  const detailColors = ["전구온도", "상품색"];
-
-  const [productName, setProductName] = useState(""); 
-  // 연결할 때 사용할 변수
-  const [productPrice, setProductPrice] = useState(""); 
-
-  // link로 이동한거기 때문에 location을 받으면 인자를 받을 수 있다.
+  // 요청해서 받아온 데이터 저장 변수
+  const [detailData, setDetailData] = useState({
+    name: "",
+    price: "",
+    size: "",
+    material: "",
+    weight: "",
+    type: "",
+    made: "",
+    hash: "",
+    text: "",
+  })
+  const detailColors = ["상품색", "전구온도"];
+  // 데이터 불러올떄 사용할 제품 아이디 값 변수
+  const [product, setProduct] = useState({id: ""}); 
+  // state로 전달받을 변수들
   const location = useLocation();
-  const name = location.state;
+  const productId = location.state.id;
+  const productImg = location.state.img;
 
+  // 전달받은 인자들 요청위해 id값 넣어주기
   useEffect(() => {
-    setProductName(name);
-  }, [name]);
+    setProduct({id: productId});
+  }, [productId]);
+
+  // 처음한번만 데이터 받아오기
+  useEffect(() => {
+    async function getItemData() {
+      if (product.id !== "") {
+        try{
+          const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/product/detailInfo', {
+            credentials: 'include',
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(product),
+          });
+
+          // 연결 성공 유무 판단
+          if (response.ok) {
+            const res = await response.json();
+            if (res.success) {
+              // 데이터 저장
+              setDetailData({
+                name: res.data[0].PRODUCT_NM,
+                price: res.data[0].PRICE,
+                size:res.data[0].SIZE,
+                material: res.data[0].MATERIAL,
+                weight: res.data[0].WEIGHT,
+                type: res.data[0].LIGHT_TYPE,
+                made: res.data[0].COUNTRY,
+                hash: res.data[0].HASHTAG,
+                text: res.data[0].DESCRIBE,
+              });
+            } else {
+              alert(res.msg);
+            }
+          } else {
+            throw Error("서버 응답 실패");
+          }
+        } catch (err) {
+          console.error(Error('상품데이터 불러오는 중 오류'));
+        }
+    }};
+
+    getItemData();
+  }, [product]);
+
 
   return (
     <div className="detail">  
       <div className="detail-header">
-        <img className="detail-left" src="../images/banner1.jpeg" alt="제품 사진" />
+        <img className="detail-left" src={productImg} alt="제품 사진" />
         
         <div className="detail-right">
-          <h1 className="detail-right-title">{productName}</h1>
+          <h1 className="detail-right-title">{detailData.name}</h1>
           <div className="detail-right-description">
-            {details.map((detail, index) => {
-              return(
-                <div className="detail-type" key={index}>{detail}</div>
-              )
-            })}
+            {detailData.size && <div className="detail-type">사이즈: {detailData.size}</div>}
+            {detailData.material &&  <div className="detail-type">재질: {detailData.material}</div>}
+            {detailData.weight && <div className="detail-type">무게: {detailData.weight}</div>}
+            {detailData.type && <div className="detail-type">전구타입: {detailData.type}</div>}
+            {detailData.made && <div className="detail-type">제조나라: {detailData.made}</div>}
+            {detailData.hash && <div className="detail-type">{detailData.hash}</div>}
+            {detailData.text && <div className="detail-type">{detailData.text}</div>}
             {detailColors.map((color, index) => {
               return(
                 <div className="detail-color" key={index}>
@@ -44,7 +101,7 @@ function Detail() {
                 </div>
               )
             })}
-            <div className="detail-price">{productPrice}</div>
+            <div className="detail-price">{detailData.price} 원</div>
           </div>
         </div>
       </div>
