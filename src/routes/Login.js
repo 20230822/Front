@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/Login.css";
 import * as gvar from "../globalVar.js"
 import * as addr from "../copy.js"
+import "../App.js"
 /*백엔드에게 넘길떄 위 환경변수 삭제*/
 
-function Login() {
+function Login(props) {
   // const [islogin, setIslogin] = useState(false);
   const navigate = useNavigate();
   const [isFlipped, setIsFlipped] = useState(false);
@@ -13,6 +14,9 @@ function Login() {
     id: "",
     psword: "",
   });
+
+  // props 변경방지
+  const copyProps = props;
 
   const [formData, setFormData] = useState({
     id: "",
@@ -62,6 +66,7 @@ function Login() {
       if (response.ok) {
         const res = await response.json();
         if (res.success) {
+          copyProps.islogin(true);
           navigate("/");
         } else {
           alert(res.msg);

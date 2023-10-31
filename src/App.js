@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // npm i styled-reset설치 후 사용
 import { Reset } from "styled-reset";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import "./style/App.css";
 import Header from "./routes/Header.js";
 
@@ -19,7 +19,18 @@ const Detail = lazy(() => import("./routes/Detail.js"));
 const HelpDetail = lazy(() => import("./routes/HelpDetail.js"));
 
 function App() {
-  const islogin = "ffff";
+  const [throwLogin, SetThrowLogin] = useState(false);
+  const [loginComplete, SetLoginComplete] = useState(false); 
+  
+  const islogin = (abc) => {
+    SetLoginComplete(abc);
+  };
+
+  useEffect(() => {
+    if (loginComplete)
+      SetThrowLogin(true);
+  }, [loginComplete])
+
   const pages = [
     {
       pageLink: "/",
@@ -55,7 +66,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Reset />
-        <Header />
+        <Header state={throwLogin}/>
 
         <Suspense fallback={<div />}> {/* loading완료 전까지 보여줄 화면 fallback */}
             <Routes>
