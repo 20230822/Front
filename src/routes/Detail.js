@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../style/Detail.css";
 import { useLocation } from "react-router";
-
+import { Buffer } from "buffer";
 
 function Detail() {
   // 요청해서 받아온 데이터 저장 변수
@@ -15,7 +15,9 @@ function Detail() {
     made: "",
     hash: "",
     text: "",
+    img: "",
   })
+  const [img, setImg] = useState("");
   const detailColors = ["상품색", "전구온도"];
   // 데이터 불러올떄 사용할 제품 아이디 값 변수
   const [product, setProduct] = useState({id: ""}); 
@@ -58,6 +60,7 @@ function Detail() {
                 made: res.data[0].COUNTRY,
                 hash: res.data[0].HASHTAG,
                 text: res.data[0].DESCRIBE,
+                img: res.data[0].IMG_DATA.data,
               });
             } else {
               alert(res.msg);
@@ -73,8 +76,20 @@ function Detail() {
     getItemData();
   }, [product]);
 
+// 추가 이미지 변환과정
+useEffect(() => {
+  const decodeImage = () => {
+    if (detailData.img !== "") {
+      const base64Data = Buffer.from(detailData.img, 'base64'); // 바이너리 에서 base64로 변환
+      setImg(`data:image/jpeg;base64,${base64Data}`); // 주소변환과정
+      console.log(base64Data);
+    }
+  }
+  
+  decodeImage();
+}, [detailData]);
 
-  return (
+return (
     <div className="detail">  
       <div className="detail-header">
         <img className="detail-left" src={productImg} alt="제품 사진" />
@@ -107,9 +122,9 @@ function Detail() {
       </div>
       
       <div className="detail-content">
-        <p className="detail-content-text">이 제품은 무슨무슨 조명으로 뭐뭐 하는데 사용한다. 만들었다. 연출한다.</p>
+        <p className="detail-content-text">{detailData.text}</p>
         <div className="detail-content-space">
-          <img className="detail-content-space-picture" src="/" alt="연출사진 1" />
+          {detailData.img !== "" && <img className="detail-content-space-picture" src={img} alt="연출사진 1" />}
           <img className="detail-content-space-picture" src="/" alt="연출사진 1" />
         </div>
       </div>

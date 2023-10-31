@@ -35,7 +35,7 @@ function Items( props ) {
         const decodedLight = await Promise.all(light.map((lightItem) => {
           if (lightItem.IMG_DATA.data !== undefined) {
             const base64Data = Buffer.from(lightItem.IMG_DATA.data, 'base64'); // 바이너리 에서 base64로 변환
-            lightItem.IMG_DATA = `data:image/jpg;base64,${base64Data}`; // 주소변환과정
+            lightItem.IMG_DATA = `data:image/jpeg;base64,${base64Data}`; // 주소변환과정
           }
           return lightItem;
         }));
@@ -43,7 +43,6 @@ function Items( props ) {
         setDecodedLight(decodedLight); // 이런식으로 다른 곳에 저장을 새로 해줘야 무한루프, 비동기 방식에 의한 오류가 생기지 않는다.=
       }
     };
-
       decodeImages();
   }, [light]);
 

@@ -2,9 +2,7 @@
 // 대신 사용하는 것이 useRef란 것 사용시 {변수명.current}
 import { useEffect, useRef, useState } from "react";
 import "../style/banner.css"
-import image1 from "../images/banner1.jpeg";
-import image2 from "../images/banner2.jpeg";
-import image3 from "../images/banner3.jpeg";
+import { Buffer } from 'buffer';
 
 function Banner() {
   const [index, setIndex] = useState(0);
@@ -15,20 +13,92 @@ function Banner() {
   const item = useRef(null);
   const [active, setActive] = useState("");
   const TIME = 300;
-  const lights = [
+
+  // 불러온 데이터 바로 저장 변수
+  const [lights, setLights] = useState([
     {
-      h2: "lamp1",
-      p: "this is the lamp1",
+      h2: "",
+      p: "",
+    },
+  ]);
+  // 디코딩까지 완료한 데이터 저장할 변수
+  const [copyLights, setCopyLights] = useState([
+    {
+      IMG_DATA: "",
+      PRODUCT_PK: "",
     },
     {
-      h2: "lamp2",
-      p: "this is the lamp2",
+      IMG_DATA: "",
+      PRODUCT_PK: "",
     },
     {
-      h2: "lamp3",
-      p: "this is the lamp3",
-    },
-  ];
+      IMG_DATA: "",
+      PRODUCT_PK: "",
+      },
+  ]);
+
+  // api 연결 부분
+  useEffect(() => {
+    async function getRandomData() {
+      try{
+        const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/main', {
+          credentials: 'include',
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(),// Lamps 값을 JSON 문자열로 변환하여 요청 
+        });
+    
+        // 연결 성공 유무 판단
+        if (response.ok) {
+          const res = await response.json();
+          if (res.success) {
+            setLights(res.data);
+          } else {
+            alert(res.msg);
+          }
+        } else {
+          throw Error("서버 응답 실패");
+        }
+      } catch(err) {
+        console.error(Error('불러오는 중 에러 발생'));
+      }
+    };
+
+    getRandomData();
+  }, []);
+
+  // 검사를 위한 지울 함수
+  useEffect(() => {
+    console.log(copyLights);
+  }, [copyLights]);
+
+  //이미지 디코딩 함수
+  useEffect(() => {
+    // async 비동기 함수로 선언하는데 사용 내부에서 await을 사용하여 비동기 작업 수행 (항상 promise를 반환한다.)
+    const decodeImages = async () => {
+      if (lights !== undefined) {
+        // await async 함수 안에서만 동작하며, promise가 처리 될때까지 기다린다. 
+        // 사용자경험을 향상시키기 위해 사용(응답성 향상, 성능개선)
+        // promise는 비동기 작업을 다룰 때 사용되는 객체로 resolve(성공), reject(거절) 두가지 콜백을 받고 all을 사용하여 여러 배열을 병렬로 처리시 사용
+        const decodedLight = await Promise.all(lights.map((lightItem) => {
+          if (lightItem.IMG_DATA !== undefined) {
+            const base64Data = Buffer.from(lightItem.IMG_DATA.data, 'base64'); // 바이너리 에서 base64로 변환
+            lightItem.IMG_DATA = `data:image/jpeg;base64,${base64Data}`; // 주소변환과정
+            // for(let i = 0; i < 3; i++) {
+            //   set
+            // }
+          }
+          return lightItem;
+        }));
+
+        setCopyLights(decodedLight); // 이런식으로 다른 곳에 저장을 새로 해줘야 무한루프, 비동기 방식에 의한 오류가 생기지 않는다.
+      }
+    };
+      console.log(lights);
+      decodeImages();
+  }, [lights]);
 
   // slide 눈속임을 이용한 함수 젤끝까지 이동하면 몇초뒤 transition을 없애고 처음으로 이동
   const onSlide = (e) => {
@@ -88,11 +158,12 @@ function Banner() {
 
   // index값 변경마다 slide 움직이게 하는 화살표함수
   useEffect(() => {
-    const itemWidth = item.current.clientWidth + 10;
-
-    dotColor(index);
-    carousel.current.style.transform = "translateX(" + (index * itemWidth) + "px)"; 
-  }, [index]);
+    if(copyLights[0].IMG_DATA !== "") {
+      const itemWidth = item.current.clientWidth + 10;
+      dotColor(index);
+      carousel.current.style.transform = "translateX(" + (index * itemWidth) + "px)"; 
+    }
+  }, [index, copyLights]);
 
   // 자동 슬라이드 기능을 구현
   useEffect(() => {
@@ -128,18 +199,20 @@ function Banner() {
   return (
     <div className="banner">
       <div className="banner-header" onMouseEnter={onToggle} onMouseLeave={onToggle}> {/* mouseover와는 다르게 자식은 해당안되고 오로지 자기 자신만 해당 */}
+        {lights.h2 !== "" && 
         <div className="banner-title">
-          <h2 className="banner-title-header">{lights[dotIndex].h2}</h2>
-          <p>{lights[dotIndex].p}</p>
-        </div>
+          <h2 className="banner-title-header">{/*{lights[dotIndex].PRODUCT_NM}*/} hi </h2>
+          <p>{/*lights[dotIndex].DESCRIBE */} hida</p>
+        </div>}
 
-        <div className={`banner-images ${active === "move" ? active : ""}`} ref={carousel}>
-          <img className="banner-images-index clone" src={image3} alt="조명 사진" />
-          <img className="banner-images-index" src={image1} alt="조명 사진" ref={item}/>
-          <img className="banner-images-index" src={image2} alt="조명 사진" />
-          <img className="banner-images-index" src={image3} alt="조명 사진" />
-          <img className="banner-images-index clone" src={image1} alt="조명 사진" ref={item}/>
-        </div>  
+        {copyLights[0].IMG_DATA !== "" && 
+          <div className={`banner-images ${active === "move" ? active : ""}`} ref={carousel}>
+            <img className="banner-images-index clone" src={copyLights[2]} alt="조명 사진" />
+            <img className="banner-images-index" src={copyLights[0]} alt="조명 사진" ref={item}/>
+            <img className="banner-images-index" src={copyLights[1]} alt="조명 사진" />
+            <img className="banner-images-index" src={copyLights[2]} alt="조명 사진" />
+            <img className="banner-images-index clone" src={copyLights[0]} alt="조명 사진" ref={item}/>
+          </div>}
         
         <div className="banner-arrow">
           <span className="banner-pre" onClick={onSlide}></span>
