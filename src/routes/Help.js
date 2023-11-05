@@ -1,14 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../style/Help.css";
 import { Link } from "react-router-dom";
+import * as gvar from "../globalVar.js"
 
 function Help() {
-  const posts = [
-    { id: 1, uid : 1, title: '첫 번째 게시물', content: '안녕하세요, 첫 번째 게시물입니다.', date: Date(), writer : '작성자1' },
-    { id: 2, uid : 2, title: '두 번째 게시물', content: '두 번째 게시물 내용입니다.', date: Date(), writer : '작성자2'},
-    // ...
-  ];
-  //수정필요
+  const [posts, setPosts] = useState([
+    {
+      NOTICE_PK: "",
+      TITLE: "",
+      WRITE_DT: "",
+      USER_NM: '',
+    },
+  ]);
+
+  async function apiNotice() {
+    // 정보 전달 함수
+    try {
+      const response = await fetch(gvar.REACT_APP_URL + '/api/notice', {
+        credentials: 'include',
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "",
+        },
+        body: JSON.stringify(posts),
+      });
+      if (response.ok) {
+        const res = await response.json();
+        if (res.success) {
+          setPosts(res.data);
+        } else {
+          alert(res.msg);
+        }
+      } else {
+        throw Error("서버 응답 실패");
+      }
+    } catch (err) {
+      console.error(Error('로그인 중 에러 발생'));
+    }
+  };
+
+  useEffect(() => {
+    apiNotice();
+  }, [])
 
   return (
     <div className="Help">
@@ -24,13 +58,13 @@ function Help() {
         </thead>
         <tbody>
           {posts.map((post) => (
-            <tr key={post.id}>
-              <td className="postID">{post.id}</td>
+            <tr key={post.NOTICE_PK}>
+              <td className="postID">{post.NOTICE_PK}</td>
               <td>
-                <Link to={`/Help/${post.id}`}>{post.title}</Link>
-                </td>
-              <td>{new Date(post.date).toLocaleString()}</td>
-              <td>{post.writer}</td>
+                <Link to={`/Help/${post.NOTICE_PK}`}>{post.TITLE}</Link>
+              </td>
+              <td>{new Date(post.WRITE_DT).toLocaleString()}</td>
+              <td>{post.USER_NM}</td>
             </tr>
           ))}
         </tbody>
