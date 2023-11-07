@@ -82,7 +82,6 @@ useEffect(() => {
     if (detailData.img !== "") {
       const base64Data = Buffer.from(detailData.img, 'base64'); // 바이너리 에서 base64로 변환
       setImg(`data:image/jpeg;base64,${base64Data}`); // 주소변환과정
-      console.log(base64Data);
     }
   }
   

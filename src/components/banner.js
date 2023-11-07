@@ -17,8 +17,16 @@ function Banner() {
   // 불러온 데이터 바로 저장 변수
   const [lights, setLights] = useState([
     {
-      h2: "",
-      p: "",
+      IMG_DATA: "",
+      PRODUCT_PK: "",
+    },
+    {
+      IMG_DATA: "",
+      PRODUCT_PK: "",
+    },
+    {
+      IMG_DATA: "",
+      PRODUCT_PK: "",
     },
   ]);
   // 디코딩까지 완료한 데이터 저장할 변수
@@ -69,26 +77,18 @@ function Banner() {
     getRandomData();
   }, []);
 
-  // 검사를 위한 지울 함수
-  useEffect(() => {
-    console.log(copyLights);
-  }, [copyLights]);
-
   //이미지 디코딩 함수
   useEffect(() => {
     // async 비동기 함수로 선언하는데 사용 내부에서 await을 사용하여 비동기 작업 수행 (항상 promise를 반환한다.)
     const decodeImages = async () => {
-      if (lights !== undefined) {
+      if (lights.IMG_DATA !== "") {
         // await async 함수 안에서만 동작하며, promise가 처리 될때까지 기다린다. 
         // 사용자경험을 향상시키기 위해 사용(응답성 향상, 성능개선)
         // promise는 비동기 작업을 다룰 때 사용되는 객체로 resolve(성공), reject(거절) 두가지 콜백을 받고 all을 사용하여 여러 배열을 병렬로 처리시 사용
         const decodedLight = await Promise.all(lights.map((lightItem) => {
           if (lightItem.IMG_DATA !== undefined) {
-            const base64Data = Buffer.from(lightItem.IMG_DATA.data, 'base64'); // 바이너리 에서 base64로 변환
+            const base64Data = Buffer.from(lightItem.IMG_DATA, 'base64'); // 바이너리 에서 base64로 변환
             lightItem.IMG_DATA = `data:image/jpeg;base64,${base64Data}`; // 주소변환과정
-            // for(let i = 0; i < 3; i++) {
-            //   set
-            // }
           }
           return lightItem;
         }));
@@ -96,10 +96,9 @@ function Banner() {
         setCopyLights(decodedLight); // 이런식으로 다른 곳에 저장을 새로 해줘야 무한루프, 비동기 방식에 의한 오류가 생기지 않는다.
       }
     };
-      console.log(lights);
-      decodeImages();
+    
+    decodeImages();
   }, [lights]);
-
   // slide 눈속임을 이용한 함수 젤끝까지 이동하면 몇초뒤 transition을 없애고 처음으로 이동
   const onSlide = (e) => {
     // 누른 방향에 따라서 index값 변화
@@ -207,11 +206,11 @@ function Banner() {
 
         {copyLights[0].IMG_DATA !== "" && 
           <div className={`banner-images ${active === "move" ? active : ""}`} ref={carousel}>
-            <img className="banner-images-index clone" src={copyLights[2]} alt="조명 사진" />
-            <img className="banner-images-index" src={copyLights[0]} alt="조명 사진" ref={item}/>
-            <img className="banner-images-index" src={copyLights[1]} alt="조명 사진" />
-            <img className="banner-images-index" src={copyLights[2]} alt="조명 사진" />
-            <img className="banner-images-index clone" src={copyLights[0]} alt="조명 사진" ref={item}/>
+            <img className="banner-images-index clone" src={copyLights[2].IMG_DATA} alt="조명 사진" />
+            <img className="banner-images-index" src={copyLights[0].IMG_DATA} alt="조명 사진" />
+            <img className="banner-images-index" src={copyLights[1].IMG_DATA} alt="조명 사진" />
+            <img className="banner-images-index" src={copyLights[2].IMG_DATA} alt="조명 사진" />
+            <img className="banner-images-index clone" src={copyLights[0].IMG_DATA} alt="조명 사진" ref={item}/>
           </div>}
         
         <div className="banner-arrow">
