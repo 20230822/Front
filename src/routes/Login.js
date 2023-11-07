@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/Login.css";
 import * as gvar from "../globalVar.js"
@@ -7,7 +7,6 @@ import "../App.js"
 /*백엔드에게 넘길떄 위 환경변수 삭제*/
 
 function Login(props) {
-  // const [islogin, setIslogin] = useState(false);
   const navigate = useNavigate();
   const [isFlipped, setIsFlipped] = useState(false);
   const [formDataLogin, setFormDataLogin] = useState({

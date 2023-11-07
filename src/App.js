@@ -6,8 +6,6 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import "./style/App.css";
 import Header from "./routes/Header.js";
 
-
-
 //lazy = 처음 렌더링까지 지연 즉, 필요할 때만 호출하겠다는 의미 불필요한 로드 방지
 //이 경우 아직 load되지 않았을 때 보여주는 창이 필요 {참고 https://react.dev/reference/react/lazy}
 const Home = lazy(() => import("./routes/Home.js"));
