@@ -4,7 +4,6 @@ import Interest from "../components/interest";
 import History from "../components/history";
 import Basket from "../components/basket";
 import * as gvar from "../globalVar.js"
-import { Buffer } from 'buffer/index.js';
 
 
 function MyPage() {
@@ -23,7 +22,7 @@ function MyPage() {
   };
 
   function decoding() {
-    const base64Data = Buffer.from(formMypage.PROFILE_DATA,'base64');
+    const base64Data = formMypage.PROFILE_DATA;
     setDecodedImageData(`data:image/jpeg;base64,${base64Data}`);
   };
 
@@ -45,7 +44,7 @@ function MyPage() {
             setFormMypage({
               USER_NM: res.data[0].USER_NM,
               USER_ID: res.data[0].USER_ID,
-              PROFILE_DATA: res.data[0].PROFILE_DATA.data,
+              PROFILE_DATA: res.data[0].PROFILE_DATA,
             });
           } else {
             alert(res.msg);

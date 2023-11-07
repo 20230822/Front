@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../style/item.css";
 import { useEffect, useState } from "react";
-import { Buffer } from 'buffer';
+
 
 // 웬만하면 기존 불러온 데이터는 따로 두고 업데이트에 필요한 데이터를 새로 만들어서 사용하기(그래야 오류가 적음..)
 function Items( props ) {

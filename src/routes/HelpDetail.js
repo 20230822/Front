@@ -17,7 +17,6 @@ const HelpDetail = () => {
 
   async function apiNotice() {
     // 정보 전달 함수
-    console.log("여기" + id);
     try {
       const response = await fetch(gvar.REACT_APP_URL + '/api/notice/detail?page=' + id, {
         credentials: 'include',

@@ -1,27 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../style/basket.css"
+import * as gvar from "../globalVar.js"
 
-function basket() {
-  const products = [
+function Basket() {
+  const [products, setProducts] = useState([
     {
-      name: "상품명 1",
-      quantity: 1,
-      price: 27000,
-      subtotal: 27000,
+      PRODUCT_NM: "",
+      QUANTITY: "",
+      PRICE: "",
+      IMG_DATA: "",
     },
-    {
-      name: "상품명 2",
-      quantity: 1,
-      price: 27000,
-      subtotal: 27000,
-    },
-    {
-      name: "상품명 3",
-      quantity: 1,
-      price: 27000,
-      subtotal: 27000,
-    },
-  ];
+  ]);
+
+  async function apiBasket() {
+    // 정보 전달 함수
+    try {
+      const response = await fetch(gvar.REACT_APP_URL + '/api/mypage/cart', {
+        credentials: 'include',
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "",
+        },
+        body: JSON.stringify(products),
+      });
+      if (response.ok) {
+        const res = await response.json();
+        if (res.success) {
+          setProducts(res.data);
+        } else {
+          alert(res.msg);
+        }
+      } else {
+        throw Error("서버 응답 실패");
+      }
+    } catch (err) {
+      console.error(Error('로그인 중 에러 발생'));
+    }
+  };
+
+  useEffect(() => {
+    apiBasket();
+  }, []);
+
 
   return (
     <div className="basket">
@@ -47,18 +68,17 @@ function basket() {
                   </td>
                   <td>
                     <div className="basketProduct">
-                      <img src="https://via.placeholder.com/80x80" alt={index} className="productImage" />
+                      <img src={`data:image/jpeg;base64,${product.IMG_DATA}`} alt={index} className="productImage" />
                       <div className="basketProductName">
                         <h2 className="ProductName">
-                          {product.name}
+                          {product.PRODUCT_NM}
                         </h2>
-                        <p>상품설명</p>
                       </div>
                     </div>
                   </td>
-                  <td className="basket-quantity">{product.quantity}</td>
-                  <td className="basket-price">{product.price}</td>
-                  <td className="basket-subtotal">{product.subtotal}</td>
+                  <td className="basket-quantity">{product.QUANTITY}</td>
+                  <td className="basket-price">{product.PRICE}</td>
+                  <td className="basket-subtotal">{product.PRICE}</td>
                 </tr>
               ))}
             </tbody>
@@ -77,7 +97,7 @@ function basket() {
               <tr>
                 <td>전체주문금액</td>
                 <td>
-                  {products.reduce((acc, product) => acc + product.subtotal, 0)}
+                  {products.reduce((acc, product) => acc + product.PRICE, 0)}
                 </td>
               </tr>
             </tbody>
@@ -89,4 +109,4 @@ function basket() {
   );
 }
 
-export default basket;
+export default Basket;
