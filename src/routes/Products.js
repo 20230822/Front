@@ -136,7 +136,6 @@ function Products() {
     product.current.parentElement.firstChild.firstChild.firstChild.className = `light ${lampName}`;
     product.current.parentElement.firstChild.firstChild.firstChild.firstChild.className = `light ${lightMethod}`;
   }, [lampName, lightMethod]);
-
   
   // 상품 데이터 요청
   async function onClickLamp() {

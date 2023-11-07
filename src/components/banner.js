@@ -2,7 +2,6 @@
 // 대신 사용하는 것이 useRef란 것 사용시 {변수명.current}
 import { useEffect, useRef, useState } from "react";
 import "../style/banner.css"
-import { Buffer } from 'buffer';
 
 function Banner() {
   const [index, setIndex] = useState(0);
@@ -19,31 +18,21 @@ function Banner() {
     {
       IMG_DATA: "",
       PRODUCT_PK: "",
+      PRODUCT_NM: "",
     },
     {
       IMG_DATA: "",
       PRODUCT_PK: "",
+      PRODUCT_NM: "",
     },
     {
       IMG_DATA: "",
       PRODUCT_PK: "",
+      PRODUCT_NM: "",
     },
   ]);
-  // 디코딩까지 완료한 데이터 저장할 변수
-  const [copyLights, setCopyLights] = useState([
-    {
-      IMG_DATA: "",
-      PRODUCT_PK: "",
-    },
-    {
-      IMG_DATA: "",
-      PRODUCT_PK: "",
-    },
-    {
-      IMG_DATA: "",
-      PRODUCT_PK: "",
-      },
-  ]);
+  // 이미지만 따로 모은 변수
+  const [img, setImg] =useState("");
 
   // api 연결 부분
   useEffect(() => {
@@ -55,7 +44,7 @@ function Banner() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(),// Lamps 값을 JSON 문자열로 변환하여 요청 
+          body: JSON.stringify(), 
         });
     
         // 연결 성공 유무 판단
@@ -81,24 +70,22 @@ function Banner() {
   useEffect(() => {
     // async 비동기 함수로 선언하는데 사용 내부에서 await을 사용하여 비동기 작업 수행 (항상 promise를 반환한다.)
     const decodeImages = async () => {
-      if (lights.IMG_DATA !== "") {
+      if (lights[0].IMG_DATA !== "") {
         // await async 함수 안에서만 동작하며, promise가 처리 될때까지 기다린다. 
         // 사용자경험을 향상시키기 위해 사용(응답성 향상, 성능개선)
         // promise는 비동기 작업을 다룰 때 사용되는 객체로 resolve(성공), reject(거절) 두가지 콜백을 받고 all을 사용하여 여러 배열을 병렬로 처리시 사용
-        const decodedLight = await Promise.all(lights.map((lightItem) => {
-          if (lightItem.IMG_DATA !== undefined) {
-            const base64Data = Buffer.from(lightItem.IMG_DATA, 'base64'); // 바이너리 에서 base64로 변환
-            lightItem.IMG_DATA = `data:image/jpeg;base64,${base64Data}`; // 주소변환과정
-          }
-          return lightItem;
+        const changeData = await Promise.all(lights.map((getImg) => {
+          const base64Data = `data:image/jpeg;base64,${getImg.IMG_DATA}`;
+          getImg = base64Data;
+          return getImg;
         }));
-
-        setCopyLights(decodedLight); // 이런식으로 다른 곳에 저장을 새로 해줘야 무한루프, 비동기 방식에 의한 오류가 생기지 않는다.
+        setImg(changeData);
       }
     };
     
     decodeImages();
   }, [lights]);
+
   // slide 눈속임을 이용한 함수 젤끝까지 이동하면 몇초뒤 transition을 없애고 처음으로 이동
   const onSlide = (e) => {
     // 누른 방향에 따라서 index값 변화
@@ -157,12 +144,12 @@ function Banner() {
 
   // index값 변경마다 slide 움직이게 하는 화살표함수
   useEffect(() => {
-    if(copyLights[0].IMG_DATA !== "") {
+    if(img !== "") {
       const itemWidth = item.current.clientWidth + 10;
       dotColor(index);
       carousel.current.style.transform = "translateX(" + (index * itemWidth) + "px)"; 
     }
-  }, [index, copyLights]);
+  }, [index, img]);
 
   // 자동 슬라이드 기능을 구현
   useEffect(() => {
@@ -200,17 +187,16 @@ function Banner() {
       <div className="banner-header" onMouseEnter={onToggle} onMouseLeave={onToggle}> {/* mouseover와는 다르게 자식은 해당안되고 오로지 자기 자신만 해당 */}
         {lights.h2 !== "" && 
         <div className="banner-title">
-          <h2 className="banner-title-header">{/*{lights[dotIndex].PRODUCT_NM}*/} hi </h2>
-          <p>{/*lights[dotIndex].DESCRIBE */} hida</p>
+          <h2 className="banner-title-header">{lights[dotIndex].PRODUCT_NM}</h2>
         </div>}
 
-        {copyLights[0].IMG_DATA !== "" && 
+        {img !== "" && 
           <div className={`banner-images ${active === "move" ? active : ""}`} ref={carousel}>
-            <img className="banner-images-index clone" src={copyLights[2].IMG_DATA} alt="조명 사진" />
-            <img className="banner-images-index" src={copyLights[0].IMG_DATA} alt="조명 사진" />
-            <img className="banner-images-index" src={copyLights[1].IMG_DATA} alt="조명 사진" />
-            <img className="banner-images-index" src={copyLights[2].IMG_DATA} alt="조명 사진" />
-            <img className="banner-images-index clone" src={copyLights[0].IMG_DATA} alt="조명 사진" ref={item}/>
+            <img className="banner-images-index clone" src={img[2]} alt="조명 사진" />
+            <img className="banner-images-index" src={img[0]} alt="조명 사진" />
+            <img className="banner-images-index" src={img[1]} alt="조명 사진" />
+            <img className="banner-images-index" src={img[2]} alt="조명 사진" />
+            <img className="banner-images-index clone" src={img[0]} alt="조명 사진" ref={item}/>
           </div>}
         
         <div className="banner-arrow">

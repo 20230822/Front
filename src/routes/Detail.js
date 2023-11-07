@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "../style/Detail.css";
 import { useLocation } from "react-router";
-import { Buffer } from "buffer";
 
 function Detail() {
   // 요청해서 받아온 데이터 저장 변수
@@ -15,7 +14,7 @@ function Detail() {
     made: "",
     hash: "",
     text: "",
-    img: "",
+    img: [],
   })
   const [img, setImg] = useState("");
   const detailColors = ["상품색", "전구온도"];
@@ -51,16 +50,16 @@ function Detail() {
             if (res.success) {
               // 데이터 저장
               setDetailData({
-                name: res.data[0].PRODUCT_NM,
-                price: res.data[0].PRICE,
-                size:res.data[0].SIZE,
-                material: res.data[0].MATERIAL,
-                weight: res.data[0].WEIGHT,
-                type: res.data[0].LIGHT_TYPE,
-                made: res.data[0].COUNTRY,
-                hash: res.data[0].HASHTAG,
-                text: res.data[0].DESCRIBE,
-                img: res.data[0].IMG_DATA.data,
+                name: res.data.PRODUCT_NM,
+                price: res.data.PRICE,
+                size:res.data.SIZE,
+                material: res.data.MATERIAL,
+                weight: res.data.WEIGHT,
+                type: res.data.LIGHT_TYPE,
+                made: res.data.COUNTRY,
+                hash: res.data.HASHTAG,
+                text: res.data.DESCRIBE,
+                img: res.dataImages,
               });
             } else {
               alert(res.msg);
@@ -76,12 +75,16 @@ function Detail() {
     getItemData();
   }, [product]);
 
-// 추가 이미지 변환과정
+// base64를 주소이미지로 변환과정
 useEffect(() => {
-  const decodeImage = () => {
-    if (detailData.img !== "") {
-      const base64Data = Buffer.from(detailData.img, 'base64'); // 바이너리 에서 base64로 변환
-      setImg(`data:image/jpeg;base64,${base64Data}`); // 주소변환과정
+  const decodeImage = async () => {
+    if (detailData.img !== undefined) {
+      const changeData = await Promise.all(detailData.img.map((getImg) => {
+        const base64Data = `data:image/jpeg;base64,${getImg.data}`;
+        getImg = base64Data;
+        return getImg;
+      }));
+      setImg(changeData);
     }
   }
   
@@ -123,7 +126,7 @@ return (
       <div className="detail-content">
         <p className="detail-content-text">{detailData.text}</p>
         <div className="detail-content-space">
-          {detailData.img !== "" && <img className="detail-content-space-picture" src={img} alt="연출사진 1" />}
+          {img !== undefined && <img className="detail-content-space-picture" src={img[1]} alt="연출사진 1" />}
           <img className="detail-content-space-picture" src="/" alt="연출사진 1" />
         </div>
       </div>
