@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "../style/item.css";
 import { useEffect, useState } from "react";
 
-
 // 웬만하면 기존 불러온 데이터는 따로 두고 업데이트에 필요한 데이터를 새로 만들어서 사용하기(그래야 오류가 적음..)
 function Items( props ) {
   // 불러온 데이터를 배열형태로 저장할 변수
@@ -33,10 +32,8 @@ function Items( props ) {
         // 사용자경험을 향상시키기 위해 사용(응답성 향상, 성능개선)
         // promise는 비동기 작업을 다룰 때 사용되는 객체로 resolve(성공), reject(거절) 두가지 콜백을 받고 all을 사용하여 여러 배열을 병렬로 처리시 사용
         const decodedLight = await Promise.all(light.map((lightItem) => {
-          if (lightItem.IMG_DATA.data !== undefined) {
-            const base64Data = lightItem.IMG_DATA.data;
-            lightItem.IMG_DATA = `data:image/jpeg;base64,${base64Data}`;
-          }
+          const base64Data = `data:image/jpeg;base64,${lightItem.IMG_DATA}`;
+          lightItem.IMG_DATA = base64Data;
           return lightItem;
         }));
 
@@ -45,10 +42,6 @@ function Items( props ) {
     };
       decodeImages();
   }, [light]);
-
-  useEffect(() => {
-    console.log(light);
-  }, [light])
 
   return (
     <div className="products-items">
