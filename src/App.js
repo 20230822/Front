@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // npm i styled-reset설치 후 사용
 import { Reset } from "styled-reset";
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import "./style/App.css";
 import Header from "./routes/Header.js";
 
@@ -17,18 +17,14 @@ const Detail = lazy(() => import("./routes/Detail.js"));
 const HelpDetail = lazy(() => import("./routes/HelpDetail.js"));
 
 function App() {
-  const [throwLogin, SetThrowLogin] = useState(false);
-  const [loginComplete, SetLoginComplete] = useState(false); 
-  
-  const islogin = (abc) => {
-    SetLoginComplete(abc);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 추가
+
+  const handleLoginSuccess = (success) => {
+    setIsLoggedIn(success);
   };
 
-  useEffect(() => {
-    if (loginComplete)
-      SetThrowLogin(true);
-  }, [loginComplete])
-
+  
   const pages = [
     {
       pageLink: "/",
@@ -64,7 +60,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Reset />
-        <Header state={throwLogin}/>
+        <Header isLoggedIn={isLoggedIn}/>
 
         <Suspense fallback={<div />}> {/* loading완료 전까지 보여줄 화면 fallback */}
             <Routes>
@@ -74,7 +70,7 @@ function App() {
                 return (
                   <Route 
                     path={page.pageLink} 
-                    element={<page.view islogin={islogin}/>} 
+                    element={<page.view onLoginSuccess = {handleLoginSuccess}/>} 
                     key={index}
                   />
                 );

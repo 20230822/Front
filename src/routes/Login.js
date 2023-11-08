@@ -14,8 +14,6 @@ function Login(props) {
     psword: "",
   });
 
-  // props 변경방지
-  const copyProps = props;
 
   const [formData, setFormData] = useState({
     id: "",
@@ -42,6 +40,11 @@ function Login(props) {
     });
   };
 
+  const handleLoginSuccess = () => {
+    props.onLoginSuccess(true);
+    navigate("/");
+  }
+
   // 백엔드로 값을 보내주는 함수
   // then 대신 async 사용
   async function handleSubmitLogin(e) {
@@ -65,8 +68,7 @@ function Login(props) {
       if (response.ok) {
         const res = await response.json();
         if (res.success) {
-          copyProps.islogin(true);
-          navigate("/");
+          handleLoginSuccess();
         } else {
           alert(res.msg);
         }

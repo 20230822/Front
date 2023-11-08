@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../style/Header.css";
 import Light from "../components/light";
 import Search from "../components/search";
-import { useState } from "react";
+import "../App.js";
 
 function Header(props) {
   // 조명일러스트 class변환함수
@@ -12,11 +12,11 @@ function Header(props) {
     e.target.parentElement.parentElement.parentElement.parentElement.firstChild.firstChild.firstChild.className = "light";
   };
 
-  const [check, setCheck] = useState(props.state);
+  const {isLoggedIn} = props;
 
-  function onchange() {
-    setCheck(false);
-  };
+  function handleLogout(){
+
+  }
 
   return (
     <div className="header">
@@ -28,9 +28,11 @@ function Header(props) {
         <div className="menu-top">
           <h1><Link className="menu-title" to={"/"} onClick={onReset}>Light Mall</Link></h1>
           <ul className="menu-help">
-            <li>
-              {check === false ? <Link className="menu-help-item" to={"/Login"}>로그인</Link> : <Link className="menu-help-item" to={"/"} onClick={onchange}>로그아웃</Link>}
-            </li> {/* 로그인 시 로그아웃으로 */}
+          <li>
+              {isLoggedIn ? 
+              (<Link className="menu-help-item" to={"/"} onClick={handleLogout}>로그아웃</Link>) 
+              : (<Link className="menu-help-item" to={"/Login"}> 로그인</Link>)}
+            </li>
             <li><Link className="menu-help-item" to={"/MyPage"}>마이페이지</Link></li>
             <li><Link className="menu-help-item" to={"/Help"}>고객센터</Link></li>
           </ul>
