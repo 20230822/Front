@@ -1,6 +1,7 @@
 // 기존에 쓰던 querySelector은 dom을 참조 react는 가상돔이라 사용을 자제해야 한다. 
 // 대신 사용하는 것이 useRef란 것 사용시 {변수명.current}
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../style/banner.css"
 
 function Banner() {
@@ -182,6 +183,15 @@ function Banner() {
     setToggle((prev) => prev === false ? true : false);
   };
 
+  const navigate = useNavigate();
+
+  const handleImageClick = () => {
+    // 이미지를 클릭했을 때 페이지 이동
+    navigate(`/Products/제품/상세페이지`, {
+      state: { id: lights[dotIndex].PRODUCT_PK, img: img[dotIndex] },
+    });
+  };
+
   return (
     <div className="banner">
       <div className="banner-header" onMouseEnter={onToggle} onMouseLeave={onToggle}> {/* mouseover와는 다르게 자식은 해당안되고 오로지 자기 자신만 해당 */}
@@ -191,7 +201,7 @@ function Banner() {
         </div>}
 
         {img !== "" && 
-          <div className={`banner-images ${active === "move" ? active : ""}`} ref={carousel}>
+          <div className={`banner-images ${active === "move" ? active : ""}`} ref={carousel} onClick={handleImageClick}>
             <img className="banner-images-index clone" src={img[2]} alt="조명 사진" />
             <img className="banner-images-index" src={img[0]} alt="조명 사진" />
             <img className="banner-images-index" src={img[1]} alt="조명 사진" />

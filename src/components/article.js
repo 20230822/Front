@@ -19,7 +19,7 @@ function Article() {
       IMG_DATA: "",
       PRODUCT_PK: "",
     },
-  ])
+  ]);
 
   //몇번 이동해야하는지 알려주는 함수
   const onSlide = (e) => {
@@ -51,12 +51,12 @@ function Article() {
           },
           body: JSON.stringify(hash), 
         });
-    
+
         // 연결 성공 유무 판단
         if (response.ok) {
           const res = await response.json();
           if (res.success) {
-            // console.log(res);
+            console.log(res);
             setHashData(res.data);
           } else {
             alert(res.msg);
@@ -71,10 +71,6 @@ function Article() {
 
     getHashData();
   }, [hash]);
-
-  useEffect(() => {
-    // console.log(hashData);
-  }, [hashData]);
 
   return (
     <div className="article">
