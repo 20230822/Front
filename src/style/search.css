@@ -67,3 +67,49 @@
   margin-bottom: 10px;
   border: none;
 }
+
+.search-result-show {
+  position: absolute;
+  left: 0;
+  top: 150px;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  transition: all 0.3s ease-in;
+  overflow: scroll;
+  z-index: -3;
+  cursor: default;
+}
+.search-result-none {
+  position: absolute;
+  left: 0;
+  top: 150px;
+  width: 100%;
+  height: 0;
+  transition: all 0.3s ease-in;
+  z-index: -3;
+}
+
+.search-result-item-show {
+  display: flex;
+  width: 580px;
+  height: 50px;
+  transition: all 0.3s ease-in;
+  margin-top: 10px;
+  text-indent: 0;
+  z-index: 2;
+}
+.search-result-item-show:first-child {
+  margin-top: 100px;
+}
+
+.item-name {
+  font-size: 1rem;
+}
+.item-description {
+  margin-left: 200px;
+  font-size: 0.8rem;
+}

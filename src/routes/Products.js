@@ -36,6 +36,7 @@ function Products() {
     page: "",
   });
   const [data, setData] = useState("");
+  const [loading, setLoading] = useState(true); // 데이터 로딩 중 여부
 
   // 주소가 바뀔때마다 실행
   useEffect(() => {
@@ -79,6 +80,11 @@ function Products() {
         page: 1,
       });
     }
+  }, [lampName]);
+
+  // 펜던트 이름이 바뀌면 조명방식에 대한 값이 초기화
+  useEffect(() => {
+    setLightMethod("");
   }, [lampName]);
 
   // 간접, 반간접, 전반확산, 반직접, 직접에 대한 클릭 기능
@@ -153,14 +159,17 @@ function Products() {
       if (response.ok) {
         const res = await response.json();
         if (res.success) {
+          setLoading(false) // 로딩이 끝남을 의미
           setData(res.data); //데이터 저장
         } else {
           alert(res.msg);
         }
       } else {
+        setLoading(true) // 로딩이 지속됨을 의미
         throw Error("서버 응답 실패");
       }
     } catch (err) {
+      setLoading(true) // 로딩이 지속됨을 의미
       console.error(Error('불러오는 중 에러 발생'));
     }
   };
@@ -191,11 +200,14 @@ function Products() {
         {lightMethod !== "" ? <span className="root arrow"></span>: ""}
         {lightMethod !== "" ? <span className="root">{lightMethod}</span>: ""}
       </div>
-
-      <Items 
-        path={lampName}
-        data={data}
-      />
+    
+      {loading === false ? 
+        <Items 
+          path={lampName}
+          data={data}
+        /> :
+        <div className="products-loading">loading...</div>
+      }
     </div>
   );
 }

@@ -8,9 +8,10 @@ function Article() {
   // 데이터를 요청하기위한 변수
   const [hash, setHash] = useState([
     {
+      productCnt : "5",
       hashtag1 : "아담",
-      hashtag2 : "시크",
-      hashtag3 : "마르"
+      hashtag2: "시크",
+      hashtag3 : "팬던트"
     },
   ]);
   // 데이터 불러온 후 저장 변수
@@ -47,7 +48,7 @@ function Article() {
           credentials: 'include',
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
           },
           body: JSON.stringify(hash), 
         });
@@ -87,7 +88,7 @@ function Article() {
           <img className="article-recommend-items" src="" alt="상황별 조명 추천 사진" />
           <img className="article-recommend-items" src="" alt="상황별 조명 추천 사진" />
           <img className="article-recommend-items" src="" alt="상황별 조명 추천 사진" />
-          <img className="article-recommend-items" src="ygf" alt="상황별 조명 추천 사진" />
+          <img className="article-recommend-items" src="" alt="상황별 조명 추천 사진" />
           <img className="article-recommend-items" src="" alt="상황별 조명 추천 사진" />
           <img className="article-recommend-items" src="" alt="상황별 조명 추천 사진" />
         </div>

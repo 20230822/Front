@@ -187,6 +187,7 @@ function Banner() {
 
   const handleImageClick = () => {
     // 이미지를 클릭했을 때 페이지 이동
+    // link 사용 시 transition이 적용되지 않아 useNavigate로 대체
     navigate(`/Products/제품/상세페이지`, {
       state: { id: lights[dotIndex].PRODUCT_PK, img: img[dotIndex] },
     });
