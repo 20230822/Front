@@ -7,7 +7,6 @@ import * as gvar from "../globalVar.js"
 
 
 function MyPage() {
-  const [decodedImageData, setDecodedImageData] = useState(null);
   const [category, setLightMethod] = useState("");
   const [formMypage, setFormMypage] = useState({
     USER_NM: "",
@@ -19,11 +18,6 @@ function MyPage() {
     setLightMethod((pre) => e.target.innerText);
     if (category === e.target.innerText)
       setLightMethod("");
-  };
-
-  function decoding() {
-    const base64Data = formMypage.PROFILE_DATA;
-    setDecodedImageData(`data:image/jpeg;base64,${base64Data}`);
   };
 
   useEffect(()=>{
@@ -60,14 +54,10 @@ function MyPage() {
     MypageApi();
   }, []);
 
-  useEffect(() => {
-    decoding();
-  }, [formMypage]);
-
   return (
     <div className="Mypage">
       <div className="profileContent">
-        <img className="profileImage" src={decodedImageData} alt="프사" />
+        <img className="profileImage" src={`data:image/jpeg;base64,${formMypage.PROFILE_DATA}`} alt="프사" />
         <div className="my-info" >
           <span className="my-info-text">이름 {formMypage.USER_NM}</span>
           <span className="my-info-text">이메일 {formMypage.USER_ID}</span>

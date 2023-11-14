@@ -1,30 +1,51 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import * as gvar from "../globalVar.js"
 import "../style/history.css";
 
 function History() {
-  const products = [
+  const [products, setProducts] = useState([
     {
-      name: "상품명 1",
-      quantity: 1,
-      explain: "상품설명1",
-      subtotal: 27000,
-      date: Date()
+      PRODUCT_FK: "",
+      PRODUCT_NM: "",
+      ORDER_NO: "",
+      PRICE:"",
+      ORDER_DT: "",
+      IMG_DATA: ""
     },
-    {
-      name: "상품명 2",
-      quantity: 1,
-      explain: "상품설명2",
-      subtotal: 27000,
-      date: Date()
-    },
-    {
-      name: "상품명 3",
-      quantity: 1,
-      explain: "상품설명3",
-      subtotal: 27000,
-      date: Date()
-    },
-  ];
+  ]);
+
+  async function apiHistory() {
+    // 정보 전달 함수
+    try {
+      const response = await fetch(gvar.REACT_APP_URL + '/api/mypage/order', {
+        credentials: 'include',
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "",
+        },
+        body: JSON.stringify(products),
+      });
+      if (response.ok) {
+        const res = await response.json();
+        if (res.success) {
+          setProducts(res.data);
+        } else {
+          alert(res.msg);
+        }
+      } else {
+        throw Error("서버 응답 실패");
+      }
+    } catch (err) {
+      console.error(Error('로그인 중 에러 발생'));
+    }
+  };
+
+  useEffect(() => {
+    apiHistory();
+  }, [])
+
 
   return (
     <div className="history">
@@ -43,18 +64,17 @@ function History() {
             <tr key={index} className="basketTr">
               <td>
                 <div className="historyProduct">
-                  <img src="https://via.placeholder.com/80x80" alt={index} className="productImage" />
+                  <img src = {`data:image/jpeg;base64,${product.IMG_DATA}`} alt={index} className="productImage" />
                   <div className="basketProductName">
                     <h2 className="ProductName">
-                      {product.name}
+                      {product.PRODUCT_NM}
                     </h2>
-                    <p className="productExplain">{product.explain}</p>
                   </div>
                 </div>
               </td>
-              <td className="history-quantity">{product.quantity}</td>
-              <td className="history-subtotal">{product.subtotal}</td>
-              <td className="history-date">{new Date(product.date).toLocaleString()}</td>
+              <td className="history-quantity">{product.ORDER_NO}</td>
+              <td className="history-subtotal">{product.PRICE}</td>
+              <td className="history-date">{new Date(product.ORDER_DT).toLocaleString()}</td>
             </tr>
           ))}
           </tbody>
