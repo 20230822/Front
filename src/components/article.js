@@ -91,10 +91,8 @@ function Article(props) {
       <h2 className="article-title">{props.state.title}</h2>
 
       <div className="article-image">
-        <div className="article-arrow">
-          <span className="article-pre" onClick={onSlide}></span>
-          <span className="article-next" onClick={onSlide}></span>
-        </div>
+        <span className="article-pre" onClick={onSlide}></span>
+        <span className="article-next" onClick={onSlide}></span>
 
         <div className="article-recommend" ref={carousel}>
           {hashOfItem !== "" &&

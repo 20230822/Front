@@ -43,20 +43,28 @@
 }
 
 .article-pre {
+  position: absolute;
+  left: 0;
+  top: 50%;
   width: var(--article-arrow-size);
   height: var(--article-arrow-size);
   border-top: 2px solid var(--article-arrow-color);
   border-left: 2px solid var(--article-arrow-color);
   transform: translateX(15px) translateY(-50%) rotate(-45deg);
   cursor: pointer;
+  z-index: 2;
 }
 .article-next {
+  position: absolute;
+  right: 0;
+  top: 50%;
   width: var(--article-arrow-size);
   height: var(--article-arrow-size);
   border-top: 2px solid var(--article-arrow-color);
   border-right: 2px solid var(--article-arrow-color);
   transform: translateX(-15px) translateY(-50%) rotate(45deg);
   cursor: pointer;
+  z-index: 2;
 }
 
 .article-recommend {
