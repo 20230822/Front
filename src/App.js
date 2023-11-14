@@ -60,7 +60,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Reset />
-        <Header isLoggedIn={isLoggedIn}/>
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
         <Suspense fallback={<div />}> {/* loading완료 전까지 보여줄 화면 fallback */}
             <Routes>
