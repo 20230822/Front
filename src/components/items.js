@@ -22,7 +22,7 @@ function Items( props ) {
   useEffect(() => {
     setLight(props.data.products);
   }, [props]);
-  
+
   //이미지 디코딩 함수
   useEffect(() => {
     // async 비동기 함수로 선언하는데 사용 내부에서 await을 사용하여 비동기 작업 수행 (항상 promise를 반환한다.)

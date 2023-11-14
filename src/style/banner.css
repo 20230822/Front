@@ -22,12 +22,17 @@
   position: relative;
   overflow: hidden;
 }
+.banner-container {
+  position: absolute;
+  left: 50%;
+  width: var(--banner-max-width);
+  height: 100%;
+  transform: translateX(-50%);
+}
 .banner-title {
-  width: 1240px;
   position: absolute;
   bottom: 30px;
   left: 50px;
-  right: 0;
   color: var(--banner-arrow-color);
   font-size: 21px;
   font-family: 'Noto Sans KR', sans-serif;
@@ -62,7 +67,6 @@
 }
 
 .banner-arrow {
-  max-width: var(--banner-max-width);
   display: flex;
   justify-content: space-between;
   position: absolute;
@@ -72,19 +76,23 @@
   margin: 0 auto;
 }
 .banner-pre {
+  position: absolute;
+  left: 0;
   width: var(--banner-arrow-size);
   height: var(--banner-arrow-size);
   border-top: 2px solid var(--banner-arrow-color);
   border-left: 2px solid var(--banner-arrow-color);
-  transform: translateX(20px) rotate(-45deg);
+  transform: translate(20px, -225px) rotate(-45deg);
   cursor: pointer;
 }
 .banner-next {
+  position: absolute;
+  right: 0;
   width: var(--banner-arrow-size);
   height: var(--banner-arrow-size);
   border-top: 2px solid var(--banner-arrow-color);
   border-right: 2px solid var(--banner-arrow-color);
-  transform: translateX(-20px) rotate(45deg);
+  transform: translate(-20px, -225px) rotate(45deg);
   cursor: pointer;
 }
 

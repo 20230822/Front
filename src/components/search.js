@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../style/search.css";
 
 function Search() {
@@ -38,6 +39,7 @@ function Search() {
         const res = await response.json();
         if (res.success) {
           setResult(res.data);
+          console.log(res);
           setCheck(true);
           if (res.data[0] === undefined)
             setCheck(false);
@@ -52,6 +54,15 @@ function Search() {
       setCheck(false);
       console.error(Error('불러오는 중 에러 발생'));
     }
+  };
+
+  const navigate = useNavigate();
+  // hash관련 상세제품으로 이동시켜주는 함수
+  const handleSearch = (item) => {
+    const itemImg = `data:image/jpeg;base64,${item.IMG_DATA}`;
+    navigate(`/Products/제품/상세페이지`, {
+      state: { id: item.PRODUCT_PK, img: itemImg },
+    });
   };
 
   return (
@@ -70,9 +81,10 @@ function Search() {
         <div className={`search-result-${formClass}`} onClick={(e) => e.stopPropagation()}>
           {result.map((resultData, index) => {
             return(
-              <article className={`search-result-item-${formClass}`} key={index}>
-                <h2 className="item-name">{resultData.PRODUCT_PK}sdf</h2>
-                <p className="item-description">{resultData.COLOR}</p>
+              <article className={`search-result-item-${formClass}`} key={index} onClick={() => handleSearch(resultData)}>
+                <h2 className="item-name">{resultData.PRODUCT_NM}</h2>
+                <p className="item-description">{resultData.DESCRIBE}</p>
+                <p className="item-description">{resultData.HASHTAG}</p>
               </article>
             )
           })}

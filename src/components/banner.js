@@ -196,12 +196,13 @@ function Banner() {
   return (
     <div className="banner">
       <div className="banner-header" onMouseEnter={onToggle} onMouseLeave={onToggle}> {/* mouseover와는 다르게 자식은 해당안되고 오로지 자기 자신만 해당 */}
-        {lights.h2 !== "" && 
-        <div className="banner-title">
-          <h2 className="banner-title-header">{lights[dotIndex].PRODUCT_NM}</h2>
-        </div>}
+        <div className="banner-container">
+          {lights.h2 !== "" && 
+          <div className="banner-title">
+            <h2 className="banner-title-header">{lights[dotIndex].PRODUCT_NM}</h2>
+          </div>}
 
-        {img !== "" && 
+          {img !== "" && 
           <div className={`banner-images ${active === "move" ? active : ""}`} ref={carousel} onClick={handleImageClick}>
             <img className="banner-images-index clone" src={img[2]} alt="조명 사진" />
             <img className="banner-images-index" src={img[0]} alt="조명 사진" />
@@ -209,11 +210,10 @@ function Banner() {
             <img className="banner-images-index" src={img[2]} alt="조명 사진" />
             <img className="banner-images-index clone" src={img[0]} alt="조명 사진" ref={item}/>
           </div>}
-        
-        <div className="banner-arrow">
+
           <span className="banner-pre" onClick={onSlide}></span>
           <span className="banner-next" onClick={onSlide}></span>
-        </div>    
+        </div>
       </div>
 
       <div className="banner-dot">

@@ -64,11 +64,13 @@
   margin-top: 1rem;
 }
 .article-recommend-items {
+  max-width: 240px;
   min-width: 240px;
   height: 320px;
   background-color: rgb(205, 172, 117);
   border-radius: 20px;
   margin-right: 10px;
+  cursor: pointer;
 }
 .article-recommend-items:last-child {
   margin-right: 0;
