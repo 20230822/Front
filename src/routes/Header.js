@@ -4,7 +4,6 @@ import "../style/Header.css";
 import Light from "../components/light";
 import Search from "../components/search";
 import "../App.js";
-import { useEffect, useState } from "react";
 
 function Header(props) {
   // 조명일러스트 class변환함수

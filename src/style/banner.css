@@ -64,6 +64,8 @@
   border-radius: 20px;
   margin: 0 5px;
   cursor: pointer;
+  object-fit: contain;
+  background-color: #515151;
 }
 
 .banner-arrow {

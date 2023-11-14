@@ -17,13 +17,11 @@ const Detail = lazy(() => import("./routes/Detail.js"));
 const HelpDetail = lazy(() => import("./routes/HelpDetail.js"));
 
 function App() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false); // 추가
 
   const handleLoginSuccess = (success) => {
     setIsLoggedIn(success);
   };
-
   
   const pages = [
     {
@@ -63,19 +61,19 @@ function App() {
         <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
         <Suspense fallback={<div />}> {/* loading완료 전까지 보여줄 화면 fallback */}
-            <Routes>
-              {/* 화살표홤수 다음에 중괄호 존재시 return을 명시적으로 작성해주어야 함. */}
-              {/* map 사용 시 하위 요소들은 필수적으로 key값이 필요 */}
-              {pages.map((page, index) => {
-                return (
-                  <Route 
-                    path={page.pageLink} 
-                    element={<page.view onLoginSuccess = {handleLoginSuccess}/>} 
-                    key={index}
-                  />
-                );
-              })}
-              </Routes>
+          <Routes>
+            {/* 화살표홤수 다음에 중괄호 존재시 return을 명시적으로 작성해주어야 함. */}
+            {/* map 사용 시 하위 요소들은 필수적으로 key값이 필요 */}
+            {pages.map((page, index) => {
+              return (
+                <Route 
+                  path={page.pageLink} 
+                  element={<page.view onLoginSuccess = {handleLoginSuccess}/>} 
+                  key={index}
+                />
+              );
+            })}
+            </Routes>
         </Suspense>
       </div>
     </BrowserRouter>
