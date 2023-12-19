@@ -11,16 +11,23 @@ function Items( props ) {
       IMG_DATA: "",
       PRICE: "",
       PRODUCT_PK: "",
+      PRODUCT_FK: "",
     },
   ]);
   // 새로 업데이트된 상태 변수
   const [decodedLight, setDecodedLight] = useState([]);
   // 현재 조명종류 공백제거하고 주소창에 넣기 위한 변수
-  const lightType = props.path.replace(/\s/g, "");
+  const lightType = props.path ? props.path.replace(/\s/g, "") : "관심상품";
 
   // 전달 받은데이터 저장
   useEffect(() => {
-    setLight(props.data.products);
+    if(props.where === "P")
+    {
+      setLight(props.data.products);
+    }
+    else if(props.where === "I"){
+      setLight(props.products);
+    }
   }, [props]);
 
   //이미지 디코딩 함수
@@ -47,10 +54,15 @@ function Items( props ) {
     <div className="products-items">
       {decodedLight !== undefined &&
         decodedLight.map((decodedLights, index) => (
-          <Link className="item-box" to={`/Products/${lightType}/상세페이지`} key={index} state={ {id: decodedLights.PRODUCT_PK, img: decodedLights.IMG_DATA}}>
+          <Link
+            className="item-box"
+            to={`/Products/${lightType}/상세페이지`}
+            key={index}
+            state={{ id: decodedLights.PRODUCT_PK ? decodedLights.PRODUCT_PK : decodedLights.PRODUCT_FK, img: decodedLights.IMG_DATA }}
+          >
             <img className="item-box-img" src={decodedLights.IMG_DATA} alt="조명사진" />
           </Link>
-    ))}
+        ))}
     </div>
   );
 }

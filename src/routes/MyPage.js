@@ -61,8 +61,6 @@ function MyPage() {
         <div className="my-info" >
           <span className="my-info-text">이름 {formMypage.USER_NM}</span>
           <span className="my-info-text">이메일 {formMypage.USER_ID}</span>
-          <span className="my-info-text">전화번호 { }</span>
-          <span className="my-info-text">주소</span>
         </div>
       </div>
       <div className="filter-category">

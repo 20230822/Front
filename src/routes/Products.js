@@ -205,6 +205,7 @@ function Products() {
         <Items 
           path={lampName}
           data={data}
+          where={"P"}
         /> :
         <div className="products-loading">loading...</div>
       }
@@ -213,3 +214,14 @@ function Products() {
 }
 
 export default Products;
+
+/*
+CARTEGORY_FK:14
+IMG_DATA:"data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAA
+PRICE:50000
+PRODUCT_PK:30
+
+
+IMG_DATA:"/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAcHBwcIBwgJCQgMD
+PRODUCT_FK:7
+*/
