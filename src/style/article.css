@@ -70,6 +70,7 @@
 .article-recommend {
   display: flex;
   margin-top: 1rem;
+  transition: 0.3s all ease-in;
 }
 .article-recommend-items {
   max-width: 240px;

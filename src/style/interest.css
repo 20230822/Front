@@ -1,6 +1,15 @@
-.nemo{
-    width : 100px;
-    height : 100px;
-    border-radius: 50%;
-    background-color: rgb(146, 146, 146);
+.items-recommend {
+  display: flex;
+  margin-top: 80px;
+}
+
+
+.items{
+  max-width: 240px;
+  min-width: 240px;
+  height: 320px;
+  background-color: rgb(205, 172, 117);
+  border-radius: 20px;
+  margin-right: 10px;
+  cursor: pointer;
   }

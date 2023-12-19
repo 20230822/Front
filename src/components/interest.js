@@ -32,6 +32,7 @@ function Interest() {
           alert(res.msg);
         }
       } else {
+        setLoading(true);
         throw Error("서버 응답 실패");
       }
     } catch (err) {
