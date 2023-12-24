@@ -20,68 +20,59 @@
 규칙을 지켜 가독성 기타...
 
 ## 프로젝트 구조
-    ├── README.md
-├── .eslintrc.js
-├── .gitignore
-├── .prettierrc.json
-├── package-lock.json
-├── package.json
-│
-├── public
-│    └── index.html
-└── src
-     ├── App.jsx
-     ├── index.jsx
-     ├── api
-     │     └── mandarinAPI.js
-     ├── asset
-     │     ├── fonts
-     │     ├── css_sprites.png
-     │     ├── logo-404.svg
-     │     └── logo-home.svg
-     │          .
-     │          .
-     │          .
-     ├── atoms
-     │     ├── LoginData.js
-     │     └── LoginState.js
-     ├── common
-     │     ├── alert
-     │     │     ├── Alert.jsx
-     │     │     └── Alert.Style.jsx
-     │     ├── button
-     │     ├── comment
-     │     ├── inputBox
-     │     ├── post
-     │     ├── postModal
-     │     ├── product
-     │     ├── tabMenu
-     │     ├── topBanner
-     │     └── userBanner
-     ├── pages
-     │     ├── addProduct
-     │     │     ├── AddProduct.jsx
-     │     │     └── AddProduct.Style.jsx
-     │     ├── chatList
-     │     ├── chatRoom
-     │     ├── emailLogin
-     │     ├── followerList
-     │     ├── followingList
-     │     ├── home
-     │     ├── join
-     │     ├── page404
-     │     ├── postDetail
-     │     ├── postEdit
-     │     ├── postUpload
-     │     ├── productEdit
-     │     ├── profile
-     │     ├── profileEdit
-     │     ├── profileSetting
-     │     ├── search
-     │     ├── snsLogin
-     │     └── splash
-     ├── routes
-     │     ├── privateRoutes.jsx
-     │     └── privateRoutesRev.jsx  
-     └── styles
-           └── Globalstyled.jsx
+    Front
+     ┣ public
+     ┃ ┗ index.html
+     ┣ src
+     ┃ ┣ components
+     ┃ ┃ ┣ article.js
+     ┃ ┃ ┣ banner.js
+     ┃ ┃ ┣ basket.js
+     ┃ ┃ ┣ history.js
+     ┃ ┃ ┣ interest.js
+     ┃ ┃ ┣ items.js
+     ┃ ┃ ┣ light.js
+     ┃ ┃ ┣ recommend.js
+     ┃ ┃ ┗ search.js
+     ┃ ┣ images
+     ┃ ┃ ┣ Right.png
+     ┃ ┃ ┣ banner1.jpeg
+     ┃ ┃ ┣ banner2.jpeg
+     ┃ ┃ ┣ banner3.jpeg
+     ┃ ┃ ┣ bg.jpg
+     ┃ ┃ ┣ research.png
+     ┃ ┃ ┣ search_icon.png
+     ┃ ┃ ┗ shine.png
+     ┃ ┣ routes
+     ┃ ┃ ┣ Detail.js
+     ┃ ┃ ┣ Header.js
+     ┃ ┃ ┣ Help.js
+     ┃ ┃ ┣ HelpDetail.js
+     ┃ ┃ ┣ Home.js
+     ┃ ┃ ┣ Login.js
+     ┃ ┃ ┣ MyPage.js
+     ┃ ┃ ┗ Products.js
+     ┃ ┣ style
+     ┃ ┃ ┣ App.css
+     ┃ ┃ ┣ Detail.css
+     ┃ ┃ ┣ Header.css
+     ┃ ┃ ┣ Help.css
+     ┃ ┃ ┣ HelpDetail.css
+     ┃ ┃ ┣ Home.css
+     ┃ ┃ ┣ Login.css
+     ┃ ┃ ┣ MyPage.css
+     ┃ ┃ ┣ Products.css
+     ┃ ┃ ┣ article.css
+     ┃ ┃ ┣ banner.css
+     ┃ ┃ ┣ basket.css
+     ┃ ┃ ┣ history.css
+     ┃ ┃ ┣ interest.css
+     ┃ ┃ ┣ item.css
+     ┃ ┃ ┣ light.css
+     ┃ ┃ ┣ recommend.css
+     ┃ ┃ ┗ search.css
+     ┃ ┣ App.js
+     ┃ ┗ index.js
+     ┣ .gitignore
+     ┣ package-lock.json
+     ┗ package.json
