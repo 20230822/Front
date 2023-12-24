@@ -25,9 +25,9 @@
 <br>
 
 ## 개발환경
--front: html5, css3, Javascript, React 
--design: figma
--tool: github
+-front: html5, css3, Javascript, React <br>
+-design: figma <br>
+-tool: github 
 
 <br>
 
