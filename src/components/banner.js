@@ -39,7 +39,7 @@ function Banner() {
   useEffect(() => {
     async function getRandomData() {
       try{
-        const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/main', {
+        const response = await fetch('/api/main', {
           credentials: 'include',
           method: "POST",
           headers: {

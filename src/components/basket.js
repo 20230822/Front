@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../style/basket.css"
-import * as gvar from "../globalVar.js"
 
 function Basket() {
   const [products, setProducts] = useState([
@@ -15,7 +14,7 @@ function Basket() {
   async function apiBasket() {
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL + '/api/mypage/cart', {
+      const response = await fetch('/api/mypage/cart', {
         credentials: 'include',
         method: "POST",
         headers: {

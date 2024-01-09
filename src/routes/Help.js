@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../style/Help.css";
 import { Link } from "react-router-dom";
-import * as gvar from "../globalVar.js"
 
 function Help() {
   const [posts, setPosts] = useState([
@@ -16,7 +15,7 @@ function Help() {
   async function apiNotice() {
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL + '/api/notice', {
+      const response = await fetch('/api/notice', {
         credentials: 'include',
         method: "POST",
         headers: {

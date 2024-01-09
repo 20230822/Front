@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react";
 import Items from "../components/items";
-import * as gvar from "../globalVar.js";
 
 function Interest() {
   const [products, setProducts] = useState([
@@ -14,7 +13,7 @@ function Interest() {
   async function apiInterest() {
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL + "/api/mypage/wishlist", {
+      const response = await fetch("/api/mypage/wishlist", {
         credentials: "include",
         method: "POST",
         headers: {

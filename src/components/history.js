@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import * as gvar from "../globalVar.js"
 import "../style/history.css";
 
 function History() {
@@ -18,7 +17,7 @@ function History() {
   async function apiHistory() {
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL + '/api/mypage/order', {
+      const response = await fetch('/api/mypage/order', {
         credentials: 'include',
         method: "POST",
         headers: {

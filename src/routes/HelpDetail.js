@@ -1,7 +1,6 @@
 import React,{useEffect, useState}from "react";
 import { useParams} from "react-router-dom";
 import "../style/HelpDetail.css";
-import * as gvar from "../globalVar.js"
 
 const HelpDetail = () => {
   const { id } = useParams();
@@ -18,7 +17,7 @@ const HelpDetail = () => {
   async function apiNotice() {
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL + '/api/notice/detail?page=' + id, {
+      const response = await fetch('/api/notice/detail?page=' + id, {
         credentials: 'include',
         method: "POST",
         headers: {

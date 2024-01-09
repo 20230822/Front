@@ -146,7 +146,7 @@ function Products() {
   // 상품 데이터 요청
   async function onClickLamp() {
     try {
-      const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/product/category', {
+      const response = await fetch('/api/product/category', {
         credentials: 'include',
         method: "POST",
         headers: {

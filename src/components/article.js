@@ -49,7 +49,7 @@ function Article(props) {
   useEffect(() => {
     async function getHashData() {
       try{
-        const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/main/hashtag', {
+        const response = await fetch('/api/main/hashtag', {
           credentials: 'include',
           method: "POST",
           headers: {

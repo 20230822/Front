@@ -35,7 +35,7 @@ function Detail() {
     async function getItemData() {
       if (product.id !== "") {
         try{
-          const response = await fetch('https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/product/detailInfo', {
+          const response = await fetch('/api/product/detailInfo', {
             credentials: 'include',
             method: "POST",
             headers: {

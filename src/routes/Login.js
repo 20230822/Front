@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../style/Login.css";
-import * as gvar from "../globalVar.js"
 import * as addr from "../copy.js"
 import "../App.js"
 /*백엔드에게 넘길떄 위 환경변수 삭제*/
@@ -56,7 +55,7 @@ function Login(props) {
     }
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL + '/api/login', {
+      const response = await fetch('/api/login', {
         credentials: 'include',
         method: "POST",
         headers: {
@@ -95,7 +94,7 @@ function Login(props) {
     console.log(formData);
     // 정보 전달 함수
     try {
-      const response = await fetch(gvar.REACT_APP_URL + '/api/register', {
+      const response = await fetch('/api/register', {
         credentials: 'include',
         method: "POST",
         headers: {

@@ -3,8 +3,6 @@ import "../style/MyPage.css";
 import Interest from "../components/interest";
 import History from "../components/history";
 import Basket from "../components/basket";
-import * as gvar from "../globalVar.js"
-
 
 function MyPage() {
   const [category, setLightMethod] = useState("");
@@ -23,7 +21,7 @@ function MyPage() {
   useEffect(()=>{
     async function MypageApi() {
       try {
-        const response = await fetch(gvar.REACT_APP_URL + '/api/mypage', {
+        const response = await fetch('/api/mypage', {
           credentials: 'include',
           method: "POST",
           headers: {

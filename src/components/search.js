@@ -7,21 +7,8 @@ function Search() {
   const [search, setSearch] = useState(""); // 검색한 값 저장 변수
   const [result, setResult] = useState([]); // 검색한 데이터들의 저장 변수
   const [check, setCheck] = useState(false);
-  // const [off, setOff] = useState(false);
   // 폼이 보이는 경우에만 CSS 클래스 추가
   const formClass = isFormVisible ? "show" : "none";
-  // const test = useRef(null);
-
-  // function onTest2() {
-  //   setOff(!off);
-  // }
-
-  // function onTest() {
-  //   setOff(!off);
-  //   if (off)
-  //     document.addEventListener("mousedown", toggleFormVisibility)
-  // };
-
   const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
   };
@@ -37,7 +24,7 @@ function Search() {
     e.preventDefault(); // 새로고침되서 맨위로 올라가는 현상 방지
 
     try {
-      const response = await fetch(`https://port-0-node-express-jvvy2blmegkftc.sel5.cloudtype.app/api/product/search?keyword=${search}`, {
+      const response = await fetch(`/api/product/search?keyword=${search}`, {
         credentials: 'include',
         method: "GET",
         headers: {
